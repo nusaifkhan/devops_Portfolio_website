@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Learning Path — Nusaif Khan</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#03070a;--bg2:#060d12;--bg3:#0b1820;--g:#00ff88;--g2:#00cc6a;--c:#00e5ff;--b:#1e90ff;--o:#ff6b35;--p:#a855f7;--t:#c8d8e4;--td:#4a6a7a;--bd:#132030;--bdh:#00ff8840;--glow:0 0 20px #00ff8830;--glows:0 0 40px #00ff8860;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--t);font-family:"Outfit",sans-serif;overflow-x:hidden;cursor:none;}
+    ::selection{background:#00ff8830;color:var(--g);}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--g2);border-radius:2px;}
+
+    /* CURSOR */
+    #cur,#cur-r{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s,border .15s;}
+    #cur{width:10px;height:10px;background:var(--g);box-shadow:0 0 8px #00ff8880;}
+    #cur-r{width:32px;height:32px;border:1px solid #00ff8860;z-index:9998;transition:all .12s ease;}
+
+    /* BG GRID */
+    .bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,255,136,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.018) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 60px;background:rgba(3,7,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);transition:all .3s;}
+    nav.scrolled{padding:12px 60px;border-bottom-color:#00ff8830;}
+    .nav-logo{font-family:"JetBrains Mono",monospace;font-size:.85rem;color:var(--g);letter-spacing:.05em;text-decoration:none;}
+    .nav-logo span{color:var(--td);}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+    .nav-links a{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;position:relative;cursor:none;}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:1px;background:var(--g);transition:width .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--g);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-dl{font-family:"JetBrains Mono",monospace;font-size:.72rem;padding:8px 18px;background:transparent;border:1px solid var(--g);color:var(--g);border-radius:3px;cursor:none;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;text-decoration:none;}
+    .nav-dl:hover{background:var(--g);color:#000;}
+
+    /* PAGE SHELL */
+    .page-shell{min-height:100vh;padding-top:80px;position:relative;z-index:2;}
+
+    /* SECTION WRAP */
+    .section-wrap{max-width:1100px;margin:0 auto;padding:80px 60px;}
+    .section-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .section-kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--bd),transparent);}
+    .section-title{font-family:"Outfit",sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;line-height:1;margin-bottom:48px;}
+
+    /* FADE IN */
+    .fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+    .fade.vis{opacity:1;transform:translateY(0);}
+    .fade.delay1{transition-delay:.1s;}
+    .fade.delay2{transition-delay:.2s;}
+    .fade.delay3{transition-delay:.3s;}
+    .fade.delay4{transition-delay:.4s;}
+
+    /* PAGE HERO BANNER */
+    .page-banner{padding:60px 60px 0;max-width:1100px;margin:0 auto;}
+    .page-banner-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .page-banner-kicker::before{content:"";width:36px;height:1px;background:var(--g);}
+    .page-banner-title{font-family:"Outfit",sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.02em;margin-bottom:16px;}
+    .page-banner-title span{color:var(--g);}
+    .page-banner-desc{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--td);line-height:1.7;max-width:500px;}
+
+    /* FOOTER */
+    footer{padding:32px 60px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-top:40px;}
+    .footer-copy{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);}
+    .footer-status{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);display:flex;align-items:center;gap:8px;}
+    .status-dot{width:8px;height:8px;background:var(--g);border-radius:50%;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--g);}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:.7;}}
+    @keyframes blink{50%{opacity:0;}}
+
+    /* BREADCRUMB */
+    .breadcrumb{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--td);padding:18px 60px 0;max-width:1100px;margin:0 auto;letter-spacing:.05em;}
+    .breadcrumb a{color:var(--td);text-decoration:none;transition:color .2s;}
+    .breadcrumb a:hover{color:var(--g);}
+    .breadcrumb span{color:var(--td);margin:0 8px;}
+
+    /* BADGE */
+    .badge{font-family:"JetBrains Mono",monospace;font-size:.72rem;padding:5px 12px;border:1px solid var(--bd);border-radius:3px;color:var(--c);letter-spacing:.05em;transition:all .2s;cursor:default;}
+    .badge:hover{border-color:var(--c);background:rgba(0,229,255,.06);}
+
+    /* MOBILE */
+    @media(max-width:900px){
+      nav{padding:14px 32px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:32px;padding-right:32px;}
+    }
+    @media(max-width:600px){
+      nav{padding:12px 20px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:20px;padding-right:20px;}
+      footer{flex-direction:column;gap:14px;padding:24px 20px;text-align:center;}
+    }
+    @media(max-width:400px){
+      .section-wrap,.page-banner,.breadcrumb{padding-left:16px;padding-right:16px;}
+    }
+
+  /* HAMBURGER */
+  #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px 4px;background:none;border:none;}
+  #hamburger span{display:block;width:22px;height:2px;background:var(--g);border-radius:2px;transition:all .25s;}
+  #hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  #hamburger.open span:nth-child(2){opacity:0;}
+  #hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  #mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(3,7,10,.96);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border-bottom:1px solid rgba(0,255,136,.12);box-shadow:0 8px 40px rgba(0,0,0,.5);flex-direction:column;z-index:199;padding:20px 24px 28px;}
+  #mobile-menu a{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--td);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid var(--bd);transition:color .2s,padding-left .2s;}
+  #mobile-menu a:hover,#mobile-menu a.active{color:var(--g);padding-left:8px;}
+  #mobile-menu a:last-child{border-bottom:none;}
+  @media(max-width:900px){
+    #hamburger{display:flex;}
+    .nav-links{display:none!important;}
+  }
+  </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">nusaif<span>@devops</span>:~$</a>
+    <ul class="nav-links">
+    <li><a href="index.html" class="">Home</a></li>
+    <li><a href="about.html" class="">About</a></li>
+    <li><a href="skills.html" class="">Skills</a></li>
+    <li><a href="projects.html" class="">Projects</a></li>
+    <li><a href="certifications.html" class="">Certs</a></li>
+    <li><a href="learning-path.html" class="active">Learning</a></li>
+    <li><a href="cover-letter.html" class="">Cover Letter</a></li>
+    <li><a href="fiverr.html" class="">Fiverr</a></li>
+    <li><a href="Nusaif_Khan_Resume.pdf" download class="nav-dl">⬇ CV</a></li>
+  </ul>
+<button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="skills.html">Skills</a>
+  <a href="projects.html">Projects</a>
+  <a href="certifications.html">Certs</a>
+  <a href="learning-path.html">Learning</a>
+  <a href="cover-letter.html">Cover Letter</a>
+  <a href="fiverr.html">Fiverr</a>
+  <a href="Nusaif_Khan_Resume.pdf" download style="color:var(--g);margin-top:8px;border-bottom:none!important;">⬇ Download CV</a>
+</div>
+
+<style>
+  /* ROADMAP PHASES */
+  .phases{display:flex;flex-direction:column;gap:48px;}
+  .phase{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:36px;position:relative;overflow:hidden;}
+  .phase::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--g),var(--c));}
+  .phase.active::before{background:linear-gradient(180deg,var(--c),var(--p));}
+  .phase.planned::before{background:var(--bd);}
+  .phase-header{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+  .phase-num{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--g);background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.2);border-radius:3px;padding:3px 10px;letter-spacing:.1em;}
+  .phase-num.active-badge{color:var(--c);background:rgba(0,229,255,.1);border-color:rgba(0,229,255,.2);}
+  .phase-num.planned-badge{color:var(--td);background:var(--bg3);border-color:var(--bd);}
+  .phase-title{font-family:"Outfit",sans-serif;font-size:1.3rem;font-weight:700;color:#fff;}
+  .phase-period{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--td);margin-left:auto;}
+  .phase-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;}
+  .phase-item{display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--bg3);border-radius:6px;border:1px solid var(--bd);}
+  .phase-item-icon{flex-shrink:0;font-size:1rem;margin-top:2px;}
+  .phase-item-name{font-size:.88rem;color:#fff;font-weight:500;margin-bottom:2px;}
+  .phase-item-sub{font-family:"JetBrains Mono",monospace;font-size:.65rem;color:var(--td);}
+  .check{color:var(--g);font-size:.85rem;}
+  .spin{color:var(--c);font-size:.85rem;}
+  .dot{color:var(--td);font-size:.85rem;}
+
+  /* RESOURCES */
+  .resources-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+  .resource-card{background:var(--bg3);border:1px solid var(--bd);border-radius:8px;padding:20px;transition:all .25s;}
+  .resource-card:hover{border-color:var(--bdh);transform:translateY(-2px);box-shadow:var(--glow);}
+  .resource-type{font-family:"JetBrains Mono",monospace;font-size:.65rem;color:var(--td);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+  .resource-name{font-size:.92rem;color:#fff;font-weight:600;margin-bottom:4px;}
+  .resource-desc{font-size:.82rem;color:var(--td);line-height:1.5;}
+
+  /* PROGRESS BAR */
+  .overall-progress{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:32px;margin-bottom:48px;}
+  .progress-title{font-family:"Outfit",sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:20px;}
+  .progress-bar-wrap{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+  .progress-label{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);min-width:140px;}
+  .progress-bar-bg{flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--c));border-radius:3px;transition:width 1.4s ease;}
+  .progress-pct{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);min-width:36px;text-align:right;}
+</style>
+
+<div class="page-shell">
+  <div class="breadcrumb"><a href="index.html">~</a><span>/</span>learning-path</div>
+  <div class="page-banner">
+    <div class="page-banner-kicker fade">Learning Path</div>
+    <h1 class="page-banner-title fade delay1">My DevOps <span>Roadmap</span></h1>
+    <p class="page-banner-desc fade delay2">// A structured path from foundations to advanced cloud engineering</p>
+  </div>
+
+  <div class="section-wrap">
+    <!-- OVERALL PROGRESS -->
+    <div class="overall-progress fade delay1">
+      <div class="progress-title">Overall Progress</div>
+      <div class="progress-bar-wrap"><span class="progress-label">Cloud Fundamentals</span><div class="progress-bar-bg"><div class="progress-bar-fill" data-w="95"></div></div><span class="progress-pct">95%</span></div>
+      <div class="progress-bar-wrap"><span class="progress-label">Containerization</span><div class="progress-bar-bg"><div class="progress-bar-fill" data-w="80"></div></div><span class="progress-pct">80%</span></div>
+      <div class="progress-bar-wrap"><span class="progress-label">CI/CD Pipelines</span><div class="progress-bar-bg"><div class="progress-bar-fill" data-w="75"></div></div><span class="progress-pct">75%</span></div>
+      <div class="progress-bar-wrap"><span class="progress-label">Infrastructure as Code</span><div class="progress-bar-bg"><div class="progress-bar-fill" data-w="70"></div></div><span class="progress-pct">70%</span></div>
+      <div class="progress-bar-wrap"><span class="progress-label">Monitoring & SRE</span><div class="progress-bar-bg"><div class="progress-bar-fill" data-w="65"></div></div><span class="progress-pct">65%</span></div>
+      <div class="progress-bar-wrap"><span class="progress-label">Advanced Kubernetes</span><div class="progress-bar-bg"><div class="progress-bar-fill" data-w="35"></div></div><span class="progress-pct">35%</span></div>
+    </div>
+
+    <div class="phases">
+      <!-- PHASE 1 -->
+      <div class="phase fade delay1">
+        <div class="phase-header">
+          <span class="phase-num">✓ COMPLETED</span>
+          <div class="phase-title">Phase 1 — Cloud & Containers Foundation</div>
+          <span class="phase-period">2024 – Early 2025</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Microsoft Azure Fundamentals</div><div class="phase-item-sub">AZ-900 Certified</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Docker Fundamentals</div><div class="phase-item-sub">KodeKloud · Completed</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Linux Administration</div><div class="phase-item-sub">Udemy Complete Course</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Shell Scripting (Bash)</div><div class="phase-item-sub">KodeKloud · Completed</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">FinOps Practitioner</div><div class="phase-item-sub">FinOps Foundation · Certified</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Jenkins CI/CD</div><div class="phase-item-sub">KodeKloud · Completed</div></div></div>
+        </div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="phase fade delay2">
+        <div class="phase-header">
+          <span class="phase-num">✓ COMPLETED</span>
+          <div class="phase-title">Phase 2 — Orchestration & Automation</div>
+          <span class="phase-period">Early 2025</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Kubernetes Beginner</div><div class="phase-item-sub">KodeKloud · Completed</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Helm for Beginners</div><div class="phase-item-sub">KodeKloud · Completed</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Prometheus + Grafana</div><div class="phase-item-sub">KodeKloud · Completed</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Azure VM Automation</div><div class="phase-item-sub">Real project · Python + Azure SDK</div></div></div>
+          <div class="phase-item"><div class="check">✓</div><div><div class="phase-item-name">Cloud Cost Optimization</div><div class="phase-item-sub">Real project · Cloud Reduce-for-Azure</div></div></div>
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="phase active fade delay3">
+        <div class="phase-header">
+          <span class="phase-num active-badge">⟳ ACTIVE</span>
+          <div class="phase-title">Phase 3 — Azure Advanced + CKA Prep</div>
+          <span class="phase-period">2025 — Present</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item"><div class="spin">⟳</div><div><div class="phase-item-name">AZ-104 Azure Administrator</div><div class="phase-item-sub">Target: Q3 2025</div></div></div>
+          <div class="phase-item"><div class="spin">⟳</div><div><div class="phase-item-name">Certified Kubernetes Admin (CKA)</div><div class="phase-item-sub">Target: Q4 2025</div></div></div>
+          <div class="phase-item"><div class="spin">⟳</div><div><div class="phase-item-name">Terraform Associate</div><div class="phase-item-sub">HashiCorp · In progress</div></div></div>
+          <div class="phase-item"><div class="spin">⟳</div><div><div class="phase-item-name">Kubernetes Monitoring Stack</div><div class="phase-item-sub">Active project · AKS + Helm</div></div></div>
+          <div class="phase-item"><div class="spin">⟳</div><div><div class="phase-item-name">GitOps with ArgoCD</div><div class="phase-item-sub">KodeKloud · Started</div></div></div>
+        </div>
+      </div>
+
+      <!-- PHASE 4 -->
+      <div class="phase planned fade delay4">
+        <div class="phase-header">
+          <span class="phase-num planned-badge">◦ PLANNED</span>
+          <div class="phase-title">Phase 4 — SRE &amp; Platform Engineering</div>
+          <span class="phase-period">2026 onwards</span>
+        </div>
+        <div class="phase-items">
+          <div class="phase-item"><div class="dot">◦</div><div><div class="phase-item-name">Google Cloud Professional</div><div class="phase-item-sub">GCP Cloud Engineer cert</div></div></div>
+          <div class="phase-item"><div class="dot">◦</div><div><div class="phase-item-name">AWS Solutions Architect</div><div class="phase-item-sub">SAA-C03</div></div></div>
+          <div class="phase-item"><div class="dot">◦</div><div><div class="phase-item-name">Service Mesh (Istio)</div><div class="phase-item-sub">Advanced networking</div></div></div>
+          <div class="phase-item"><div class="dot">◦</div><div><div class="phase-item-name">SRE Practices (Google SRE Book)</div><div class="phase-item-sub">Error budgets, SLOs, blameless PMs</div></div></div>
+          <div class="phase-item"><div class="dot">◦</div><div><div class="phase-item-name">Security Engineering (DevSecOps)</div><div class="phase-item-sub">SAST, DAST, supply chain security</div></div></div>
+          <div class="phase-item"><div class="dot">◦</div><div><div class="phase-item-name">Platform Engineering (Backstage)</div><div class="phase-item-sub">Internal developer platforms</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESOURCES -->
+    <div style="margin-top:60px;">
+      <div class="section-kicker fade">Resources</div>
+      <div class="section-title fade delay1" style="margin-bottom:32px;">Learning Materials I Use</div>
+      <div class="resources-grid">
+        <div class="resource-card fade delay1"><div class="resource-type">Platform</div><div class="resource-name">KodeKloud</div><div class="resource-desc">Hands-on labs for Kubernetes, Docker, Jenkins, Helm, Linux</div></div>
+        <div class="resource-card fade delay2"><div class="resource-type">Platform</div><div class="resource-name">Microsoft Learn</div><div class="resource-desc">Azure certifications — AZ-900, AZ-104 study paths</div></div>
+        <div class="resource-card fade delay3"><div class="resource-type">Platform</div><div class="resource-name">Udemy</div><div class="resource-desc">Linux, Terraform, Docker Deep Dives</div></div>
+        <div class="resource-card fade delay4"><div class="resource-type">Book</div><div class="resource-name">Google SRE Book</div><div class="resource-desc">Site Reliability Engineering — free online from Google</div></div>
+        <div class="resource-card fade delay1"><div class="resource-type">Platform</div><div class="resource-name">HashiCorp Learn</div><div class="resource-desc">Terraform, Vault, Nomad official tutorials</div></div>
+        <div class="resource-card fade delay2"><div class="resource-type">Community</div><div class="resource-name">CNCF Landscape</div><div class="resource-desc">Staying current with cloud-native ecosystem</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.progress-bar-fill').forEach(b=>b.style.width=b.dataset.w+'%');}});
+},{threshold:.2});
+document.querySelectorAll('.overall-progress').forEach(el=>obs.observe(el));
+</script>
+
+<footer>
+  <div class="footer-copy">© 2025 Nusaif Khan — Crafted with precision · Deployed with passion</div>
+  <div class="footer-status" style="display:flex; gap:20px; align-items:center;">
+    <a href="https://github.com/nusaifkhan" target="_blank" style="color:var(--td);text-decoration:none;transition:color .2s;font-family:'JetBrains Mono',monospace;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='var(--td)'">⌥ GitHub</a>
+    <div style="display:flex;align-items:center;gap:8px;"><div class="status-dot"></div> Available for opportunities</div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  // Custom cursor
+  const cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+  document.addEventListener('mousemove',e=>{
+    cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+    setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},50);
+  });
+  document.querySelectorAll('a,button,input,textarea,.card,.proj-card,.skill-cat,.cert-card,.sp-focus-item,.cert-card-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.background='transparent';cur.style.border='2px solid var(--g)';ring.style.width='44px';ring.style.height='44px';});
+    el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur.style.background='var(--g)';cur.style.border='none';ring.style.width='32px';ring.style.height='32px';});
+  });
+
+  // Scrolled nav
+  const nav=document.getElementById('main-nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+
+  // Fade in observer
+  const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*80);}),{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+  // CV download toast
+  function cvToast(){
+    const t=document.createElement('div');
+    t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(0);background:#00ff88;color:#000;font-family:"JetBrains Mono",monospace;font-size:.78rem;padding:12px 28px;border-radius:6px;z-index:9999;font-weight:700;letter-spacing:.1em;box-shadow:0 4px 24px #00ff8840;transition:opacity .4s;white-space:nowrap';
+    t.innerHTML='⬇&nbsp; Downloading Nusaif\'s CV...';
+    document.body.appendChild(t);
+    setTimeout(()=>{t.style.opacity='0';},2600);
+    setTimeout(()=>t.remove(),3000);
+  }
+  document.querySelectorAll('a[download]').forEach(a=>{
+    a.addEventListener('click',()=>setTimeout(cvToast,100));
+  });
+  document.querySelectorAll('[data-cv]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const a=document.createElement('a');
+      a.href='Nusaif_Khan_Resume.pdf';
+      a.download='Nusaif_Khan_Resume.pdf';
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+      cvToast();
+    });
+  });
+
+  // Mobile hamburger
+  const ham=document.getElementById('hamburger');
+  const mobileMenu=document.getElementById('mobile-menu');
+  if(ham&&mobileMenu){
+    ham.addEventListener('click',()=>{
+      const open=mobileMenu.style.display==='flex';
+      mobileMenu.style.display=open?'none':'flex';
+      ham.classList.toggle('open',!open);
+    });
+  }
+})();
+</script>
+</body>
+</html>

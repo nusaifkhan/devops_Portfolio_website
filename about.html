@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>About — Nusaif Khan</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#03070a;--bg2:#060d12;--bg3:#0b1820;--g:#00ff88;--g2:#00cc6a;--c:#00e5ff;--b:#1e90ff;--o:#ff6b35;--p:#a855f7;--t:#c8d8e4;--td:#4a6a7a;--bd:#132030;--bdh:#00ff8840;--glow:0 0 20px #00ff8830;--glows:0 0 40px #00ff8860;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--t);font-family:"Outfit",sans-serif;overflow-x:hidden;cursor:none;}
+    ::selection{background:#00ff8830;color:var(--g);}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--g2);border-radius:2px;}
+
+    /* CURSOR */
+    #cur,#cur-r{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s,border .15s;}
+    #cur{width:10px;height:10px;background:var(--g);box-shadow:0 0 8px #00ff8880;}
+    #cur-r{width:32px;height:32px;border:1px solid #00ff8860;z-index:9998;transition:all .12s ease;}
+
+    /* BG GRID */
+    .bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,255,136,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.018) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 60px;background:rgba(3,7,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);transition:all .3s;}
+    nav.scrolled{padding:12px 60px;border-bottom-color:#00ff8830;}
+    .nav-logo{font-family:"JetBrains Mono",monospace;font-size:.85rem;color:var(--g);letter-spacing:.05em;text-decoration:none;}
+    .nav-logo span{color:var(--td);}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+    .nav-links a{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;position:relative;cursor:none;}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:1px;background:var(--g);transition:width .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--g);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-dl{font-family:"JetBrains Mono",monospace;font-size:.72rem;padding:8px 18px;background:transparent;border:1px solid var(--g);color:var(--g);border-radius:3px;cursor:none;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;text-decoration:none;}
+    .nav-dl:hover{background:var(--g);color:#000;}
+
+    /* PAGE SHELL */
+    .page-shell{min-height:100vh;padding-top:80px;position:relative;z-index:2;}
+
+    /* SECTION WRAP */
+    .section-wrap{max-width:1100px;margin:0 auto;padding:80px 60px;}
+    .section-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .section-kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--bd),transparent);}
+    .section-title{font-family:"Outfit",sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;line-height:1;margin-bottom:48px;}
+
+    /* FADE IN */
+    .fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+    .fade.vis{opacity:1;transform:translateY(0);}
+    .fade.delay1{transition-delay:.1s;}
+    .fade.delay2{transition-delay:.2s;}
+    .fade.delay3{transition-delay:.3s;}
+    .fade.delay4{transition-delay:.4s;}
+
+    /* PAGE HERO BANNER */
+    .page-banner{padding:60px 60px 0;max-width:1100px;margin:0 auto;}
+    .page-banner-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .page-banner-kicker::before{content:"";width:36px;height:1px;background:var(--g);}
+    .page-banner-title{font-family:"Outfit",sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.02em;margin-bottom:16px;}
+    .page-banner-title span{color:var(--g);}
+    .page-banner-desc{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--td);line-height:1.7;max-width:500px;}
+
+    /* FOOTER */
+    footer{padding:32px 60px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-top:40px;}
+    .footer-copy{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);}
+    .footer-status{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);display:flex;align-items:center;gap:8px;}
+    .status-dot{width:8px;height:8px;background:var(--g);border-radius:50%;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--g);}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:.7;}}
+    @keyframes blink{50%{opacity:0;}}
+
+    /* BREADCRUMB */
+    .breadcrumb{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--td);padding:18px 60px 0;max-width:1100px;margin:0 auto;letter-spacing:.05em;}
+    .breadcrumb a{color:var(--td);text-decoration:none;transition:color .2s;}
+    .breadcrumb a:hover{color:var(--g);}
+    .breadcrumb span{color:var(--td);margin:0 8px;}
+
+    /* BADGE */
+    .badge{font-family:"JetBrains Mono",monospace;font-size:.72rem;padding:5px 12px;border:1px solid var(--bd);border-radius:3px;color:var(--c);letter-spacing:.05em;transition:all .2s;cursor:default;}
+    .badge:hover{border-color:var(--c);background:rgba(0,229,255,.06);}
+
+    /* MOBILE */
+    @media(max-width:900px){
+      nav{padding:14px 32px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:32px;padding-right:32px;}
+    }
+    @media(max-width:600px){
+      nav{padding:12px 20px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:20px;padding-right:20px;}
+      footer{flex-direction:column;gap:14px;padding:24px 20px;text-align:center;}
+      .sysprofile-grid{grid-template-columns:1fr!important;gap:28px!important;}
+      .sp-metrics{grid-template-columns:1fr 1fr!important;}
+      .edu-card{flex-direction:column;gap:12px;text-align:center;}
+    }
+    @media(max-width:400px){
+      .section-wrap,.page-banner,.breadcrumb{padding-left:16px;padding-right:16px;}
+    }
+
+  /* HAMBURGER */
+  #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px 4px;background:none;border:none;}
+  #hamburger span{display:block;width:22px;height:2px;background:var(--g);border-radius:2px;transition:all .25s;}
+  #hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  #hamburger.open span:nth-child(2){opacity:0;}
+  #hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  #mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(3,7,10,.96);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border-bottom:1px solid rgba(0,255,136,.12);box-shadow:0 8px 40px rgba(0,0,0,.5);flex-direction:column;z-index:199;padding:20px 24px 28px;}
+  #mobile-menu a{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--td);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid var(--bd);transition:color .2s,padding-left .2s;}
+  #mobile-menu a:hover,#mobile-menu a.active{color:var(--g);padding-left:8px;}
+  #mobile-menu a:last-child{border-bottom:none;}
+  @media(max-width:900px){
+    #hamburger{display:flex;}
+    .nav-links{display:none!important;}
+  }
+  </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">nusaif<span>@devops</span>:~$</a>
+    <ul class="nav-links">
+    <li><a href="index.html" class="">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="skills.html" class="">Skills</a></li>
+    <li><a href="projects.html" class="">Projects</a></li>
+    <li><a href="certifications.html" class="">Certs</a></li>
+    <li><a href="learning-path.html" class="">Learning</a></li>
+    <li><a href="cover-letter.html" class="">Cover Letter</a></li>
+    <li><a href="fiverr.html" class="">Fiverr</a></li>
+    <li><a href="Nusaif_Khan_Resume.pdf" download class="nav-dl">⬇ CV</a></li>
+  </ul>
+<button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="skills.html">Skills</a>
+  <a href="projects.html">Projects</a>
+  <a href="certifications.html">Certs</a>
+  <a href="learning-path.html">Learning</a>
+  <a href="cover-letter.html">Cover Letter</a>
+  <a href="fiverr.html">Fiverr</a>
+  <a href="Nusaif_Khan_Resume.pdf" download style="color:var(--g);margin-top:8px;border-bottom:none!important;">⬇ Download CV</a>
+</div>
+
+<style>
+  .sysprofile-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  .sp-terminal{background:#010608;border:1px solid var(--bd);border-radius:10px;overflow:hidden;box-shadow:0 0 20px #00ff8830,inset 0 0 40px rgba(0,0,0,.5);transition:box-shadow .3s;}
+  .sp-terminal:hover{box-shadow:0 0 40px #00ff8860;}
+  .sp-terminal-bar{background:#0a1218;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd);}
+  .sp-dot{width:12px;height:12px;border-radius:50%;}
+  .sp-dot-r{background:#ff5f57;}.sp-dot-y{background:#ffbd2e;}.sp-dot-g{background:#28ca41;}
+  .sp-terminal-title{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--td);margin:0 auto;letter-spacing:.1em;}
+  .sp-terminal-body{padding:22px;font-family:"JetBrains Mono",monospace;font-size:.82rem;line-height:1.9;}
+  .sp-prompt{color:var(--g);}.sp-cmd{color:var(--c);}.sp-key{color:#ff9f43;}.sp-val{color:var(--t);}
+  .sp-dim{color:var(--td);font-style:italic;}
+  .sp-blink{display:inline-block;width:9px;height:15px;background:var(--g);vertical-align:middle;animation:blink 1s step-end infinite;}
+  .sp-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+  .sp-metric-card{background:var(--bg3);border:1px solid var(--bd);border-radius:8px;padding:16px;transition:all .25s;}
+  .sp-metric-card:hover{border-color:var(--bdh);transform:translateY(-2px);box-shadow:var(--glow);}
+  .sp-metric-val{font-family:"Outfit",sans-serif;font-size:1.7rem;font-weight:900;color:var(--g);line-height:1;margin-bottom:4px;}
+  .sp-metric-label{font-family:"JetBrains Mono",monospace;font-size:.65rem;color:var(--td);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+  .sp-metric-bar{height:3px;background:var(--bg);border-radius:2px;overflow:hidden;}
+  .sp-metric-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--c));border-radius:2px;transition:width 1.5s ease;}
+  .sp-title{font-family:"Outfit",sans-serif;font-size:2.2rem;font-weight:800;color:#fff;line-height:1.1;margin-bottom:20px;}
+  .sp-title span{color:var(--g);}
+  .sp-desc{color:var(--td);line-height:1.8;font-size:.95rem;margin-bottom:14px;}
+  .sp-focus-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+  .sp-focus-item{display:flex;align-items:center;gap:14px;padding:12px 16px;background:var(--bg3);border:1px solid var(--bd);border-radius:6px;transition:all .22s;}
+  .sp-focus-item:hover{border-color:var(--bdh);transform:translateX(4px);background:rgba(0,255,136,.03);}
+  .sp-focus-icon{font-size:1.3rem;flex-shrink:0;}
+  .sp-focus-name{color:#fff;font-size:.9rem;font-weight:600;margin-bottom:2px;display:block;}
+  .sp-focus-sub{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--td);display:block;}
+  .about-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+  .edu-card{background:var(--bg3);border:1px solid var(--bd);border-radius:8px;padding:28px;display:flex;gap:24px;align-items:center;transition:all .3s;margin-bottom:16px;}
+  .edu-card:hover{border-color:var(--bdh);box-shadow:var(--glow);}
+  .edu-year{font-family:"Outfit",sans-serif;font-size:2.4rem;font-weight:900;color:var(--g);opacity:.3;flex-shrink:0;}
+  .edu-uni{font-family:"Outfit",sans-serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:4px;}
+  .edu-degree{color:var(--c);font-size:.9rem;margin-bottom:4px;}
+  .edu-period{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);}
+  @media(max-width:768px){.sysprofile-grid{grid-template-columns:1fr;gap:36px;}.sp-metrics{grid-template-columns:1fr 1fr;}}
+</style>
+
+<div class="page-shell">
+  <div class="breadcrumb"><a href="index.html">~</a><span>/</span>about</div>
+  <div class="page-banner">
+    <div class="page-banner-kicker fade">01 — About</div>
+    <h1 class="page-banner-title fade delay1">System <span>Profile</span></h1>
+    <p class="page-banner-desc fade delay2">// cat profile.json — full system readout</p>
+  </div>
+
+  <div class="section-wrap">
+    <div class="sysprofile-grid">
+      <div class="fade delay1">
+        <div class="sp-terminal">
+          <div class="sp-terminal-bar">
+            <div class="sp-dot sp-dot-r"></div><div class="sp-dot sp-dot-y"></div><div class="sp-dot sp-dot-g"></div>
+            <span class="sp-terminal-title">nusaif@devops-workstation ~ bash</span>
+          </div>
+          <div class="sp-terminal-body" id="terminal-body">
+            <div><span class="sp-prompt">❯ </span><span class="sp-cmd">cat profile.json</span></div>
+          </div>
+        </div>
+        <div class="sp-metrics">
+          <div class="sp-metric-card"><div class="sp-metric-val">80%</div><div class="sp-metric-label">Ops Automated</div><div class="sp-metric-bar"><div class="sp-metric-fill" data-w="80"></div></div></div>
+          <div class="sp-metric-card"><div class="sp-metric-val">9+</div><div class="sp-metric-label">Certifications</div><div class="sp-metric-bar"><div class="sp-metric-fill" data-w="90"></div></div></div>
+          <div class="sp-metric-card"><div class="sp-metric-val">50%</div><div class="sp-metric-label">Deploy Time ↓</div><div class="sp-metric-bar"><div class="sp-metric-fill" data-w="50"></div></div></div>
+          <div class="sp-metric-card"><div class="sp-metric-val">30%</div><div class="sp-metric-label">Cost Reduction</div><div class="sp-metric-bar"><div class="sp-metric-fill" data-w="30"></div></div></div>
+        </div>
+      </div>
+      <div class="fade delay2">
+        <div class="sp-title">Turning Infrastructure<br/><span>into Code</span></div>
+        <p class="sp-desc">I'm Nusaif Khan — a DevOps enthusiast and aspiring Site Reliability Engineer based in Colombo, Sri Lanka. Currently pursuing my BSc in Software Engineering at Cardiff Metropolitan University, I'm on a mission to automate everything that shouldn't be done manually.</p>
+        <p class="sp-desc">My work lives at the intersection of cloud infrastructure, automation, and reliability. I've shipped real-world projects on Azure — automating VM lifecycles, cutting cloud costs by 30%, and containerizing applications with Docker and Kubernetes.</p>
+        <p class="sp-desc">I hold certifications in Azure Fundamentals, FinOps, Kubernetes, Docker, Prometheus, Jenkins, Helm, and Linux — and I'm always building, always learning. I thrive where infrastructure is treated as code and deployments happen in minutes, not days.</p>
+        <ul class="sp-focus-list">
+          <li class="sp-focus-item"><span class="sp-focus-icon">☁️</span><div><span class="sp-focus-name">Cloud Automation</span><span class="sp-focus-sub">Azure · AWS · IaC with Terraform</span></div></li>
+          <li class="sp-focus-item"><span class="sp-focus-icon">⎈</span><div><span class="sp-focus-name">Container Orchestration</span><span class="sp-focus-sub">Kubernetes · Helm · Docker Swarm</span></div></li>
+          <li class="sp-focus-item"><span class="sp-focus-icon">⚙️</span><div><span class="sp-focus-name">CI/CD Pipelines</span><span class="sp-focus-sub">Jenkins · GitHub Actions · Ansible</span></div></li>
+          <li class="sp-focus-item"><span class="sp-focus-icon">📊</span><div><span class="sp-focus-name">System Reliability</span><span class="sp-focus-sub">Prometheus · Grafana · SRE Practices</span></div></li>
+        </ul>
+        <div class="about-badges">
+          <span class="badge">Azure Certified</span><span class="badge">FinOps Practitioner</span><span class="badge">Kubernetes Operator</span><span class="badge">Docker Expert</span><span class="badge">CI/CD Architect</span><span class="badge">Open to Internships</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px;">
+      <div class="section-kicker fade">Education</div>
+      <div class="section-title fade delay1" style="margin-bottom:24px;">Academic Background</div>
+      <div class="edu-card fade delay2">
+        <div class="edu-year">25</div>
+        <div>
+          <div class="edu-uni">Cardiff Metropolitan University</div>
+          <div class="edu-degree">BSc Software Engineering</div>
+          <div class="edu-period">📅 2025 – 2028 · 1st Year — 2nd Semester · Ongoing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Animate terminal typing
+const lines=[
+  {c:'var(--td)',t:'{'},
+  {k:'"name"',v:'"Nusaif Khan"'},
+  {k:'"role"',v:'"Aspiring DevOps Engineer & SRE Intern"'},
+  {k:'"location"',v:'"Colombo, Sri Lanka"'},
+  {k:'"email"',v:'"nusaifkhan21@gmail.com"'},
+  {k:'"focus"',v:'['},
+  {indent:4,v:'"Cloud Automation"'},
+  {indent:4,v:'"Infrastructure as Code"'},
+  {indent:4,v:'"CI/CD Pipelines"'},
+  {indent:4,v:'"System Reliability"'},
+  {indent:2,v:'],'},
+  {k:'"status"',v:'"open_to_opportunities"',g:true},
+  {k:'"education"',v:'"BSc Software Engineering @ Cardiff Met"',last:true},
+  {c:'var(--td)',t:'}'},
+  {comment:'# Automating the future, one pipeline at a time.'},
+  {cursor:true},
+];
+const tb=document.getElementById('terminal-body');
+let i=0;
+function addL(){
+  if(i>=lines.length)return;
+  const l=lines[i++];const d=document.createElement('div');
+  if(l.cursor){d.innerHTML='<span class="sp-prompt">❯ </span><span class="sp-blink"></span>';}
+  else if(l.comment){d.innerHTML=`<span class="sp-prompt">❯ </span><span class="sp-dim">${l.comment}</span>`;}
+  else if(l.c){d.style.color=`var(--td)`;d.textContent=l.t;}
+  else if(l.indent){const pad='&nbsp;'.repeat(l.indent);d.innerHTML=`${pad}<span class="sp-val">${l.v}</span>${l.last?'':','}`;}
+  else if(l.k){d.innerHTML=`&nbsp;&nbsp;<span class="sp-key">${l.k}</span><span style="color:var(--td)">: </span><span style="color:${l.g?'var(--g)':'var(--t)'}">${l.v}</span>${l.last?'':','}`;}
+  tb.appendChild(d);
+  setTimeout(addL,130);
+}
+setTimeout(addL,400);
+
+// Animate metric bars
+setTimeout(()=>{
+  document.querySelectorAll('.sp-metric-fill').forEach(el=>{
+    el.style.width=el.dataset.w+'%';
+  });
+},800);
+</script>
+
+<footer>
+  <div class="footer-copy">© 2025 Nusaif Khan — Crafted with precision · Deployed with passion</div>
+  <div class="footer-status" style="display:flex; gap:20px; align-items:center;">
+    <a href="https://github.com/nusaifkhan" target="_blank" style="color:var(--td);text-decoration:none;transition:color .2s;font-family:'JetBrains Mono',monospace;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='var(--td)'">⌥ GitHub</a>
+    <div style="display:flex;align-items:center;gap:8px;"><div class="status-dot"></div> Available for opportunities</div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  // Custom cursor
+  const cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+  document.addEventListener('mousemove',e=>{
+    cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+    setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},50);
+  });
+  document.querySelectorAll('a,button,input,textarea,.card,.proj-card,.skill-cat,.cert-card,.sp-focus-item,.cert-card-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.background='transparent';cur.style.border='2px solid var(--g)';ring.style.width='44px';ring.style.height='44px';});
+    el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur.style.background='var(--g)';cur.style.border='none';ring.style.width='32px';ring.style.height='32px';});
+  });
+
+  // Scrolled nav
+  const nav=document.getElementById('main-nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+
+  // Fade in observer
+  const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*80);}),{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+  // CV download toast
+  function cvToast(){
+    const t=document.createElement('div');
+    t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(0);background:#00ff88;color:#000;font-family:"JetBrains Mono",monospace;font-size:.78rem;padding:12px 28px;border-radius:6px;z-index:9999;font-weight:700;letter-spacing:.1em;box-shadow:0 4px 24px #00ff8840;transition:opacity .4s;white-space:nowrap';
+    t.innerHTML='⬇&nbsp; Downloading Nusaif\'s CV...';
+    document.body.appendChild(t);
+    setTimeout(()=>{t.style.opacity='0';},2600);
+    setTimeout(()=>t.remove(),3000);
+  }
+  document.querySelectorAll('a[download]').forEach(a=>{
+    a.addEventListener('click',()=>setTimeout(cvToast,100));
+  });
+  document.querySelectorAll('[data-cv]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const a=document.createElement('a');
+      a.href='Nusaif_Khan_Resume.pdf';
+      a.download='Nusaif_Khan_Resume.pdf';
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+      cvToast();
+    });
+  });
+
+  // Mobile hamburger
+  const ham=document.getElementById('hamburger');
+  const mobileMenu=document.getElementById('mobile-menu');
+  if(ham&&mobileMenu){
+    ham.addEventListener('click',()=>{
+      const open=mobileMenu.style.display==='flex';
+      mobileMenu.style.display=open?'none':'flex';
+      ham.classList.toggle('open',!open);
+    });
+  }
+})();
+</script>
+</body>
+</html>

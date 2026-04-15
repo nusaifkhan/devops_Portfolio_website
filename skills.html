@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Skills — Nusaif Khan</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#03070a;--bg2:#060d12;--bg3:#0b1820;--g:#00ff88;--g2:#00cc6a;--c:#00e5ff;--b:#1e90ff;--o:#ff6b35;--p:#a855f7;--t:#c8d8e4;--td:#4a6a7a;--bd:#132030;--bdh:#00ff8840;--glow:0 0 20px #00ff8830;--glows:0 0 40px #00ff8860;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--t);font-family:"Outfit",sans-serif;overflow-x:hidden;cursor:none;}
+    ::selection{background:#00ff8830;color:var(--g);}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--g2);border-radius:2px;}
+
+    /* CURSOR */
+    #cur,#cur-r{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s,border .15s;}
+    #cur{width:10px;height:10px;background:var(--g);box-shadow:0 0 8px #00ff8880;}
+    #cur-r{width:32px;height:32px;border:1px solid #00ff8860;z-index:9998;transition:all .12s ease;}
+
+    /* BG GRID */
+    .bg-grid{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(0,255,136,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.018) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 60px;background:rgba(3,7,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);transition:all .3s;}
+    nav.scrolled{padding:12px 60px;border-bottom-color:#00ff8830;}
+    .nav-logo{font-family:"JetBrains Mono",monospace;font-size:.85rem;color:var(--g);letter-spacing:.05em;text-decoration:none;}
+    .nav-logo span{color:var(--td);}
+    .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+    .nav-links a{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;position:relative;cursor:none;}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:1px;background:var(--g);transition:width .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--g);}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+    .nav-dl{font-family:"JetBrains Mono",monospace;font-size:.72rem;padding:8px 18px;background:transparent;border:1px solid var(--g);color:var(--g);border-radius:3px;cursor:none;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;text-decoration:none;}
+    .nav-dl:hover{background:var(--g);color:#000;}
+
+    /* PAGE SHELL */
+    .page-shell{min-height:100vh;padding-top:80px;position:relative;z-index:2;}
+
+    /* SECTION WRAP */
+    .section-wrap{max-width:1100px;margin:0 auto;padding:80px 60px;}
+    .section-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .section-kicker::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--bd),transparent);}
+    .section-title{font-family:"Outfit",sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;line-height:1;margin-bottom:48px;}
+
+    /* FADE IN */
+    .fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+    .fade.vis{opacity:1;transform:translateY(0);}
+    .fade.delay1{transition-delay:.1s;}
+    .fade.delay2{transition-delay:.2s;}
+    .fade.delay3{transition-delay:.3s;}
+    .fade.delay4{transition-delay:.4s;}
+
+    /* PAGE HERO BANNER */
+    .page-banner{padding:60px 60px 0;max-width:1100px;margin:0 auto;}
+    .page-banner-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+    .page-banner-kicker::before{content:"";width:36px;height:1px;background:var(--g);}
+    .page-banner-title{font-family:"Outfit",sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.02em;margin-bottom:16px;}
+    .page-banner-title span{color:var(--g);}
+    .page-banner-desc{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--td);line-height:1.7;max-width:500px;}
+
+    /* FOOTER */
+    footer{padding:32px 60px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-top:40px;}
+    .footer-copy{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--td);}
+    .footer-status{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);display:flex;align-items:center;gap:8px;}
+    .status-dot{width:8px;height:8px;background:var(--g);border-radius:50%;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--g);}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:.7;}}
+    @keyframes blink{50%{opacity:0;}}
+
+    /* BREADCRUMB */
+    .breadcrumb{font-family:"JetBrains Mono",monospace;font-size:.7rem;color:var(--td);padding:18px 60px 0;max-width:1100px;margin:0 auto;letter-spacing:.05em;}
+    .breadcrumb a{color:var(--td);text-decoration:none;transition:color .2s;}
+    .breadcrumb a:hover{color:var(--g);}
+    .breadcrumb span{color:var(--td);margin:0 8px;}
+
+    /* BADGE */
+    .badge{font-family:"JetBrains Mono",monospace;font-size:.72rem;padding:5px 12px;border:1px solid var(--bd);border-radius:3px;color:var(--c);letter-spacing:.05em;transition:all .2s;cursor:default;}
+    .badge:hover{border-color:var(--c);background:rgba(0,229,255,.06);}
+
+    /* MOBILE */
+    @media(max-width:900px){
+      nav{padding:14px 32px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:32px;padding-right:32px;}
+      .skills-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))!important;}
+    }
+    @media(max-width:600px){
+      nav{padding:12px 20px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:20px;padding-right:20px;}
+      footer{flex-direction:column;gap:14px;padding:24px 20px;text-align:center;}
+      .skills-grid{grid-template-columns:1fr!important;}
+      .skill-cat{padding:20px;}
+    }
+    @media(max-width:400px){
+      .section-wrap,.page-banner,.breadcrumb{padding-left:16px;padding-right:16px;}
+    }
+
+  /* HAMBURGER */
+  #hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px 4px;background:none;border:none;}
+  #hamburger span{display:block;width:22px;height:2px;background:var(--g);border-radius:2px;transition:all .25s;}
+  #hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  #hamburger.open span:nth-child(2){opacity:0;}
+  #hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  #mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(3,7,10,.96);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border-bottom:1px solid rgba(0,255,136,.12);box-shadow:0 8px 40px rgba(0,0,0,.5);flex-direction:column;z-index:199;padding:20px 24px 28px;}
+  #mobile-menu a{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--td);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid var(--bd);transition:color .2s,padding-left .2s;}
+  #mobile-menu a:hover,#mobile-menu a.active{color:var(--g);padding-left:8px;}
+  #mobile-menu a:last-child{border-bottom:none;}
+  @media(max-width:900px){
+    #hamburger{display:flex;}
+    .nav-links{display:none!important;}
+  }
+  </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">nusaif<span>@devops</span>:~$</a>
+    <ul class="nav-links">
+    <li><a href="index.html" class="">Home</a></li>
+    <li><a href="about.html" class="">About</a></li>
+    <li><a href="skills.html" class="active">Skills</a></li>
+    <li><a href="projects.html" class="">Projects</a></li>
+    <li><a href="certifications.html" class="">Certs</a></li>
+    <li><a href="learning-path.html" class="">Learning</a></li>
+    <li><a href="cover-letter.html" class="">Cover Letter</a></li>
+    <li><a href="fiverr.html" class="">Fiverr</a></li>
+    <li><a href="Nusaif_Khan_Resume.pdf" download class="nav-dl">⬇ CV</a></li>
+  </ul>
+<button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div id="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="skills.html">Skills</a>
+  <a href="projects.html">Projects</a>
+  <a href="certifications.html">Certs</a>
+  <a href="learning-path.html">Learning</a>
+  <a href="cover-letter.html">Cover Letter</a>
+  <a href="fiverr.html">Fiverr</a>
+  <a href="Nusaif_Khan_Resume.pdf" download style="color:var(--g);margin-top:8px;border-bottom:none!important;">⬇ Download CV</a>
+</div>
+
+<style>
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:24px;}
+  .skill-cat{background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:28px;transition:all .25s;position:relative;overflow:hidden;}
+  .skill-cat::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g),var(--c));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+  .skill-cat:hover{border-color:var(--bdh);box-shadow:var(--glow);transform:translateY(-3px);}
+  .skill-cat:hover::before{transform:scaleX(1);}
+  .skill-cat-icon{font-size:1.8rem;margin-bottom:14px;}
+  .skill-cat-title{font-family:"JetBrains Mono",monospace;font-size:.82rem;color:var(--g);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-tag{font-family:"JetBrains Mono",monospace;font-size:.72rem;padding:4px 10px;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.15);border-radius:3px;color:var(--t);transition:all .2s;cursor:default;}
+  .skill-tag:hover{background:rgba(0,255,136,.15);color:var(--g);}
+
+  /* Proficiency bars */
+  .prof-section{margin-top:60px;}
+  .prof-item{margin-bottom:18px;}
+  .prof-header{display:flex;justify-content:space-between;margin-bottom:6px;}
+  .prof-name{font-family:"JetBrains Mono",monospace;font-size:.78rem;color:var(--t);}
+  .prof-pct{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);}
+  .prof-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+  .prof-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--c));border-radius:2px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
+
+  /* Tools wall */
+  .tools-wall{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
+  .tool-chip{font-family:"JetBrains Mono",monospace;font-size:.7rem;padding:6px 14px;background:var(--bg3);border:1px solid var(--bd);border-radius:20px;color:var(--td);transition:all .2s;cursor:default;}
+  .tool-chip:hover{border-color:var(--g);color:var(--g);background:rgba(0,255,136,.05);}
+</style>
+
+<div class="page-shell">
+  <div class="breadcrumb"><a href="index.html">~</a><span>/</span>skills</div>
+  <div class="page-banner">
+    <div class="page-banner-kicker fade">02 — Skills</div>
+    <h1 class="page-banner-title fade delay1">Technical <span>Arsenal</span></h1>
+    <p class="page-banner-desc fade delay2">// Tools, platforms and languages I work with daily</p>
+  </div>
+
+  <div class="section-wrap">
+    <div class="skills-grid">
+      <div class="skill-cat fade delay1"><div class="skill-cat-icon">☁️</div><div class="skill-cat-title">Cloud Platforms</div><div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">AWS</span><span class="skill-tag">Azure SDK</span><span class="skill-tag">Azure CLI</span><span class="skill-tag">AKS</span><span class="skill-tag">Azure VMs</span><span class="skill-tag">Azure Storage</span><span class="skill-tag">Azure Monitor</span></div></div>
+      <div class="skill-cat fade delay2"><div class="skill-cat-icon">🐳</div><div class="skill-cat-title">Containers & Orchestration</div><div class="skill-tags"><span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Helm</span><span class="skill-tag">kubectl</span><span class="skill-tag">Container Registry</span><span class="skill-tag">Docker Compose</span></div></div>
+      <div class="skill-cat fade delay3"><div class="skill-cat-icon">⚙️</div><div class="skill-cat-title">CI/CD & Automation</div><div class="skill-tags"><span class="skill-tag">Jenkins</span><span class="skill-tag">Terraform</span><span class="skill-tag">Ansible</span><span class="skill-tag">Bash Scripting</span><span class="skill-tag">PowerShell</span><span class="skill-tag">Python</span><span class="skill-tag">GitHub Actions</span></div></div>
+      <div class="skill-cat fade delay4"><div class="skill-cat-icon">📊</div><div class="skill-cat-title">Monitoring & Logging</div><div class="skill-tags"><span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span class="skill-tag">Azure Monitor</span><span class="skill-tag">Log Analytics</span><span class="skill-tag">AlertManager</span></div></div>
+      <div class="skill-cat fade delay1"><div class="skill-cat-icon">💻</div><div class="skill-cat-title">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Bash</span><span class="skill-tag">YAML</span><span class="skill-tag">PowerShell</span><span class="skill-tag">HCL (Terraform)</span><span class="skill-tag">JSON</span></div></div>
+      <div class="skill-cat fade delay2"><div class="skill-cat-icon">🌐</div><div class="skill-cat-title">Networking & Security</div><div class="skill-tags"><span class="skill-tag">Cloud Networking</span><span class="skill-tag">VNet</span><span class="skill-tag">NSG</span><span class="skill-tag">VPN Gateway</span><span class="skill-tag">IAM</span><span class="skill-tag">RBAC</span></div></div>
+      <div class="skill-cat fade delay3"><div class="skill-cat-icon">🔧</div><div class="skill-cat-title">DevOps Tools</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">Linux</span><span class="skill-tag">Nginx</span><span class="skill-tag">SSH</span><span class="skill-tag">Systemd</span><span class="skill-tag">Cron</span></div></div>
+      <div class="skill-cat fade delay4"><div class="skill-cat-icon">📦</div><div class="skill-cat-title">IaC & Config Mgmt</div><div class="skill-tags"><span class="skill-tag">Terraform</span><span class="skill-tag">Ansible Playbooks</span><span class="skill-tag">Ansible Roles</span><span class="skill-tag">Helm Charts</span><span class="skill-tag">ARM Templates</span></div></div>
+    </div>
+
+    <div class="prof-section">
+      <div class="section-kicker fade">Proficiency</div>
+      <div class="section-title fade delay1" style="margin-bottom:32px;">Core Competencies</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 60px;">
+        <div>
+          <div class="prof-item fade delay1"><div class="prof-header"><span class="prof-name">Microsoft Azure</span><span class="prof-pct">85%</span></div><div class="prof-bar"><div class="prof-fill" data-w="85"></div></div></div>
+          <div class="prof-item fade delay2"><div class="prof-header"><span class="prof-name">Docker & Kubernetes</span><span class="prof-pct">80%</span></div><div class="prof-bar"><div class="prof-fill" data-w="80"></div></div></div>
+          <div class="prof-item fade delay3"><div class="prof-header"><span class="prof-name">Terraform (IaC)</span><span class="prof-pct">75%</span></div><div class="prof-bar"><div class="prof-fill" data-w="75"></div></div></div>
+          <div class="prof-item fade delay4"><div class="prof-header"><span class="prof-name">Jenkins CI/CD</span><span class="prof-pct">78%</span></div><div class="prof-bar"><div class="prof-fill" data-w="78"></div></div></div>
+        </div>
+        <div>
+          <div class="prof-item fade delay1"><div class="prof-header"><span class="prof-name">Python & Bash</span><span class="prof-pct">82%</span></div><div class="prof-bar"><div class="prof-fill" data-w="82"></div></div></div>
+          <div class="prof-item fade delay2"><div class="prof-header"><span class="prof-name">Prometheus & Grafana</span><span class="prof-pct">72%</span></div><div class="prof-bar"><div class="prof-fill" data-w="72"></div></div></div>
+          <div class="prof-item fade delay3"><div class="prof-header"><span class="prof-name">Ansible</span><span class="prof-pct">70%</span></div><div class="prof-bar"><div class="prof-fill" data-w="70"></div></div></div>
+          <div class="prof-item fade delay4"><div class="prof-header"><span class="prof-name">Linux Administration</span><span class="prof-pct">80%</span></div><div class="prof-bar"><div class="prof-fill" data-w="80"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px;" class="fade">
+      <div class="section-kicker">All Tools</div>
+      <div class="section-title delay1" style="margin-bottom:24px;">Full Toolbox</div>
+      <div class="tools-wall">
+        <span class="tool-chip">Azure CLI</span><span class="tool-chip">kubectl</span><span class="tool-chip">helm</span><span class="tool-chip">terraform</span><span class="tool-chip">ansible</span><span class="tool-chip">docker</span><span class="tool-chip">git</span><span class="tool-chip">jenkins</span><span class="tool-chip">prometheus</span><span class="tool-chip">grafana</span><span class="tool-chip">python3</span><span class="tool-chip">bash</span><span class="tool-chip">powershell</span><span class="tool-chip">nginx</span><span class="tool-chip">systemd</span><span class="tool-chip">ssh</span><span class="tool-chip">vim</span><span class="tool-chip">cron</span><span class="tool-chip">jq</span><span class="tool-chip">curl</span><span class="tool-chip">grep</span><span class="tool-chip">awk</span><span class="tool-chip">sed</span><span class="tool-chip">htop</span><span class="tool-chip">ps</span><span class="tool-chip">netstat</span><span class="tool-chip">dig</span><span class="tool-chip">nmap</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.prof-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});});
+},{threshold:.3});
+document.querySelectorAll('.prof-section').forEach(el=>obs.observe(el));
+</script>
+
+<footer>
+  <div class="footer-copy">© 2025 Nusaif Khan — Crafted with precision · Deployed with passion</div>
+  <div class="footer-status" style="display:flex; gap:20px; align-items:center;">
+    <a href="https://github.com/nusaifkhan" target="_blank" style="color:var(--td);text-decoration:none;transition:color .2s;font-family:'JetBrains Mono',monospace;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='var(--td)'">⌥ GitHub</a>
+    <div style="display:flex;align-items:center;gap:8px;"><div class="status-dot"></div> Available for opportunities</div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  // Custom cursor
+  const cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+  document.addEventListener('mousemove',e=>{
+    cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+    setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},50);
+  });
+  document.querySelectorAll('a,button,input,textarea,.card,.proj-card,.skill-cat,.cert-card,.sp-focus-item,.cert-card-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.background='transparent';cur.style.border='2px solid var(--g)';ring.style.width='44px';ring.style.height='44px';});
+    el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur.style.background='var(--g)';cur.style.border='none';ring.style.width='32px';ring.style.height='32px';});
+  });
+
+  // Scrolled nav
+  const nav=document.getElementById('main-nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+
+  // Fade in observer
+  const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*80);}),{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+  // CV download toast
+  function cvToast(){
+    const t=document.createElement('div');
+    t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(0);background:#00ff88;color:#000;font-family:"JetBrains Mono",monospace;font-size:.78rem;padding:12px 28px;border-radius:6px;z-index:9999;font-weight:700;letter-spacing:.1em;box-shadow:0 4px 24px #00ff8840;transition:opacity .4s;white-space:nowrap';
+    t.innerHTML='⬇&nbsp; Downloading Nusaif\'s CV...';
+    document.body.appendChild(t);
+    setTimeout(()=>{t.style.opacity='0';},2600);
+    setTimeout(()=>t.remove(),3000);
+  }
+  document.querySelectorAll('a[download]').forEach(a=>{
+    a.addEventListener('click',()=>setTimeout(cvToast,100));
+  });
+  document.querySelectorAll('[data-cv]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const a=document.createElement('a');
+      a.href='Nusaif_Khan_Resume.pdf';
+      a.download='Nusaif_Khan_Resume.pdf';
+      document.body.appendChild(a);a.click();document.body.removeChild(a);
+      cvToast();
+    });
+  });
+
+  // Mobile hamburger
+  const ham=document.getElementById('hamburger');
+  const mobileMenu=document.getElementById('mobile-menu');
+  if(ham&&mobileMenu){
+    ham.addEventListener('click',()=>{
+      const open=mobileMenu.style.display==='flex';
+      mobileMenu.style.display=open?'none':'flex';
+      ham.classList.toggle('open',!open);
+    });
+  }
+})();
+</script>
+</body>
+</html>

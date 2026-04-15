@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Cover Letter — Nusaif Khan</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #03070a;
+        --bg2: #060d12;
+        --bg3: #0b1820;
+        --g: #00ff88;
+        --g2: #00cc6a;
+        --c: #00e5ff;
+        --b: #1e90ff;
+        --o: #ff6b35;
+        --p: #a855f7;
+        --t: #c8d8e4;
+        --td: #4a6a7a;
+        --bd: #132030;
+        --bdh: #00ff8840;
+        --glow: 0 0 20px #00ff8830;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--t);
+        font-family: "Outfit", sans-serif;
+        overflow-x: hidden;
+        cursor: none;
+      }
+      ::selection {
+        background: #00ff8830;
+        color: var(--g);
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--g2);
+        border-radius: 2px;
+      }
+      #cur,
+      #cur-r {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.15s,
+          height 0.15s,
+          background 0.15s,
+          border 0.15s;
+      }
+      #cur {
+        width: 10px;
+        height: 10px;
+        background: var(--g);
+        box-shadow: 0 0 8px #00ff8880;
+      }
+      #cur-r {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #00ff8860;
+        z-index: 9998;
+        transition: all 0.12s ease;
+      }
+      .bg-grid {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background-image:
+          linear-gradient(rgba(0, 255, 136, 0.018) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 136, 0.018) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 60px;
+        background: rgba(3, 7, 10, 0.95);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--bd);
+        transition: all 0.3s;
+      }
+      nav.scrolled {
+        padding: 12px 60px;
+      }
+      .nav-logo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+        color: var(--g);
+        letter-spacing: 0.05em;
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--td);
+      }
+      .nav-links {
+        display: flex;
+        gap: 22px;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--td);
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+        position: relative;
+        cursor: none;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0;
+        height: 1px;
+        background: var(--g);
+        transition: width 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--g);
+      }
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+      .nav-dl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        padding: 7px 15px;
+        background: transparent;
+        border: 1px solid var(--g);
+        color: var(--g);
+        border-radius: 3px;
+        cursor: none;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .nav-dl:hover {
+        background: var(--g);
+        color: #000;
+      }
+      #hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: none;
+        padding: 4px;
+      }
+      #hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--g);
+        border-radius: 2px;
+        transition: all 0.25s;
+      }
+      #hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      #hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      #hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      #mobile-menu {
+        display: none;
+        position: fixed;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: rgba(3, 7, 10, 0.96);
+        backdrop-filter: blur(24px) saturate(160%);
+        -webkit-backdrop-filter: blur(24px) saturate(160%);
+        border-bottom: 1px solid rgba(0,255,136,0.12);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        flex-direction: column;
+        z-index: 199;
+        padding: 20px 24px 28px;
+      }
+      #mobile-menu a {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--td);
+        text-decoration: none;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--bd);
+        transition: color 0.2s, padding-left 0.2s;
+        display: block;
+      }
+      #mobile-menu a:hover,
+      #mobile-menu a.active {
+        color: var(--g);
+        padding-left: 8px;
+      }
+      #mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      @media (max-width: 960px) {
+        #hamburger {
+          display: flex !important;
+        }
+        .nav-links {
+          display: none !important;
+        }
+        nav {
+          padding: 14px 24px;
+        }
+      }
+      .page-shell {
+        min-height: 100vh;
+        padding-top: 72px;
+        position: relative;
+        z-index: 2;
+      }
+      .breadcrumb {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--td);
+        padding: 20px 60px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .breadcrumb a {
+        color: var(--td);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .breadcrumb a:hover {
+        color: var(--g);
+      }
+      .breadcrumb span {
+        margin: 0 8px;
+      }
+      .page-banner {
+        padding: 28px 60px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .page-banner-kicker {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--g);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .page-banner-kicker::before {
+        content: "";
+        width: 36px;
+        height: 1px;
+        background: var(--g);
+      }
+      .page-banner-title {
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        font-weight: 900;
+        color: #fff;
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+      .page-banner-title span {
+        color: var(--g);
+      }
+      .page-banner-desc {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--td);
+        line-height: 1.7;
+      }
+      .content-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 60px 60px;
+      }
+      .letter-layout {
+        display: grid;
+        grid-template-columns: 1fr 270px;
+        gap: 28px;
+        align-items: start;
+      }
+      .letter-doc {
+        background: var(--bg2);
+        border: 1px solid var(--bd);
+        border-radius: 10px;
+        padding: 48px 52px;
+        position: relative;
+        overflow: hidden;
+      }
+      .letter-doc::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--g), var(--c), var(--p));
+      }
+      .letter-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 40px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--bd);
+      }
+      .letter-from {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.76rem;
+        line-height: 2;
+        color: var(--td);
+      }
+      .letter-from strong {
+        color: var(--g);
+        font-size: 0.88rem;
+        display: block;
+        margin-bottom: 2px;
+      }
+      .letter-from a {
+        color: var(--c);
+        text-decoration: none;
+      }
+      .letter-date {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--td);
+        text-align: right;
+        line-height: 1.9;
+      }
+      .letter-subject-row {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--td);
+        margin-bottom: 4px;
+        letter-spacing: 0.06em;
+      }
+      .letter-subject-row span {
+        color: var(--c);
+      }
+      .letter-to {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--td);
+        margin-bottom: 32px;
+      }
+      .letter-body {
+        font-size: 0.98rem;
+        line-height: 1.85;
+        color: var(--t);
+      }
+      .letter-body p {
+        margin-bottom: 18px;
+      }
+      .letter-body p:last-child {
+        margin-bottom: 0;
+      }
+      .letter-body strong {
+        color: #fff;
+      }
+      .hl {
+        color: var(--g);
+        font-weight: 600;
+      }
+      .letter-sig {
+        margin-top: 36px;
+        padding-top: 28px;
+        border-top: 1px solid var(--bd);
+      }
+      .letter-sig-name {
+        font-family: "Outfit", sans-serif;
+        font-size: 1.7rem;
+        font-weight: 900;
+        color: var(--g);
+      }
+      .letter-sig-role {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--td);
+        margin-top: 4px;
+      }
+      .letter-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.75rem;
+        padding: 11px 22px;
+        border-radius: 4px;
+        text-decoration: none;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: all 0.22s;
+        cursor: none;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .btn-primary {
+        background: var(--g);
+        color: #000;
+        font-weight: 700;
+        border: 2px solid var(--g);
+        animation: btnbreathe 3s ease-in-out infinite;
+        box-shadow: 0 0 16px rgba(0,255,136,0.3);
+      }
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--g);
+        animation: none;
+      }
+      @keyframes btnbreathe {
+        0%, 100% { box-shadow: 0 0 12px rgba(0,255,136,0.25); }
+        50% { box-shadow: 0 0 28px rgba(0,255,136,0.6), 0 0 50px rgba(0,255,136,0.15); }
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--t);
+        border: 1px solid var(--bd);
+      }
+      .btn-outline:hover {
+        border-color: var(--g);
+        color: var(--g);
+      }
+      .letter-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: sticky;
+        top: 84px;
+      }
+      .sidebar-card {
+        background: var(--bg3);
+        border: 1px solid var(--bd);
+        border-radius: 8px;
+        padding: 18px;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .sidebar-card:hover {
+        border-color: var(--bdh);
+        box-shadow: var(--glow);
+      }
+      .sidebar-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--g);
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sidebar-title::before {
+        content: "";
+        width: 10px;
+        height: 1px;
+        background: var(--g);
+      }
+      .kv-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid #0c1a26;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+      }
+      .kv-row:last-child {
+        border-bottom: none;
+      }
+      .kv-key {
+        color: var(--td);
+      }
+      .kv-val {
+        color: var(--c);
+      }
+      .kv-val.green {
+        color: var(--g);
+      }
+      .mini-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .mini-stat {
+        text-align: center;
+        padding: 12px 6px;
+        background: var(--bg);
+        border: 1px solid var(--bd);
+        border-radius: 6px;
+        transition: border-color 0.2s;
+      }
+      .mini-stat:hover {
+        border-color: var(--bdh);
+      }
+      .mini-stat-num {
+        font-family: "Outfit", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 900;
+        color: var(--g);
+        line-height: 1;
+      }
+      .mini-stat-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.58rem;
+        color: var(--td);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+      .pipeline {
+        display: flex;
+        flex-direction: column;
+      }
+      .pipe-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+        padding-bottom: 14px;
+      }
+      .pipe-step::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 26px;
+        width: 1px;
+        bottom: 0;
+        background: linear-gradient(var(--g), rgba(19, 32, 48, 0.2));
+      }
+      .pipe-step:last-child::after {
+        display: none;
+      }
+      .pipe-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid var(--g);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+        color: var(--g);
+        flex-shrink: 0;
+        margin-top: 2px;
+        background: rgba(0, 255, 136, 0.08);
+      }
+      .pipe-dot.done {
+        background: rgba(0, 255, 136, 0.18);
+        box-shadow: 0 0 8px #00ff8840;
+      }
+      .pipe-dot.running {
+        animation: pipe-pulse 1.5s ease-in-out infinite;
+      }
+      @keyframes pipe-pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.5);
+        }
+        60% {
+          box-shadow: 0 0 0 6px rgba(0, 255, 136, 0);
+        }
+      }
+      .pipe-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: #fff;
+        margin-bottom: 1px;
+      }
+      .pipe-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        color: var(--td);
+      }
+      .badge {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.66rem;
+        padding: 4px 9px;
+        border: 1px solid var(--bd);
+        border-radius: 3px;
+        color: var(--c);
+        letter-spacing: 0.04em;
+        transition: all 0.2s;
+        cursor: default;
+      }
+      .badge:hover {
+        border-color: var(--c);
+        background: rgba(0, 229, 255, 0.06);
+      }
+      footer {
+        padding: 28px 60px;
+        border-top: 1px solid var(--bd);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .footer-copy {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--td);
+      }
+      .footer-status {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        color: var(--g);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--g);
+        border-radius: 50%;
+        animation: sdpulse 2s ease-in-out infinite;
+        box-shadow: 0 0 8px var(--g);
+      }
+      @keyframes sdpulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 0.7;
+        }
+      }
+      @media print {
+        body {
+          background: #fff !important;
+          color: #000 !important;
+          cursor: auto !important;
+        }
+        .bg-grid,
+        #cur,
+        #cur-r,
+        nav,
+        #hamburger,
+        #mobile-menu,
+        .breadcrumb,
+        .page-banner,
+        .letter-actions,
+        .letter-sidebar,
+        footer {
+          display: none !important;
+        }
+        .letter-layout {
+          display: block !important;
+        }
+        .content-wrap {
+          padding: 0 !important;
+        }
+        .letter-doc {
+          border: 1px solid #ccc !important;
+          background: #fff !important;
+          box-shadow: none !important;
+          padding: 36px !important;
+          border-radius: 0 !important;
+        }
+        .letter-doc::before {
+          display: none !important;
+        }
+        .letter-from strong,
+        .letter-sig-name,
+        .hl {
+          color: #1a6e3a !important;
+        }
+        .letter-from a,
+        .letter-subject-row span {
+          color: #0077aa !important;
+        }
+        .letter-body,
+        .letter-from,
+        .letter-date,
+        .letter-to,
+        .letter-subject-row,
+        .letter-sig-role {
+          color: #333 !important;
+        }
+        .letter-body strong {
+          color: #000 !important;
+        }
+        .page-shell {
+          padding-top: 0 !important;
+        }
+      }
+      @media (max-width: 960px) {
+        .letter-layout {
+          grid-template-columns: 1fr;
+        }
+        .letter-sidebar {
+          position: static;
+        }
+        .content-wrap,
+        .page-banner,
+        .breadcrumb {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        .letter-doc {
+          padding: 32px 24px;
+        }
+        .letter-header {
+          flex-direction: column;
+          gap: 16px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 12px;
+          padding: 24px;
+        }
+      }
+      @media (max-width: 600px) {
+        nav {
+          padding: 12px 20px;
+        }
+        .content-wrap,
+        .page-banner,
+        .breadcrumb {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .letter-doc {
+          padding: 24px 16px;
+        }
+        .letter-actions {
+          flex-direction: column;
+        }
+        .letter-actions .btn {
+          width: 100%;
+          justify-content: center;
+        }
+        footer {
+          flex-direction: column;
+          gap: 14px;
+          padding: 24px 20px;
+          text-align: center;
+        }
+        .footer-status {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+      @media (max-width: 400px) {
+        .content-wrap,
+        .page-banner,
+        .breadcrumb {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+        .letter-doc {
+          padding: 20px 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <div id="cur"></div>
+    <div id="cur-r"></div>
+
+    <nav id="main-nav">
+      <a href="index.html" class="nav-logo">nusaif<span>@devops</span>:~$</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html">Certs</a></li>
+        <li><a href="learning-path.html">Learning</a></li>
+        <li><a href="cover-letter.html" class="active">Cover Letter</a></li>
+        <li><a href="fiverr.html" class="">Fiverr</a></li>
+        <li>
+          <a href="Nusaif_Khan_Resume.pdf" download class="nav-dl"
+            >&#11015; CV</a
+          >
+        </li>
+      </ul>
+      <button id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certs</a>
+      <a href="learning-path.html">Learning</a>
+      <a href="cover-letter.html" class="active">Cover Letter</a>
+      <a href="fiverr.html">Fiverr</a>
+      <a
+        href="Nusaif_Khan_Resume.pdf"
+        download
+        style="color: var(--g); margin-top: 6px"
+        >&#11015; Download CV</a
+      >
+    </div>
+
+    <div class="page-shell">
+      <div class="breadcrumb">
+        <a href="index.html">~</a><span>/</span>cover-letter
+      </div>
+
+      <div class="page-banner">
+        <div class="page-banner-kicker">Cover Letter</div>
+        <h1 class="page-banner-title">DevOps <span>Internship</span></h1>
+        <p class="page-banner-desc">
+          // A personal letter for opportunities in DevOps &amp; SRE
+        </p>
+      </div>
+
+      <div class="content-wrap">
+        <div class="letter-layout">
+          <!-- LEFT: THE LETTER -->
+          <div>
+            <div class="letter-doc">
+              <div class="letter-header">
+                <div class="letter-from">
+                  <strong>Nusaif Khan</strong>
+                  Colombo, Sri Lanka<br />
+                  <a href="mailto:nusaifkhan21@gmail.com"
+                    >nusaifkhan21@gmail.com</a
+                  ><br />
+                  +94 76 744 5757<br />
+                  <a href="https://github.com/nusaifkhan" target="_blank"
+                    >github.com/nusaifkhan</a
+                  ><br />
+                  <a href="https://linkedin.com/in/nusaifkhan" target="_blank"
+                    >linkedin.com/in/nusaifkhan</a
+                  >
+                </div>
+                <div class="letter-date" id="letter-date"></div>
+              </div>
+
+              <div class="letter-subject-row">
+                Re:
+                <span
+                  >DevOps Engineer Internship / Site Reliability Engineer
+                  Role</span
+                >
+              </div>
+              <div class="letter-to">To: Hiring Manager</div>
+
+              <div class="letter-body">
+                <p>Dear Hiring Manager,</p>
+                <p>
+                  I am writing to express my strong interest in a
+                  <strong
+                    >DevOps Engineer Internship or Site Reliability
+                    Engineer</strong
+                  >
+                  position at your organization. As a BSc Software Engineering
+                  student at
+                  <strong>Cardiff Metropolitan University</strong> with hands-on
+                  experience in cloud automation, containerization, and CI/CD
+                  pipelines, I am eager to contribute to a team that treats
+                  infrastructure as code and deployment as a discipline.
+                </p>
+                <p>
+                  My practical experience includes two real-world Azure projects
+                  that delivered measurable results. I automated VM lifecycle
+                  management using
+                  <span class="hl">Python, Azure SDK, and Jenkins</span>,
+                  reducing manual operations by 80% and cutting deployment time
+                  by 50%. I also built a cost-optimization tool that cleaned
+                  unused Azure resources, reducing cloud storage spend by 30%.
+                  These weren't just exercises — they were production-oriented
+                  solutions I designed, built, and validated end-to-end.
+                </p>
+                <p>
+                  I hold <strong>9+ certifications</strong> including
+                  <span class="hl">Microsoft AZ-900 (Azure Fundamentals)</span>,
+                  <span class="hl">FinOps Certified Practitioner</span>,
+                  Kubernetes, Docker, Prometheus, Jenkins, Helm, and Linux — all
+                  earned within the past year. I'm currently pursuing AZ-104 and
+                  the Certified Kubernetes Administrator (CKA) exam. My
+                  technical stack includes Terraform, Ansible, Grafana, and Bash
+                  scripting — tools I use daily.
+                </p>
+                <p>
+                  What distinguishes me is my <strong>systems thinking</strong>.
+                  I don't just run commands; I understand why infrastructure
+                  behaves the way it does, how to design for failure, and how to
+                  reduce toil systematically. I'm the kind of engineer who reads
+                  postmortems for fun and automates repetitive tasks before
+                  being asked.
+                </p>
+                <p>
+                  I would be thrilled to bring my skills, curiosity, and work
+                  ethic to your team. I'm available immediately for internship
+                  or junior roles and am happy to take on complex challenges. I
+                  would love the opportunity to discuss how I can contribute to
+                  your engineering goals.
+                </p>
+                <p>Thank you sincerely for your time and consideration.</p>
+              </div>
+
+              <div class="letter-sig">
+                <div class="letter-sig-name">Nusaif Khan</div>
+                <div class="letter-sig-role">
+                  Aspiring DevOps Engineer &middot; BSc Software Engineering
+                  &middot; Cardiff Metropolitan University
+                </div>
+              </div>
+            </div>
+
+            <div class="letter-actions">
+              <button class="btn btn-primary" onclick="window.print()">
+                &#128438; Print / Save as PDF
+              </button>
+              <a href="Nusaif_Khan_Resume.pdf" download class="btn btn-outline"
+                >&#11015; Download CV</a
+              >
+            </div>
+          </div>
+
+          <!-- RIGHT: SIDEBAR -->
+          <div class="letter-sidebar">
+            <div class="sidebar-card">
+              <div class="sidebar-title">Quick Profile</div>
+              <div class="kv-row">
+                <span class="kv-key">Status</span
+                ><span class="kv-val green">&#9679; Open to hire</span>
+              </div>
+              <div class="kv-row">
+                <span class="kv-key">Location</span
+                ><span class="kv-val">Colombo, LK</span>
+              </div>
+              <div class="kv-row">
+                <span class="kv-key">Type</span
+                ><span class="kv-val">Internship / Jr</span>
+              </div>
+              <div class="kv-row">
+                <span class="kv-key">Notice</span
+                ><span class="kv-val">Immediate</span>
+              </div>
+              <div class="kv-row">
+                <span class="kv-key">Cloud</span
+                ><span class="kv-val">Azure &middot; AWS</span>
+              </div>
+              <div class="kv-row">
+                <span class="kv-key">Certs</span
+                ><span class="kv-val green">9+ earned</span>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <div class="sidebar-title">Impact Numbers</div>
+              <div class="mini-stats">
+                <div class="mini-stat">
+                  <div class="mini-stat-num">80%</div>
+                  <div class="mini-stat-label">Ops Automated</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="mini-stat-num">50%</div>
+                  <div class="mini-stat-label">Deploy Time &#8595;</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="mini-stat-num">30%</div>
+                  <div class="mini-stat-label">Cost Saved</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="mini-stat-num">9+</div>
+                  <div class="mini-stat-label">Certifications</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <div class="sidebar-title">My DevOps Pipeline</div>
+              <div class="pipeline">
+                <div class="pipe-step">
+                  <div class="pipe-dot done">&#10003;</div>
+                  <div>
+                    <div class="pipe-label">Plan</div>
+                    <div class="pipe-sub">Terraform &middot; IaC design</div>
+                  </div>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-dot done">&#10003;</div>
+                  <div>
+                    <div class="pipe-label">Build</div>
+                    <div class="pipe-sub">Docker &middot; Python scripts</div>
+                  </div>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-dot done">&#10003;</div>
+                  <div>
+                    <div class="pipe-label">Test</div>
+                    <div class="pipe-sub">Bash validation suites</div>
+                  </div>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-dot done">&#10003;</div>
+                  <div>
+                    <div class="pipe-label">Deploy</div>
+                    <div class="pipe-sub">
+                      Jenkins &middot; Kubernetes &middot; Helm
+                    </div>
+                  </div>
+                </div>
+                <div class="pipe-step">
+                  <div class="pipe-dot running">&#9654;</div>
+                  <div>
+                    <div class="pipe-label">Monitor</div>
+                    <div class="pipe-sub">Prometheus &middot; Grafana</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-card">
+              <div class="sidebar-title">Core Stack</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px">
+                <span class="badge">Azure</span
+                ><span class="badge">Kubernetes</span
+                ><span class="badge">Docker</span>
+                <span class="badge">Terraform</span
+                ><span class="badge">Jenkins</span
+                ><span class="badge">Ansible</span>
+                <span class="badge">Python</span
+                ><span class="badge">Prometheus</span
+                ><span class="badge">Helm</span><span class="badge">Bash</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-copy">
+        &#169; 2025 Nusaif Khan &#8212; Crafted with precision &middot; Deployed
+        with passion
+      </div>
+      <div class="footer-status" style="display:flex; gap:20px; align-items:center;">
+        <a href="https://github.com/nusaifkhan" target="_blank" style="color:var(--td);text-decoration:none;transition:color .2s;font-family:'JetBrains Mono',monospace;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='var(--td)'">⌥ GitHub</a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="status-dot"></div> Available for opportunities
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        document.getElementById("letter-date").textContent =
+          new Date().toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          });
+
+        var cur = document.getElementById("cur"),
+          ring = document.getElementById("cur-r");
+        document.addEventListener("mousemove", function (e) {
+          cur.style.left = e.clientX + "px";
+          cur.style.top = e.clientY + "px";
+          setTimeout(function () {
+            ring.style.left = e.clientX + "px";
+            ring.style.top = e.clientY + "px";
+          }, 50);
+        });
+        document
+          .querySelectorAll("a,button,.sidebar-card,.mini-stat")
+          .forEach(function (el) {
+            el.addEventListener("mouseenter", function () {
+              cur.style.width = "18px";
+              cur.style.height = "18px";
+              cur.style.background = "transparent";
+              cur.style.border = "2px solid var(--g)";
+              ring.style.width = "44px";
+              ring.style.height = "44px";
+            });
+            el.addEventListener("mouseleave", function () {
+              cur.style.width = "10px";
+              cur.style.height = "10px";
+              cur.style.background = "var(--g)";
+              cur.style.border = "none";
+              ring.style.width = "32px";
+              ring.style.height = "32px";
+            });
+          });
+
+        var nav = document.getElementById("main-nav");
+        window.addEventListener("scroll", function () {
+          nav.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        var ham = document.getElementById("hamburger"),
+          mob = document.getElementById("mobile-menu");
+        ham.addEventListener("click", function () {
+          var open = mob.style.display === "flex";
+          mob.style.display = open ? "none" : "flex";
+          ham.classList.toggle("open", !open);
+        });
+
+        function cvToast() {
+          var t = document.createElement("div");
+          t.style.cssText =
+            'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#00ff88;color:#000;font-family:"JetBrains Mono",monospace;font-size:.78rem;font-weight:700;padding:12px 28px;border-radius:6px;z-index:9999;letter-spacing:.1em;box-shadow:0 4px 20px #00ff8840;transition:opacity .4s;white-space:nowrap;';
+          t.textContent = "\u2B07  Downloading CV...";
+          document.body.appendChild(t);
+          setTimeout(function () {
+            t.style.opacity = "0";
+          }, 2500);
+          setTimeout(function () {
+            t.remove();
+          }, 3000);
+        }
+        document.querySelectorAll("a[download]").forEach(function (a) {
+          a.addEventListener("click", function () {
+            setTimeout(cvToast, 80);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
