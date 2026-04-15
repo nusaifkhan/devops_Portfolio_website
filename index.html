@@ -16,7 +16,7 @@
 
   <!-- NAVIGATION -->
   <nav id="main-nav">
-    <a href="index.html" class="nav-logo" style="text-decoration: none;">nusaif<span>@devops</span>:~$</a>
+    <a href="index.html" class="nav-logo">nusaif<span>@devops</span>:~$</a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -28,14 +28,14 @@
       <li><a href="fiverr.html">Fiverr</a></li>
       <li><button class="nav-dl" onclick="downloadCV()" style="background:none; border:none; cursor:none;">⬇ CV</button></li>
     </ul>
-    <button id="hamburger" aria-label="Menu" onclick="toggleMenu()" style="display: none; flex-direction: column; gap: 5px; cursor: none; padding: 4px; background: none; border: none;">
-      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
-      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
-      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
+    <button id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </nav>
 
-  <div id="mobile-menu" style="display: none; position: fixed; top: 56px; left: 0; right: 0; background: rgba(3,7,10,.96); backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid rgba(0,255,136,0.12); flex-direction: column; z-index: 199; padding: 20px 24px 28px; box-shadow: 0 8px 40px rgba(0,0,0,0.5);">
+  <div id="mobile-menu">
     <a href="index.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Home</a>
     <a href="about.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">About</a>
     <a href="skills.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Skills</a>
@@ -43,8 +43,8 @@
     <a href="certifications.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Certs</a>
     <a href="learning-path.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Learning</a>
     <a href="cover-letter.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Cover Letter</a>
-    <a href="fiverr.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Fiverr</a>
-    <a href="Nusaif_Khan_Resume.pdf" download onclick="downloadCV()" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--g); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: none !important; margin-top: 8px;">⬇ Download CV</a>
+    <a href="fiverr.html">Fiverr</a>
+    <a href="Nusaif_Khan_Resume.pdf" download class="nav-dl" style="margin-top: 12px; text-align: center;">⬇ Download CV</a>
   </div>
 
   <!-- HERO SECTION -->
@@ -99,7 +99,7 @@
   </section>
 
   <!-- SYSTEM PROFILE -->
-  <section id="system-profile" style="background: var(--bg2); border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd);">
+  <section id="system-profile">
     <div class="section-wrap">
       <div class="section-kicker fade">01 — About</div>
       <div class="section-title fade delay1">System Profile</div>
@@ -142,10 +142,10 @@
           </div>
         </div>
         <div class="sysprofile-right fade delay2">
-          <div><div class="sp-title">Streamline Your Infrastructure<br /><span>with Real Solutions</span></div></div>
-          <p class="sp-desc">Hey! I'm <strong style="color:#fff">Nusaif Khan</strong> — an aspiring DevOps & Cloud Automation Engineer and BSc Software Engineering student who has spent the last year learning by <em>building</em>, not just studying. I don't just follow tutorials — I design, build, and validate production-oriented solutions from scratch.</p>
-          <p class="sp-desc">What makes me different? I've already delivered measurable results: <span style="color:var(--g)">reduced Azure VM manual operations by 80%</span> through Python & Jenkins automation, <span style="color:var(--g)">cut cloud storage costs by 30%</span> with an automated Azure cleanup tool, and earned <span style="color:var(--g)">9+ certifications</span> — AZ-900, FinOps Practitioner, Kubernetes, Docker, Prometheus, Jenkins, Helm & Linux — all self-studied within a year.</p>
-          <p class="sp-desc">Open to freelance projects, internships, and junior DevOps roles. Let's build something reliable.</p>
+          <div class="sp-title-main">Streamline Your Infrastructure<br /><span>with Real Solutions</span></div>
+          <p class="sp-desc-text">Hey! I'm <strong style="color:#fff">Nusaif Khan</strong> — an aspiring DevOps & Cloud Automation Engineer and BSc Software Engineering student who has spent the last year learning by <em>building</em>, not just studying. I don't just follow tutorials — I design, build, and validate production-oriented solutions from scratch.</p>
+          <p class="sp-desc-text">What makes me different? I've already delivered measurable results: <span style="color:var(--g)">reduced Azure VM manual operations by 80%</span> through Python & Jenkins automation, <span style="color:var(--g)">cut cloud storage costs by 30%</span> with an automated Azure cleanup tool, and earned <span style="color:var(--g)">9+ certifications</span> — AZ-900, FinOps Practitioner, Kubernetes, Docker, Prometheus, Jenkins, Helm & Linux — all self-studied within a year.</p>
+          <p class="sp-desc-text">Open to freelance projects, internships, and junior DevOps roles. Let's build something reliable.</p>
           <ul class="sp-focus-list">
             <li class="sp-focus-item"><span class="sp-focus-icon">🐍</span><div class="sp-focus-text"><span class="sp-focus-name">Python & Bash Automation</span><span class="sp-focus-sub">Azure SDK · Boto3 · Native Linux tools</span></div></li>
             <li class="sp-focus-item"><span class="sp-focus-icon">☁️</span><div class="sp-focus-text"><span class="sp-focus-name">AWS & Azure with Terraform</span><span class="sp-focus-sub">Modular IaC · No ClickOps · No drift</span></div></li>
@@ -346,21 +346,12 @@
     function toggleMenu() {
       const btn = document.getElementById('hamburger');
       const menu = document.getElementById('mobile-menu');
-      menuOpen = !menuOpen;
-      
-      const spans = btn.querySelectorAll('span');
-      if(menuOpen) {
-        menu.style.display = 'flex';
-        spans[0].style.transform = 'translateY(7px) rotate(45deg)';
-        spans[1].style.opacity = '0';
-        spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-      } else {
-        menu.style.display = 'none';
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-      }
+      btn.classList.toggle('open');
+      const isOpen = btn.classList.contains('open');
+      menu.style.display = isOpen ? 'flex' : 'none';
     }
+    document.getElementById('hamburger').addEventListener('click', toggleMenu);
+    document.getElementById('hamburger').addEventListener('click', toggleMenu);
 
     // 4. Fade In Observer
     const obs = new IntersectionObserver((entries) => {
