@@ -1,16 +1,10 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nusaif Khan — DevOps Engineer</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -18,1174 +12,471 @@
   <div class="bg-grid"></div>
   <div id="cur"></div>
   <div id="cur-r"></div>
-  <div id="root"></div>
-
-  <!-- CV DATA URI will be injected here -->
   <a id="cv-dl" style="display: none"></a>
 
-  <script type="text/babel">
-    const { useState, useEffect, useRef, useCallback } = React;
+  <!-- NAVIGATION -->
+  <nav id="main-nav">
+    <a href="index.html" class="nav-logo" style="text-decoration: none;">nusaif<span>@devops</span>:~$</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="certifications.html">Certs</a></li>
+      <li><a href="learning-path.html">Learning</a></li>
+      <li><a href="cover-letter.html">Cover Letter</a></li>
+      <li><a href="fiverr.html">Fiverr</a></li>
+      <li><button class="nav-dl" onclick="downloadCV()" style="background:none; border:none; cursor:none;">⬇ CV</button></li>
+    </ul>
+    <button id="hamburger" aria-label="Menu" onclick="toggleMenu()" style="display: none; flex-direction: column; gap: 5px; cursor: none; padding: 4px; background: none; border: none;">
+      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
+      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
+      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
+    </button>
+  </nav>
 
-    // ─────────────────────────────────────────────
-    // DATA
-    // ─────────────────────────────────────────────
-    const COMMANDS = [
-      ["$ kubectl get pods --all-namespaces", null],
-      ['$ docker ps -a --format "{{.Names}}: {{.Status}}"', null],
-      ["$ terraform plan -out=tfplan", null],
-      ["$ ansible-playbook deploy.yml -i inventory", null],
-      ["$ kubectl rollout status deployment/api", null],
-      ["$ az vm start --resource-group prod --name web-01", null],
-      ["$ prometheus --config.file=prometheus.yml", null],
-      ["$ helm upgrade --install myapp ./charts/myapp", null],
-      ["$ kubectl scale deployment/api --replicas=5", null],
-      ["$ docker build -t nusaif/app:latest .", null],
-      ["$ jenkins build pipeline --branch=main", null],
-      ["$ az aks get-credentials --name k8s-cluster", null],
-      ['$ grep -r "ERROR" /var/log/nginx/ | tail -20', null],
-      ["$ systemctl restart nginx && systemctl status nginx", null],
-      ["$ kubectl logs -f pod/api-7f8d9 --container=main", null],
-      ["$ terraform apply -auto-approve", null],
-      ["$ grafana-cli plugins install grafana-piechart-panel", null],
-      ["$ kubectl exec -it pod/db-0 -- psql -U postgres", null],
-    ];
+  <div id="mobile-menu" style="display: none; position: fixed; top: 56px; left: 0; right: 0; background: rgba(3,7,10,.96); backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid rgba(0,255,136,0.12); flex-direction: column; z-index: 199; padding: 20px 24px 28px; box-shadow: 0 8px 40px rgba(0,0,0,0.5);">
+    <a href="index.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Home</a>
+    <a href="about.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">About</a>
+    <a href="skills.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Skills</a>
+    <a href="projects.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Projects</a>
+    <a href="certifications.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Certs</a>
+    <a href="learning-path.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Learning</a>
+    <a href="cover-letter.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Cover Letter</a>
+    <a href="fiverr.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Fiverr</a>
+    <a href="Nusaif_Khan_Resume.pdf" download onclick="downloadCV()" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--g); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: none !important; margin-top: 8px;">⬇ Download CV</a>
+  </div>
 
+  <!-- HERO SECTION -->
+  <section id="hero">
+    <div class="cmd-rain" id="cmd-rain" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-line fade">
+        <span>Available for DevOps Internship</span>
+        <span style="color: var(--td)">·</span>
+        <span style="color: var(--td)">Colombo, Sri Lanka</span>
+      </div>
+      <h1 class="hero-name fade delay1">Nusaif <span class="hl">Khan</span></h1>
+      <div class="hero-role fade delay2">
+        &gt; <span id="hero-typewriter"></span><span class="term-cursor" style="margin-left: 2px;"></span>
+      </div>
+      <p class="hero-desc fade delay2">
+        Aspiring DevOps & SRE engineer building scalable automation
+        pipelines, cloud infrastructure, and reliable systems.
+        Passionate about turning manual toil into elegant code.
+      </p>
+      <div class="hero-ctas fade delay3">
+        <button class="btn btn-primary" onclick="downloadCV()">⬇ Download CV</button>
+        <a href="https://github.com/nusaifkhan" target="_blank" class="btn btn-outline">⌥ GitHub</a>
+      </div>
+      <div class="stats-row">
+        <div class="fade delay3"><div class="stat-num">2+</div><div class="stat-label">Cloud Projects</div></div>
+        <div class="fade delay3"><div class="stat-num">9+</div><div class="stat-label">Certifications</div></div>
+        <div class="fade delay3"><div class="stat-num">80%</div><div class="stat-label">Ops Automation</div></div>
+        <div class="fade delay3"><div class="stat-num">2</div><div class="stat-label">Cloud Platforms</div></div>
+      </div>
+      <div class="terminal-ticker">
+        <div class="ticker-label">// live ops stream</div>
+        <div class="ticker-track" id="ticker-track"></div>
+      </div>
+    </div>
+    
+    <div class="term-window fade delay4">
+      <div class="term-header">
+        <div class="term-dot" style="background: #ff5f57"></div>
+        <div class="term-dot" style="background: #febc2e"></div>
+        <div class="term-dot" style="background: #28c840"></div>
+        <span class="term-title">nusaif@devops — bash</span>
+      </div>
+      <div class="term-body" id="hero-term">
+        <!-- populated by JS -->
+      </div>
+    </div>
+    <div class="scroll-ind">
+      <span>scroll</span>
+      <div class="scroll-arr"></div>
+    </div>
+  </section>
+
+  <!-- SYSTEM PROFILE -->
+  <section id="system-profile" style="background: var(--bg2); border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd);">
+    <div class="section-wrap">
+      <div class="section-kicker fade">01 — About</div>
+      <div class="section-title fade delay1">System Profile</div>
+      <div class="sysprofile-grid">
+        <div class="sysprofile-left fade delay1">
+          <div class="sp-terminal">
+            <div class="sp-terminal-bar">
+              <div class="sp-dot sp-dot-r"></div>
+              <div class="sp-dot sp-dot-y"></div>
+              <div class="sp-dot sp-dot-g"></div>
+              <span class="sp-terminal-title">nusaif@devops-workstation ~ bash</span>
+            </div>
+            <div class="sp-terminal-body">
+              <div><span class="sp-prompt">❯</span> <span class="sp-cmd">cat</span> profile.json</div>
+              <div id="sp-json-output" style="display:none;">
+                <div style="margin-top: 10px; color: var(--td)">{</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"name"</span>: <span class="sp-val">"Nusaif Khan"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"role"</span>: <span class="sp-val">"Aspiring DevOps Engineer & SRE Intern"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"location"</span>: <span class="sp-val">"Colombo, Sri Lanka"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"email"</span>: <span class="sp-val">"nusaifkhan21@gmail.com"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"focus"</span>: [</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"Cloud Automation"</span>,</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"Infrastructure as Code"</span>,</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"CI/CD Pipelines"</span>,</div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"System Reliability"</span></div>
+                <div>&nbsp;&nbsp;],</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"status"</span>: <span class="sp-val" style="color: var(--g)">"open_to_opportunities"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"education"</span>: <span class="sp-val">"BSc Software Engineering @ Cardiff Metropolitan University"</span></div>
+                <div style="color: var(--td)">}</div>
+              </div>
+              <div style="margin-top: 14px"><span class="sp-prompt">❯</span> <span class="sp-dim"># Automating the future, one pipeline at a time.</span></div>
+              <div><span class="sp-prompt">❯</span> <span class="sp-blink"></span></div>
+            </div>
+          </div>
+          <div class="sp-metrics">
+            <div class="sp-metric-card"><div class="sp-metric-val">80%</div><div class="sp-metric-label">Ops Automated</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 80%"></div></div></div>
+            <div class="sp-metric-card"><div class="sp-metric-val">2+</div><div class="sp-metric-label">Cloud Projects</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 40%"></div></div></div>
+            <div class="sp-metric-card"><div class="sp-metric-val">9+</div><div class="sp-metric-label">Certifications</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 90%"></div></div></div>
+            <div class="sp-metric-card"><div class="sp-metric-val">50%</div><div class="sp-metric-label">Deploy Time ↓</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 50%"></div></div></div>
+          </div>
+        </div>
+        <div class="sysprofile-right fade delay2">
+          <div><div class="sp-title">Streamline Your Infrastructure<br /><span>with Real Solutions</span></div></div>
+          <p class="sp-desc">Hey! I'm <strong style="color:#fff">Nusaif Khan</strong> — an aspiring DevOps & Cloud Automation Engineer and BSc Software Engineering student who has spent the last year learning by <em>building</em>, not just studying. I don't just follow tutorials — I design, build, and validate production-oriented solutions from scratch.</p>
+          <p class="sp-desc">What makes me different? I've already delivered measurable results: <span style="color:var(--g)">reduced Azure VM manual operations by 80%</span> through Python & Jenkins automation, <span style="color:var(--g)">cut cloud storage costs by 30%</span> with an automated Azure cleanup tool, and earned <span style="color:var(--g)">9+ certifications</span> — AZ-900, FinOps Practitioner, Kubernetes, Docker, Prometheus, Jenkins, Helm & Linux — all self-studied within a year.</p>
+          <p class="sp-desc">Open to freelance projects, internships, and junior DevOps roles. Let's build something reliable.</p>
+          <ul class="sp-focus-list">
+            <li class="sp-focus-item"><span class="sp-focus-icon">🐍</span><div class="sp-focus-text"><span class="sp-focus-name">Python & Bash Automation</span><span class="sp-focus-sub">Azure SDK · Boto3 · Native Linux tools</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">☁️</span><div class="sp-focus-text"><span class="sp-focus-name">AWS & Azure with Terraform</span><span class="sp-focus-sub">Modular IaC · No ClickOps · No drift</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">⚙️</span><div class="sp-focus-text"><span class="sp-focus-name">CI/CD Pipeline Design</span><span class="sp-focus-sub">Jenkins · GitHub Actions · Docker</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">⎈</span><div class="sp-focus-text"><span class="sp-focus-name">Docker & Kubernetes</span><span class="sp-focus-sub">Helm · Manifests · Health checks</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">📊</span><div class="sp-focus-text"><span class="sp-focus-name">Prometheus & Grafana</span><span class="sp-focus-sub">Full observability · Alerting · SLO</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">💰</span><div class="sp-focus-text"><span class="sp-focus-name">Cloud Cost Optimization</span><span class="sp-focus-sub">FinOps Certified · Audit & savings plan</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">🔧</span><div class="sp-focus-text"><span class="sp-focus-name">Ansible Config Management</span><span class="sp-focus-sub">Idempotent playbooks · Server provisioning</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">🐳</span><div class="sp-focus-text"><span class="sp-focus-name">Dockerfile & K8s Review</span><span class="sp-focus-sub">Security hardening · Full change log</span></div></li>
+          </ul>
+          <div class="about-badges">
+            <span class="badge">Azure Certified</span><span class="badge">FinOps Practitioner</span><span class="badge">Kubernetes Operator</span><span class="badge">Docker Expert</span><span class="badge">CI/CD Architect</span><span class="badge">Open to Internships</span>
+          </div>
+          <!-- WHY WORK WITH ME -->
+          <div style="margin-top: 22px; padding: 16px 18px; background: rgba(0,255,136,0.04); border: 1px solid rgba(0,255,136,0.13); border-radius: 10px;">
+            <div style="font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; color: var(--g); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px;">Why Work With Me</div>
+            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>Every deliverable comes with clear documentation</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>I explain what I did and why — no black boxes</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>Fast turnaround with clean, maintainable output</span></div>
+            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>I treat your project like it goes to production</span></div>
+          </div>
+          <!-- TECH STACK -->
+          <div style="margin-top: 18px;">
+            <div style="font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; color: var(--td); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;">Tech Stack</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">AWS</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Azure</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Terraform</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Ansible</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Docker</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Kubernetes</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Helm</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Jenkins</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">GitHub Actions</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Python</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Bash</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">PowerShell</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Prometheus</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Grafana</span>
+              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Linux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" style="border-top: 1px solid var(--bd)">
+    <div class="section-wrap">
+      <div class="section-kicker fade">02 — Skills</div>
+      <div class="section-title fade delay1">Technical Arsenal</div>
+      <div class="skills-grid" id="skills-grid">
+        <div class="skill-cat fade delay1"><div class="skill-cat-icon">☁️</div><div class="skill-cat-title">Cloud Platforms</div><div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">AWS</span><span class="skill-tag">Azure SDK</span><span class="skill-tag">Azure CLI</span><span class="skill-tag">AKS</span><span class="skill-tag">Azure VMs</span></div></div>
+        <div class="skill-cat fade delay2"><div class="skill-cat-icon">🐳</div><div class="skill-cat-title">Containers & Orchestration</div><div class="skill-tags"><span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Helm</span><span class="skill-tag">kubectl</span><span class="skill-tag">Container Registry</span></div></div>
+        <div class="skill-cat fade delay3"><div class="skill-cat-icon">⚙️</div><div class="skill-cat-title">CI/CD & Automation</div><div class="skill-tags"><span class="skill-tag">Jenkins</span><span class="skill-tag">Terraform</span><span class="skill-tag">Ansible</span><span class="skill-tag">Bash Scripting</span><span class="skill-tag">PowerShell</span><span class="skill-tag">Python</span></div></div>
+        <div class="skill-cat fade delay4"><div class="skill-cat-icon">📊</div><div class="skill-cat-title">Monitoring & Logging</div><div class="skill-tags"><span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span class="skill-tag">Azure Monitor</span><span class="skill-tag">Log Analytics</span></div></div>
+        <div class="skill-cat fade delay1"><div class="skill-cat-icon">💻</div><div class="skill-cat-title">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Bash</span><span class="skill-tag">YAML</span><span class="skill-tag">PowerShell</span><span class="skill-tag">HCL</span></div></div>
+        <div class="skill-cat fade delay2"><div class="skill-cat-icon">🌐</div><div class="skill-cat-title">Networking & Security</div><div class="skill-tags"><span class="skill-tag">Cloud Networking</span><span class="skill-tag">VNet</span><span class="skill-tag">NSG</span><span class="skill-tag">Network Security</span><span class="skill-tag">VPN Gateway</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-wrap">
+      <div class="section-kicker fade">03 — Work</div>
+      <div class="section-title fade delay1">Featured Projects</div>
+      <div class="projects-grid">
+        <div class="proj-card fade delay1" onclick="window.open('https://github.com/nusaifkhan', '_blank')">
+          <div class="proj-meta"><span class="proj-num">01</span><span class="proj-dates">Mar 2025 – Apr 2025</span></div>
+          <div class="proj-title">Azure VM Automation Project</div>
+          <ul class="proj-bullets">
+            <li>Automated Azure VM lifecycle using Python, Bash & Jenkins — reduced manual ops by 80%</li>
+            <li>Built secure Python script with Azure SDK, improving VM startup efficiency by 35%</li>
+            <li>Developed Bash-based VM manager with Azure CLI, cutting deployment time by 50%</li>
+            <li>Integrated scripts into Jenkins pipeline, decreasing config errors by 60%</li>
+          </ul>
+          <div class="proj-impact">⚡ VM operational costs ↓25% · Deployment speed ↑40%</div>
+          <div class="proj-tech"><span class="proj-tech-pill">Python</span><span class="proj-tech-pill">Azure SDK</span><span class="proj-tech-pill">Jenkins</span><span class="proj-tech-pill">Bash</span><span class="proj-tech-pill">Azure CLI</span></div>
+        </div>
+        <div class="proj-card fade delay2" onclick="window.open('https://github.com/nusaifkhan', '_blank')">
+          <div class="proj-meta"><span class="proj-num">02</span><span class="proj-dates">Jan 2025 – Feb 2025</span></div>
+          <div class="proj-title">Cloud Reduce-for-Azure</div>
+          <ul class="proj-bullets">
+            <li>Automated cleanup of unused Azure snapshots & disks using Azure SDK — cut storage costs by 30%</li>
+            <li>Dockerized the application ensuring consistent deployment, reducing provisioning time by 50%</li>
+            <li>Implemented robust logging & monitoring, improving resource visibility, reducing downtime by 20%</li>
+          </ul>
+          <div class="proj-impact">⚡ Cloud efficiency ↑35% · Storage allocation optimized ↑40%</div>
+          <div class="proj-tech"><span class="proj-tech-pill">Python</span><span class="proj-tech-pill">Docker</span><span class="proj-tech-pill">Azure SDK</span><span class="proj-tech-pill">Prometheus</span><span class="proj-tech-pill">Azure Disks</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-wrap">
+      <div class="section-kicker fade">04 — Education</div>
+      <div class="section-title fade delay1">Academic Background</div>
+      <div class="edu-card fade delay2">
+        <div class="edu-year">25</div>
+        <div>
+          <div class="edu-uni">Cardiff Metropolitan University</div>
+          <div class="edu-degree">BSc Software Engineering</div>
+          <div class="edu-period">📅 2025 – 2028 · 1st Year — 2nd Semester · Ongoing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certifications" style="border-top: 1px solid var(--bd)">
+    <div class="section-wrap">
+      <div class="section-kicker fade">05 — Credentials</div>
+      <div class="section-title fade delay1">Certifications & Courses</div>
+      <div class="certs-grid">
+        <div class="cert-card fade delay1"><div class="cert-icon">🏆</div><div><div class="cert-name">Microsoft Certified: Azure Fundamentals</div><div class="cert-meta">Microsoft · AZ-900</div><span class="cert-badge">✓ Certified</span></div></div>
+        <div class="cert-card fade delay2"><div class="cert-icon">💰</div><div><div class="cert-name">FinOps Certified Practitioner</div><div class="cert-meta">FinOps Foundation</div><span class="cert-badge">✓ Certified</span></div></div>
+        <div class="cert-card fade delay3"><div class="cert-icon">⎈</div><div><div class="cert-name">Kubernetes for Absolute Beginners</div><div class="cert-meta">KodeKloud · March 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+        <div class="cert-card fade delay4"><div class="cert-icon">🐳</div><div><div class="cert-name">Docker Training for Absolute Beginner</div><div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+        <div class="cert-card fade delay1"><div class="cert-icon">📊</div><div><div class="cert-name">Prometheus Certified Associate Training</div><div class="cert-meta">KodeKloud · April 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+        <div class="cert-card fade delay2"><div class="cert-icon">🐚</div><div><div class="cert-name">Shell Scripts for Beginners</div><div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+        <div class="cert-card fade delay3"><div class="cert-icon">🔧</div><div><div class="cert-name">Jenkins for Beginners</div><div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+        <div class="cert-card fade delay4"><div class="cert-icon">⛵</div><div><div class="cert-name">Helm for Beginners</div><div class="cert-meta">KodeKloud · March 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+        <div class="cert-card fade delay1"><div class="cert-icon">🐧</div><div><div class="cert-name">Complete Linux Training Course 2025</div><div class="cert-meta">Udemy · March 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">© 2025 Nusaif Khan. Built with raw ambition.</div>
+    <div class="footer-status"><div class="status-dot"></div> Systems Operational (Let's deploy)</div>
+    <div style="font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; color: var(--td); display: flex; gap: 16px;">
+      <a href="https://github.com/nusaifkhan" target="_blank" style="color: var(--td); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s;">GitHub</a>
+      <a href="#" style="color: var(--td); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s;">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // VANILLA JS REPLACEMENTS FOR REACT LOGIC
+    // ---------------------------------------
+
+    // 1. Download CV
+    function downloadCV() {
+      const link = document.createElement("a");
+      link.href = "Nusaif_Khan_Resume.pdf";
+      link.download = "Nusaif_Khan_Resume.pdf";
+      link.click();
+      const notice = document.createElement("div");
+      notice.style.cssText = "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#00ff88;color:#000;font-family:JetBrains Mono,monospace;font-size:.8rem;padding:12px 24px;border-radius:6px;z-index:9999;font-weight:700;letter-spacing:.08em";
+      notice.textContent = "⬇ Downloading CV...";
+      document.body.appendChild(notice);
+      setTimeout(() => notice.remove(), 3000);
+    }
+
+    // 2. Cursor
+    const cur = document.getElementById("cur");
+    const ring = document.getElementById("cur-r");
+    document.addEventListener("mousemove", (e) => {
+      cur.style.left = e.clientX + "px";
+      cur.style.top = e.clientY + "px";
+      setTimeout(() => {
+        ring.style.left = e.clientX + "px";
+        ring.style.top = e.clientY + "px";
+      }, 50);
+    });
+    const iterEls = document.querySelectorAll("a,button,input,textarea,.btn,.proj-card,.skill-cat,.cert-card");
+    iterEls.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        cur.style.width = "18px";
+        cur.style.height = "18px";
+        cur.style.background = "transparent";
+        cur.style.border = "2px solid var(--g)";
+        ring.style.width = "44px";
+        ring.style.height = "44px";
+      });
+      el.addEventListener("mouseleave", () => {
+        cur.style.width = "10px";
+        cur.style.height = "10px";
+        cur.style.background = "var(--g)";
+        cur.style.border = "none";
+        ring.style.width = "32px";
+        ring.style.height = "32px";
+      });
+    });
+
+    // 3. Navigation Hamburger & Scrolled State
+    const nav = document.querySelector('nav');
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) nav.classList.add("scrolled");
+      else nav.classList.remove("scrolled");
+    });
+    
+    let menuOpen = false;
+    function toggleMenu() {
+      const btn = document.getElementById('hamburger');
+      const menu = document.getElementById('mobile-menu');
+      menuOpen = !menuOpen;
+      
+      const spans = btn.querySelectorAll('span');
+      if(menuOpen) {
+        menu.style.display = 'flex';
+        spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+      } else {
+        menu.style.display = 'none';
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    }
+
+    // 4. Fade In Observer
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add("vis"), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll(".fade").forEach((el) => obs.observe(el));
+
+    // 5. Typewriter Effect (Hero)
     const HERO_ROLES = [
       "DevOps Engineer",
       "Cloud Automation Expert",
       "Site Reliability Engineer",
       "Azure Infrastructure Architect",
       "CI/CD Pipeline Builder",
-      "Kubernetes Operator",
+      "Kubernetes Operator"
     ];
+    let twIdx = 0, charIdx = 0, deleting = false;
+    const twEl = document.getElementById('hero-typewriter');
+    function typeWriter() {
+      const current = HERO_ROLES[twIdx];
+      let speed = 60;
+      if (!deleting && charIdx < current.length) {
+        charIdx++;
+      } else if (!deleting && charIdx === current.length) {
+        deleting = true;
+        speed = 2200; // pause
+      } else if (deleting && charIdx > 0) {
+        charIdx--;
+        speed = 30; // fast delete
+      } else {
+        deleting = false;
+        twIdx = (twIdx + 1) % HERO_ROLES.length;
+      }
+      twEl.textContent = current.slice(0, charIdx);
+      setTimeout(typeWriter, speed);
+    }
+    setTimeout(typeWriter, 500);
 
-    const SKILLS = [
-      {
-        icon: "☁️",
-        title: "Cloud Platforms",
-        tags: [
-          "Microsoft Azure",
-          "AWS",
-          "Azure SDK",
-          "Azure CLI",
-          "AKS",
-          "Azure VMs",
-        ],
-      },
-      {
-        icon: "🐳",
-        title: "Containers & Orchestration",
-        tags: [
-          "Docker",
-          "Kubernetes",
-          "Helm",
-          "kubectl",
-          "Container Registry",
-        ],
-      },
-      {
-        icon: "⚙️",
-        title: "CI/CD & Automation",
-        tags: [
-          "Jenkins",
-          "Terraform",
-          "Ansible",
-          "Bash Scripting",
-          "PowerShell",
-          "Python",
-        ],
-      },
-      {
-        icon: "📊",
-        title: "Monitoring & Logging",
-        tags: ["Prometheus", "Grafana", "Azure Monitor", "Log Analytics"],
-      },
-      {
-        icon: "💻",
-        title: "Languages",
-        tags: ["Python", "Bash", "YAML", "PowerShell", "HCL"],
-      },
-      {
-        icon: "🌐",
-        title: "Networking & Security",
-        tags: [
-          "Cloud Networking",
-          "VNet",
-          "NSG",
-          "Network Security",
-          "VPN Gateway",
-        ],
-      },
+    // 6. Command Rain
+    const cmdRain = document.getElementById('cmd-rain');
+    const snippets = ["kubectl","docker","terraform","ansible","helm","az","bash","python","jenkins","git push","npm run","systemctl","grep -r","curl -X","chmod +x","./deploy.sh","cat /etc/","tail -f","ps aux","df -h","htop","ping","ssh ubuntu@"];
+    for(let i=0; i<12; i++) {
+        const col = document.createElement('div');
+        col.className = 'rain-col';
+        col.style.left = ((i / 12) * 100 + Math.random() * 4) + "%";
+        col.style.animationDuration = (8 + Math.random() * 12) + "s";
+        col.style.animationDelay = (Math.random() * 8) + "s";
+        for(let j=0; j<14; j++) {
+            const sp = document.createElement('span');
+            sp.textContent = snippets[Math.floor(Math.random() * snippets.length)];
+            col.appendChild(sp);
+        }
+        cmdRain.appendChild(col);
+    }
+
+    // 7. Command Ticker
+    const COMMANDS = ["kubectl get pods --all-namespaces", 'docker ps -a --format "{{.Names}}: {{.Status}}"', "terraform plan -out=tfplan", "ansible-playbook deploy.yml -i inventory", "kubectl rollout status deployment/api", "az vm start --resource-group prod --name web-01", "prometheus --config.file=prometheus.yml", "helm upgrade --install myapp ./charts/myapp", "kubectl scale deployment/api --replicas=5", "docker build -t nusaif/app:latest .", "jenkins build pipeline --branch=main", "az aks get-credentials --name k8s-cluster", 'grep -r "ERROR" /var/log/nginx/ | tail -20', "systemctl restart nginx && systemctl status nginx", "kubectl logs -f pod/api-7f8d9 --container=main", "terraform apply -auto-approve", "grafana-cli plugins install grafana-piechart-panel", "kubectl exec -it pod/db-0 -- psql -U postgres"];
+    const ticker = document.getElementById('ticker-track');
+    const doubled = [...COMMANDS, ...COMMANDS];
+    doubled.forEach(c => {
+        const sp = document.createElement('span');
+        sp.className = 'ticker-cmd';
+        sp.innerHTML = `<span class="prompt">❯ </span><span class="arg">${c.replace("$ ", "")}</span>`;
+        ticker.appendChild(sp);
+    });
+
+    // 8. Terminal Window Animation
+    const termLines = [
+      { type: "prompt", text: "nusaif@devops:~$ " },
+      { type: "cmd", text: "kubectl get nodes" },
+      { type: "out", text: "NAME        STATUS   ROLES    AGE" },
+      { type: "out", text: "node-01     Ready    master   45d" },
+      { type: "out", text: "node-02     Ready    worker   45d" },
+      { type: "out", text: "node-03     Ready    worker   45d" },
+      { type: "prompt", text: "nusaif@devops:~$ " },
+      { type: "cmd", text: "az vm list --output table" },
+      { type: "out", text: "web-01  Running  East US  Standard_B2s" },
+      { type: "out", text: "db-01   Running  East US  Standard_D4s" },
+      { type: "prompt", text: "nusaif@devops:~$ " },
+      { type: "cmd", text: "terraform plan" },
+      { type: "out", text: "Plan: 3 to add, 0 to destroy." },
+      { type: "prompt", text: "nusaif@devops:~$ " }
     ];
-
-    const PROJECTS = [
-      {
-        num: "01",
-        dates: "Mar 2025 – Apr 2025",
-        title: "Azure VM Automation Project",
-        bullets: [
-          "Automated Azure VM lifecycle using Python, Bash & Jenkins — reduced manual ops by 80%",
-          "Built secure Python script with Azure SDK, improving VM startup efficiency by 35%",
-          "Developed Bash-based VM manager with Azure CLI, cutting deployment time by 50%",
-          "Integrated scripts into Jenkins pipeline, decreasing config errors by 60%",
-        ],
-        impact: "⚡ VM operational costs ↓25% · Deployment speed ↑40%",
-        tech: ["Python", "Azure SDK", "Jenkins", "Bash", "Azure CLI"],
-        github: "https://github.com/nusaifkhan",
-      },
-      {
-        num: "02",
-        dates: "Jan 2025 – Feb 2025",
-        title: "Cloud Reduce-for-Azure",
-        bullets: [
-          "Automated cleanup of unused Azure snapshots & disks using Azure SDK — cut storage costs by 30%",
-          "Dockerized the application ensuring consistent deployment, reducing provisioning time by 50%",
-          "Implemented robust logging & monitoring, improving resource visibility, reducing downtime by 20%",
-        ],
-        impact:
-          "⚡ Cloud efficiency ↑35% · Storage allocation optimized ↑40%",
-        tech: ["Python", "Docker", "Azure SDK", "Prometheus", "Azure Disks"],
-        github: "https://github.com/nusaifkhan",
-      },
-    ];
-
-    const CERTS = [
-      {
-        icon: "🏆",
-        name: "Microsoft Certified: Azure Fundamentals",
-        meta: "Microsoft · AZ-900",
-        badge: "✓ Certified",
-      },
-      {
-        icon: "💰",
-        name: "FinOps Certified Practitioner",
-        meta: "FinOps Foundation",
-        badge: "✓ Certified",
-      },
-      {
-        icon: "⎈",
-        name: "Kubernetes for Absolute Beginners",
-        meta: "KodeKloud · March 2025",
-        badge: "✓ Completed",
-      },
-      {
-        icon: "🐳",
-        name: "Docker Training for Absolute Beginner",
-        meta: "KodeKloud · February 2025",
-        badge: "✓ Completed",
-      },
-      {
-        icon: "📊",
-        name: "Prometheus Certified Associate Training",
-        meta: "KodeKloud · April 2025",
-        badge: "✓ Completed",
-      },
-      {
-        icon: "🐚",
-        name: "Shell Scripts for Beginners",
-        meta: "KodeKloud · February 2025",
-        badge: "✓ Completed",
-      },
-      {
-        icon: "🔧",
-        name: "Jenkins for Beginners",
-        meta: "KodeKloud · February 2025",
-        badge: "✓ Completed",
-      },
-      {
-        icon: "⛵",
-        name: "Helm for Beginners",
-        meta: "KodeKloud · March 2025",
-        badge: "✓ Completed",
-      },
-      {
-        icon: "🐧",
-        name: "Complete Linux Training Course 2025",
-        meta: "Udemy · March 2025",
-        badge: "✓ Completed",
-      },
-    ];
-
-    // ─────────────────────────────────────────────
-    // HOOKS
-    // ─────────────────────────────────────────────
-    function useTypewriter(strings, speed = 60, pause = 2000) {
-      const [display, setDisplay] = useState("");
-      const [idx, setIdx] = useState(0);
-      const [charIdx, setCharIdx] = useState(0);
-      const [deleting, setDeleting] = useState(false);
-
-      useEffect(() => {
-        const current = strings[idx];
-        let timeout;
-        if (!deleting && charIdx < current.length) {
-          timeout = setTimeout(() => setCharIdx((c) => c + 1), speed);
-        } else if (!deleting && charIdx === current.length) {
-          timeout = setTimeout(() => setDeleting(true), pause);
-        } else if (deleting && charIdx > 0) {
-          timeout = setTimeout(() => setCharIdx((c) => c - 1), speed / 2);
+    let termIdx = 0;
+    const heroTerm = document.getElementById('hero-term');
+    const inter = setInterval(() => {
+        if(termIdx < termLines.length) {
+            const span = document.createElement('span');
+            span.className = 'term-line';
+            const l = termLines[termIdx];
+            if(l.type === "prompt") span.innerHTML = `<span class="term-prompt">${l.text}</span>`;
+            if(l.type === "cmd") span.innerHTML = `<span class="term-cmd">${l.text}</span>`;
+            if(l.type === "out") span.innerHTML = `<span class="term-out">${l.text}</span>`;
+            heroTerm.insertBefore(span, heroTerm.lastElementChild || null);
+            termIdx++;
         } else {
-          setDeleting(false);
-          setIdx((i) => (i + 1) % strings.length);
+            clearInterval(inter);
+            const cursor = document.createElement('span');
+            cursor.className = 'term-cursor';
+            heroTerm.appendChild(cursor);
         }
-        setDisplay(current.slice(0, charIdx));
-        return () => clearTimeout(timeout);
-      }, [charIdx, deleting, idx, strings, speed, pause]);
+    }, 220);
 
-      return display;
-    }
+    // 9. System Profile JSON observer
+    const spObs = new IntersectionObserver(([e]) => {
+      if(e.isIntersecting) {
+        document.getElementById('sp-json-output').style.display = 'block';
+        spObs.disconnect();
+      }
+    }, { threshold: 0.2 });
+    spObs.observe(document.getElementById('system-profile'));
 
-    function useFadeIn() {
-      useEffect(() => {
-        const obs = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((e, i) => {
-              if (e.isIntersecting) {
-                setTimeout(() => e.target.classList.add("vis"), i * 80);
-              }
-            });
-          },
-          { threshold: 0.1 },
-        );
-        document.querySelectorAll(".fade").forEach((el) => obs.observe(el));
-        return () => obs.disconnect();
-      }, []);
-    }
-
-    // ─────────────────────────────────────────────
-    // COMPONENTS
-    // ─────────────────────────────────────────────
-
-    function Cursor() {
-      useEffect(() => {
-        const cur = document.getElementById("cur");
-        const ring = document.getElementById("cur-r");
-        let rx = 0,
-          ry = 0;
-        const onMove = (e) => {
-          cur.style.left = e.clientX + "px";
-          cur.style.top = e.clientY + "px";
-          setTimeout(() => {
-            ring.style.left = e.clientX + "px";
-            ring.style.top = e.clientY + "px";
-          }, 50);
-        };
-        document.addEventListener("mousemove", onMove);
-        const els = document.querySelectorAll(
-          "a,button,input,textarea,.btn,.proj-card,.skill-cat,.cert-card",
-        );
-        els.forEach((el) => {
-          el.addEventListener("mouseenter", () => {
-            cur.style.width = "18px";
-            cur.style.height = "18px";
-            cur.style.background = "transparent";
-            cur.style.border = "2px solid var(--g)";
-            ring.style.width = "44px";
-            ring.style.height = "44px";
-          });
-          el.addEventListener("mouseleave", () => {
-            cur.style.width = "10px";
-            cur.style.height = "10px";
-            cur.style.background = "var(--g)";
-            cur.style.border = "none";
-            ring.style.width = "32px";
-            ring.style.height = "32px";
-          });
-        });
-        return () => document.removeEventListener("mousemove", onMove);
-      }, []);
-      return null;
-    }
-
-    function Nav({ scrolled, onDL }) {
-      const [menuOpen, setMenuOpen] = useState(false);
-      const NAV_ITEMS = [
-        ["index.html", "Home"],
-        ["about.html", "About"],
-        ["skills.html", "Skills"],
-        ["projects.html", "Projects"],
-        ["certifications.html", "Certs"],
-        ["learning-path.html", "Learning"],
-        ["cover-letter.html", "Cover Letter"],
-        ["fiverr.html", "Fiverr"],
-      ];
-      return (
-        <>
-          <nav className={scrolled ? "scrolled" : ""}>
-            <a href="index.html" className="nav-logo" style={{ textDecoration: 'none' }}>
-              nusaif<span>@devops</span>:~$
-            </a>
-            <ul className="nav-links">
-              {NAV_ITEMS.map(([href, label]) => (
-                <li key={href}><a href={href}>{label}</a></li>
-              ))}
-              <li>
-                <button className="nav-dl" onClick={onDL}>⬇ CV</button>
-              </li>
-            </ul>
-            <button
-              id="hamburger"
-              aria-label="Menu"
-              onClick={() => setMenuOpen(o => !o)}
-              style={{ display: 'none', flexDirection: 'column', gap: '5px', cursor: 'none', padding: '4px', background: 'none', border: 'none' }}
-            >
-              <span style={{ display: 'block', width: '22px', height: '2px', background: 'var(--g)', borderRadius: '2px', transition: 'all .25s', transform: menuOpen ? 'translateY(7px) rotate(45deg)' : 'none' }}></span>
-              <span style={{ display: 'block', width: '22px', height: '2px', background: 'var(--g)', borderRadius: '2px', transition: 'all .25s', opacity: menuOpen ? 0 : 1 }}></span>
-              <span style={{ display: 'block', width: '22px', height: '2px', background: 'var(--g)', borderRadius: '2px', transition: 'all .25s', transform: menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none' }}></span>
-            </button>
-          </nav>
-          {menuOpen && (
-            <div style={{ display: 'flex', position: 'fixed', top: '56px', left: 0, right: 0, background: 'rgba(3,7,10,.97)', backdropFilter: 'blur(20px)', borderBottom: '1px solid var(--bd)', flexDirection: 'column', zIndex: 199, padding: '20px 24px 28px' }}>
-              {NAV_ITEMS.map(([href, label]) => (
-                <a key={href} href={href} style={{ fontFamily: '"JetBrains Mono",monospace', fontSize: '.82rem', color: 'var(--td)', textDecoration: 'none', letterSpacing: '.12em', textTransform: 'uppercase', padding: '12px 0', borderBottom: '1px solid var(--bd)', transition: 'color .2s' }}
-                  onMouseEnter={e => e.target.style.color = 'var(--g)'}
-                  onMouseLeave={e => e.target.style.color = 'var(--td)'}
-                >{label}</a>
-              ))}
-              <a href="Nusaif_Khan_Resume.pdf" download onClick={onDL}
-                style={{ fontFamily: '"JetBrains Mono",monospace', fontSize: '.82rem', color: 'var(--g)', textDecoration: 'none', letterSpacing: '.12em', textTransform: 'uppercase', padding: '12px 0', marginTop: '8px' }}>
-                ⬇ Download CV
-              </a>
-            </div>
-          )}
-        </>
-      );
-    }
-
-    function CmdRain() {
-      const cols = useRef([]);
-      const snippets = [
-        "kubectl",
-        "docker",
-        "terraform",
-        "ansible",
-        "helm",
-        "az",
-        "bash",
-        "python",
-        "jenkins",
-        "git push",
-        "npm run",
-        "systemctl",
-        "grep -r",
-        "curl -X",
-        "chmod +x",
-        "./deploy.sh",
-        "cat /etc/",
-        "tail -f",
-        "ps aux",
-        "df -h",
-        "htop",
-        "ping",
-        "ssh ubuntu@",
-      ];
-      const numCols = 12;
-      return (
-        <div className="cmd-rain" aria-hidden="true">
-          {Array.from({ length: numCols }).map((_, i) => {
-            const delay = Math.random() * 8;
-            const dur = 8 + Math.random() * 12;
-            const left = (i / numCols) * 100 + Math.random() * 4;
-            const items = Array.from({ length: 14 }).map(
-              () => snippets[Math.floor(Math.random() * snippets.length)],
-            );
-            return (
-              <div
-                key={i}
-                className="rain-col"
-                style={{
-                  left: `${left}%`,
-                  animationDuration: `${dur}s`,
-                  animationDelay: `${delay}s`,
-                }}
-              >
-                {items.map((s, j) => (
-                  <span key={j}>{s}</span>
-                ))}
-              </div>
-            );
-          })}
-        </div>
-      );
-    }
-
-    function TerminalWindow() {
-      const lines = [
-        { type: "prompt", text: "nusaif@devops:~$ " },
-        { type: "cmd", text: "kubectl get nodes" },
-        { type: "out", text: "NAME        STATUS   ROLES    AGE" },
-        { type: "out", text: "node-01     Ready    master   45d" },
-        { type: "out", text: "node-02     Ready    worker   45d" },
-        { type: "out", text: "node-03     Ready    worker   45d" },
-        { type: "prompt", text: "nusaif@devops:~$ " },
-        { type: "cmd", text: "az vm list --output table" },
-        { type: "out", text: "web-01  Running  East US  Standard_B2s" },
-        { type: "out", text: "db-01   Running  East US  Standard_D4s" },
-        { type: "prompt", text: "nusaif@devops:~$ " },
-        { type: "cmd", text: "terraform plan" },
-        { type: "out", text: "Plan: 3 to add, 0 to destroy." },
-        { type: "prompt", text: "nusaif@devops:~$ " },
-      ];
-
-      const [visLines, setVisLines] = useState([]);
-      const [showCursor, setShowCursor] = useState(true);
-
-      useEffect(() => {
-        let i = 0;
-        const t = setInterval(() => {
-          if (i < lines.length) {
-            setVisLines((prev) => [...prev, lines[i]]);
-            i++;
-          } else {
-            clearInterval(t);
-          }
-        }, 220);
-        return () => clearInterval(t);
-      }, []);
-
-      return (
-        <div className="term-window fade delay4">
-          <div className="term-header">
-            <div className="term-dot" style={{ background: "#ff5f57" }}></div>
-            <div className="term-dot" style={{ background: "#febc2e" }}></div>
-            <div className="term-dot" style={{ background: "#28c840" }}></div>
-            <span className="term-title">nusaif@devops — bash</span>
-          </div>
-          <div className="term-body">
-            {visLines.map((l, i) => (
-              <span key={i} className="term-line">
-                {l.type === "prompt" && (
-                  <span className="term-prompt">{l.text}</span>
-                )}
-                {l.type === "cmd" && (
-                  <span className="term-cmd">{l.text}</span>
-                )}
-                {l.type === "out" && (
-                  <span className="term-out">{l.text}</span>
-                )}
-              </span>
-            ))}
-            <span className="term-cursor"></span>
-          </div>
-        </div>
-      );
-    }
-
-    function CommandTicker() {
-      const doubled = [...COMMANDS, ...COMMANDS];
-      return (
-        <div className="terminal-ticker">
-          <div className="ticker-label">// live ops stream</div>
-          <div className="ticker-track">
-            {doubled.map((c, i) => (
-              <span key={i} className="ticker-cmd">
-                <span className="prompt">❯ </span>
-                <span className="arg">{c[0].replace("$ ", "")}</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    function Hero({ onDL }) {
-      const role = useTypewriter(HERO_ROLES, 55, 2200);
-      return (
-        <section id="hero">
-          <CmdRain />
-          <div className="hero-inner">
-            <div className="hero-line fade">
-              <span>Available for DevOps Internship</span>
-              <span style={{ color: "var(--td)" }}>·</span>
-              <span style={{ color: "var(--td)" }}>Colombo, Sri Lanka</span>
-            </div>
-            <h1 className="hero-name fade delay1">
-              Nusaif
-              <span className="hl">Khan</span>
-            </h1>
-            <div className="hero-role fade delay2">
-              {`> `}
-              {role}
-              <span
-                className="term-cursor"
-                style={{ marginLeft: "2px" }}
-              ></span>
-            </div>
-            <p className="hero-desc fade delay2">
-              Aspiring DevOps & SRE engineer building scalable automation
-              pipelines, cloud infrastructure, and reliable systems.
-              Passionate about turning manual toil into elegant code.
-            </p>
-            <div className="hero-ctas fade delay3">
-              <button className="btn btn-primary" onClick={onDL}>
-                ⬇ Download CV
-              </button>
-              <a
-                href="https://github.com/nusaifkhan"
-                target="_blank"
-                className="btn btn-outline"
-              >
-                ⌥ GitHub
-              </a>
-            </div>
-            <div className="stats-row">
-              {[
-                ["2+", "Cloud Projects"],
-                ["9+", "Certifications"],
-                ["80%", "Ops Automation"],
-                ["2", "Cloud Platforms"],
-              ].map(([n, l]) => (
-                <div key={l} className="fade delay3">
-                  <div className="stat-num">{n}</div>
-                  <div className="stat-label">{l}</div>
-                </div>
-              ))}
-            </div>
-            <CommandTicker />
-          </div>
-          <TerminalWindow />
-          <div className="scroll-ind">
-            <span>scroll</span>
-            <div className="scroll-arr"></div>
-          </div>
-        </section>
-      );
-    }
-
-    function SystemProfile() {
-      const [typed, setTyped] = useState(false);
-      const ref = useRef(null);
-      useEffect(() => {
-        const obs = new IntersectionObserver(
-          ([e]) => {
-            if (e.isIntersecting) {
-              setTyped(true);
-              obs.disconnect();
-            }
-          },
-          { threshold: 0.2 },
-        );
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-      }, []);
-      const FOCUS_ITEMS = [
-        { icon: "🐍", name: "Python & Bash Automation", sub: "Azure SDK · Boto3 · Native Linux tools" },
-        { icon: "☁️", name: "AWS & Azure with Terraform", sub: "Modular IaC · No ClickOps · No drift" },
-        { icon: "⚙️", name: "CI/CD Pipeline Design", sub: "Jenkins · GitHub Actions · Docker" },
-        { icon: "⎈", name: "Docker & Kubernetes", sub: "Helm · Manifests · Health checks" },
-        { icon: "📊", name: "Prometheus & Grafana", sub: "Full observability · Alerting · SLO" },
-        { icon: "💰", name: "Cloud Cost Optimization", sub: "FinOps Certified · Audit & savings plan" },
-        { icon: "🔧", name: "Ansible Config Management", sub: "Idempotent playbooks · Server provisioning" },
-        { icon: "🐳", name: "Dockerfile & K8s Review", sub: "Security hardening · Full change log" },
-      ];
-      const METRICS = [
-        { val: "80%", label: "Ops Automated", pct: 0.8 },
-        { val: "2+", label: "Cloud Projects", pct: 0.4 },
-        { val: "9+", label: "Certifications", pct: 0.9 },
-        { val: "50%", label: "Deploy Time ↓", pct: 0.5 },
-      ];
-      return (
-        <section
-          id="system-profile"
-          style={{
-            background: "var(--bg2)",
-            borderTop: "1px solid var(--bd)",
-            borderBottom: "1px solid var(--bd)",
-          }}
-          ref={ref}
-        >
-          <div className="section-wrap">
-            <div className="section-kicker fade">01 — About</div>
-            <div className="section-title fade delay1">System Profile</div>
-            <div className="sysprofile-grid">
-              <div className="sysprofile-left fade delay1">
-                <div className="sp-terminal">
-                  <div className="sp-terminal-bar">
-                    <div className="sp-dot sp-dot-r"></div>
-                    <div className="sp-dot sp-dot-y"></div>
-                    <div className="sp-dot sp-dot-g"></div>
-                    <span className="sp-terminal-title">
-                      nusaif@devops-workstation ~ bash
-                    </span>
-                  </div>
-                  <div className="sp-terminal-body">
-                    <div>
-                      <span className="sp-prompt">❯</span>{" "}
-                      <span className="sp-cmd">cat</span> profile.json
-                    </div>
-                    {typed && (
-                      <>
-                        <div
-                          style={{ marginTop: "10px", color: "var(--td)" }}
-                        >
-                          {"{"}
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;<span className="sp-key">"name"</span>:{" "}
-                          <span className="sp-val">"Nusaif Khan"</span>,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;<span className="sp-key">"role"</span>:{" "}
-                          <span className="sp-val">
-                            "Aspiring DevOps Engineer &amp; SRE Intern"
-                          </span>
-                          ,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;
-                          <span className="sp-key">"location"</span>:{" "}
-                          <span className="sp-val">"Colombo, Sri Lanka"</span>
-                          ,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;<span className="sp-key">"email"</span>:{" "}
-                          <span className="sp-val">
-                            "nusaifkhan21@gmail.com"
-                          </span>
-                          ,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;<span className="sp-key">"focus"</span>:
-                          [
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          <span className="sp-val">"Cloud Automation"</span>,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          <span className="sp-val">
-                            "Infrastructure as Code"
-                          </span>
-                          ,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          <span className="sp-val">"CI/CD Pipelines"</span>,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          <span className="sp-val">"System Reliability"</span>
-                        </div>
-                        <div>&nbsp;&nbsp;],</div>
-                        <div>
-                          &nbsp;&nbsp;<span className="sp-key">"status"</span>
-                          :{" "}
-                          <span
-                            className="sp-val"
-                            style={{ color: "var(--g)" }}
-                          >
-                            "open_to_opportunities"
-                          </span>
-                          ,
-                        </div>
-                        <div>
-                          &nbsp;&nbsp;
-                          <span className="sp-key">"education"</span>:{" "}
-                          <span className="sp-val">
-                            "BSc Software Engineering @ Cardiff Metropolitan
-                            University"
-                          </span>
-                        </div>
-                        <div style={{ color: "var(--td)" }}>{"}"}</div>
-                      </>
-                    )}
-                    <div style={{ marginTop: "14px" }}>
-                      <span className="sp-prompt">❯</span>{" "}
-                      <span className="sp-dim">
-                        # Automating the future, one pipeline at a time.
-                      </span>
-                    </div>
-                    <div>
-                      <span className="sp-prompt">❯</span>{" "}
-                      <span className="sp-blink"></span>
-                    </div>
-                  </div>
-                </div>
-                <div className="sp-metrics">
-                  {METRICS.map((m) => (
-                    <div key={m.label} className="sp-metric-card">
-                      <div className="sp-metric-val">{m.val}</div>
-                      <div className="sp-metric-label">{m.label}</div>
-                      <div className="sp-metric-bar">
-                        <div
-                          className="sp-metric-fill"
-                          style={{ width: `${m.pct * 100}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="sysprofile-right fade delay2">
-                <div>
-                  <div className="sp-title">
-                    Streamline Your Infrastructure
-                    <br />
-                    <span>with Real Solutions</span>
-                  </div>
-                </div>
-                <p className="sp-desc">
-                  Hey! I'm <strong style={{ color: '#fff' }}>Nusaif Khan</strong> — an aspiring DevOps &amp; Cloud Automation Engineer and BSc Software Engineering student who has spent the last year learning by <em>building</em>, not just studying. I don't just follow tutorials — I design, build, and validate production-oriented solutions from scratch.
-                </p>
-                <p className="sp-desc">
-                  What makes me different? I've already delivered measurable results: <span style={{ color: 'var(--g)' }}>reduced Azure VM manual operations by 80%</span> through Python &amp; Jenkins automation, <span style={{ color: 'var(--g)' }}>cut cloud storage costs by 30%</span> with an automated Azure cleanup tool, and earned <span style={{ color: 'var(--g)' }}>9+ certifications</span> — AZ-900, FinOps Practitioner, Kubernetes, Docker, Prometheus, Jenkins, Helm &amp; Linux — all self-studied within a year.
-                </p>
-                <p className="sp-desc">
-                  Open to freelance projects, internships, and junior DevOps roles. Let's build something reliable.
-                </p>
-                <ul className="sp-focus-list">
-                  {FOCUS_ITEMS.map((f) => (
-                    <li key={f.name} className="sp-focus-item">
-                      <span className="sp-focus-icon">{f.icon}</span>
-                      <div className="sp-focus-text">
-                        <span className="sp-focus-name">{f.name}</span>
-                        <span className="sp-focus-sub">{f.sub}</span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <div className="about-badges">
-                  {[
-                    "Azure Certified",
-                    "FinOps Practitioner",
-                    "Kubernetes Operator",
-                    "Docker Expert",
-                    "CI/CD Architect",
-                    "Open to Internships",
-                  ].map((b) => (
-                    <span key={b} className="badge">
-                      {b}
-                    </span>
-                  ))}
-                </div>
-
-                {/* WHY WORK WITH ME */}
-                <div style={{
-                  marginTop: '22px',
-                  padding: '16px 18px',
-                  background: 'rgba(0,255,136,0.04)',
-                  border: '1px solid rgba(0,255,136,0.13)',
-                  borderRadius: '10px',
-                }}>
-                  <div style={{ fontFamily: '"JetBrains Mono",monospace', fontSize: '0.62rem', color: 'var(--g)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '10px' }}>Why Work With Me</div>
-                  {[
-                    'Every deliverable comes with clear documentation',
-                    'I explain what I did and why - no black boxes',
-                    'Fast turnaround with clean, maintainable output',
-                    'I treat your project like it goes to production',
-                  ].map((item) => (
-                    <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '9px', marginBottom: '7px', fontSize: '0.84rem', color: 'var(--td)', lineHeight: '1.5' }}>
-                      <span style={{ color: 'var(--g)', flexShrink: 0 }}>\u2714</span>
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* TECH STACK */}
-                <div style={{ marginTop: '18px' }}>
-                  <div style={{ fontFamily: '"JetBrains Mono",monospace', fontSize: '0.62rem', color: 'var(--td)', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '8px' }}>Tech Stack</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                    {['AWS', 'Azure', 'Terraform', 'Ansible', 'Docker', 'Kubernetes', 'Helm', 'Jenkins', 'GitHub Actions', 'Python', 'Bash', 'PowerShell', 'Prometheus', 'Grafana', 'Linux'].map((t) => (
-                      <span key={t} style={{ fontFamily: '"JetBrains Mono",monospace', fontSize: '0.66rem', padding: '3px 9px', background: 'rgba(30,144,255,0.08)', border: '1px solid rgba(30,144,255,0.2)', borderRadius: '3px', color: 'var(--b)' }}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Skills() {
-      return (
-        <section id="skills" style={{ borderTop: "1px solid var(--bd)" }}>
-          <div className="section-wrap">
-            <div className="section-kicker fade">02 — Skills</div>
-            <div className="section-title fade delay1">Technical Arsenal</div>
-            <div className="skills-grid">
-              {SKILLS.map((s, i) => (
-                <div
-                  key={s.title}
-                  className={`skill-cat fade delay${Math.min(i + 1, 4)}`}
-                >
-                  <div className="skill-cat-icon">{s.icon}</div>
-                  <div className="skill-cat-title">{s.title}</div>
-                  <div className="skill-tags">
-                    {s.tags.map((t) => (
-                      <span key={t} className="skill-tag">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Projects() {
-      return (
-        <section id="projects">
-          <div className="section-wrap">
-            <div className="section-kicker fade">03 — Projects</div>
-            <div className="section-title fade delay1">What I've Built</div>
-            <div className="projects-grid">
-              {PROJECTS.map((p, i) => (
-                <div key={p.num} className={`proj-card fade delay${i + 1}`}>
-                  <div className="proj-num">{p.num}</div>
-                  <div className="proj-dates">▸ {p.dates}</div>
-                  <div className="proj-title">{p.title}</div>
-                  <div className="proj-stack">
-                    {p.tech.map((t) => (
-                      <span key={t} className="proj-tech">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <ul className="proj-bullets">
-                    {p.bullets.map((b, j) => (
-                      <li key={j}>{b}</li>
-                    ))}
-                  </ul>
-                  <div className="proj-impact">{p.impact}</div>
-                  <a href={p.github} target="_blank" className="proj-link">
-                    <svg
-                      width="14"
-                      height="14"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                    </svg>
-                    View on GitHub →
-                  </a>
-                </div>
-              ))}
-            </div>
-            <div style={{ marginTop: "48px", textAlign: "center" }}>
-              <a
-                href="https://github.com/nusaifkhan"
-                target="_blank"
-                className="btn btn-outline fade delay3"
-              >
-                <svg style={{ width: '16px', height: '16px', marginRight: '8px', verticalAlign: 'text-bottom' }} fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" /></svg>
-                View All Projects on GitHub
-              </a>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Education() {
-      return (
-        <section
-          id="education"
-          style={{
-            background: "var(--bg2)",
-            borderTop: "1px solid var(--bd)",
-          }}
-        >
-          <div className="section-wrap">
-            <div className="section-kicker fade">04 — Education</div>
-            <div className="section-title fade delay1">
-              Academic Background
-            </div>
-            <div className="edu-card fade delay2">
-              <div className="edu-year">25</div>
-              <div>
-                <div className="edu-uni">Cardiff Metropolitan University</div>
-                <div className="edu-degree">
-                  BSc Software Engineering
-                </div>
-                <div className="edu-period">
-                  📅 2025 – 2028 · 1st Year — 2nd Semester · Ongoing
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Certs() {
-      return (
-        <section
-          id="certifications"
-          style={{ borderTop: "1px solid var(--bd)" }}
-        >
-          <div className="section-wrap">
-            <div className="section-kicker fade">05 — Credentials</div>
-            <div className="section-title fade delay1">
-              Certifications & Courses
-            </div>
-            <div className="certs-grid">
-              {CERTS.map((c, i) => (
-                <div
-                  key={c.name}
-                  className={`cert-card fade delay${Math.min((i % 4) + 1, 4)}`}
-                >
-                  <div className="cert-icon">{c.icon}</div>
-                  <div>
-                    <div className="cert-name">{c.name}</div>
-                    <div className="cert-meta">{c.meta}</div>
-                    <span className="cert-badge">{c.badge}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function ContactForm() {
-      const [form, setForm] = useState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      const [status, setStatus] = useState(null); // null | 'sending' | 'ok' | 'err'
-      const [statusMsg, setStatusMsg] = useState("");
-
-      const handleChange = (e) =>
-        setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-
-      const handleSubmit = async () => {
-        if (!form.name || !form.email || !form.message) {
-          setStatus("err");
-          setStatusMsg("Please fill in all required fields.");
-          return;
-        }
-        setStatus("sending");
-        try {
-          const res = await fetch("http://localhost:3001/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(form),
-          });
-          const data = await res.json();
-          if (res.ok) {
-            setStatus("ok");
-            setStatusMsg(
-              data.message ||
-              `✓ Message received! Nusaif will get back to you at ${form.email} shortly.`,
-            );
-            setForm({ name: "", email: "", subject: "", message: "" });
-          } else {
-            setStatus("err");
-            setStatusMsg(
-              data.error ||
-              "Something went wrong. Please try emailing directly.",
-            );
-          }
-        } catch (err) {
-          setStatus("err");
-          setStatusMsg(
-            "Could not reach the server. Please email nusaifkhan21@gmail.com directly.",
-          );
-        }
-      };
-
-      return (
-        <div className="msg-form fade delay3">
-          <h3>Send a Message</h3>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Name *</label>
-              <input
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Your name"
-              />
-            </div>
-            <div className="form-group">
-              <label>Email *</label>
-              <input
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="your@email.com"
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Subject</label>
-            <input
-              name="subject"
-              value={form.subject}
-              onChange={handleChange}
-              placeholder="DevOps Internship Opportunity"
-            />
-          </div>
-          <div className="form-group">
-            <label>Message *</label>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Hi Nusaif, I'd like to discuss..."
-            ></textarea>
-          </div>
-          <button
-            className="submit-btn"
-            onClick={handleSubmit}
-            disabled={status === "sending"}
-          >
-            {status === "sending" ? "⟳ Sending..." : "⟶ Send Message"}
-          </button>
-          {status && status !== "sending" && (
-            <div className={`form-status ${status}`}>{statusMsg}</div>
-          )}
-        </div>
-      );
-    }
-
-    function Contact() {
-      return (
-        <section id="contact">
-          <div className="section-wrap">
-            <div className="contact-grid">
-              <div>
-                <div className="section-kicker fade">06 — Contact</div>
-                <div className="contact-title fade delay1">
-                  Let's Build
-                  <br />
-                  <span>Together</span>
-                </div>
-                <p className="contact-desc fade delay2">
-                  Open to DevOps internships, SRE roles, and collaborative
-                  projects. Whether you want to automate something great or
-                  just chat about cloud infrastructure — I'm all ears.
-                </p>
-                <div className="contact-links fade delay2">
-                  {[
-                    {
-                      icon: "✉",
-                      label: "nusaifkhan21@gmail.com",
-                      href: "mailto:nusaifkhan21@gmail.com",
-                    },
-                    {
-                      icon: "in",
-                      label: "linkedin.com/in/nusaifkhan",
-                      href: "https://www.linkedin.com/in/nusaifkhan/",
-                    },
-                    {
-                      icon: "⌥",
-                      label: "github.com/nusaifkhan",
-                      href: "https://github.com/nusaifkhan",
-                    },
-                    {
-                      icon: "☎",
-                      label: "0767445757",
-                      href: "tel:0767445757",
-                    },
-                  ].map((l) => (
-                    <a
-                      key={l.label}
-                      href={l.href}
-                      target="_blank"
-                      className="c-link"
-                    >
-                      <span className="c-link-icon">{l.icon}</span>
-                      {l.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-              <ContactForm />
-            </div>
-          </div>
-        </section>
-      );
-    }
-
-    function Footer() {
-      return (
-        <footer>
-          <div className="footer-copy">
-            © 2025 Nusaif Khan — Crafted with precision · Deployed with
-            passion
-          </div>
-          <div className="footer-status" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-            <a href="https://github.com/nusaifkhan" target="_blank" style={{ color: 'var(--td)', textDecoration: 'none', transition: 'color 0.2s', fontFamily: '"JetBrains Mono", monospace' }} onMouseOver={(e) => e.target.style.color = 'var(--g)'} onMouseOut={(e) => e.target.style.color = 'var(--td)'}>⌥ GitHub</a>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--g)' }}>
-              <div className="status-dot"></div> Available for opportunities
-            </div>
-          </div>
-        </footer>
-      );
-    }
-
-    // ─────────────────────────────────────────────
-    // APP
-    // ─────────────────────────────────────────────
-    function App() {
-      const [scrolled, setScrolled] = useState(false);
-      useFadeIn();
-
-      useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 50);
-        window.addEventListener("scroll", onScroll);
-        return () => window.removeEventListener("scroll", onScroll);
-      }, []);
-
-      // Re-run fade observer after mount
-      useEffect(() => {
-        setTimeout(() => {
-          const obs = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((e, i) => {
-                if (e.isIntersecting)
-                  setTimeout(() => e.target.classList.add("vis"), i * 80);
-              });
-            },
-            { threshold: 0.08 },
-          );
-          document.querySelectorAll(".fade").forEach((el) => obs.observe(el));
-        }, 200);
-      }, []);
-
-      const downloadCV = () => {
-        const link = document.createElement("a");
-        link.href = "Nusaif_Khan_Resume.pdf";
-        link.download = "Nusaif_Khan_Resume.pdf";
-        // If hosted, point to the actual file path
-        // For local use, this downloads the same-directory PDF
-        link.click();
-        // Show feedback
-        const notice = document.createElement("div");
-        notice.style.cssText =
-          "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#00ff88;color:#000;font-family:JetBrains Mono,monospace;font-size:.8rem;padding:12px 24px;border-radius:6px;z-index:9999;font-weight:700;letter-spacing:.08em";
-        notice.textContent = "⬇ Downloading CV...";
-        document.body.appendChild(notice);
-        setTimeout(() => notice.remove(), 3000);
-      };
-
-      return (
-        <>
-          <Cursor />
-          <Nav scrolled={scrolled} onDL={downloadCV} />
-          <Hero onDL={downloadCV} />
-          <SystemProfile />
-          <Skills />
-          <Projects />
-          <Education />
-          <Certs />
-          <Footer />
-        </>
-      );
-    }
-
-    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
   </script>
 </body>
-
 </html>
