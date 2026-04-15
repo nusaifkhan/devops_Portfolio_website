@@ -178,6 +178,7 @@ nav.scrolled {
   padding: 100px 60px 60px;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 .hero-canvas {
   position: absolute;
@@ -1462,6 +1463,7 @@ footer {
   }
 }
 
+
 /* ─────────────── TABLET (max 900px) ──────────────────── */
 @media (max-width: 900px) {
   nav {
@@ -1469,6 +1471,17 @@ footer {
   }
   nav.scrolled {
     padding: 10px 32px;
+  }
+  #hero {
+    padding: 100px 40px 60px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .hero-inner {
+    max-width: 100%;
+  }
+  .hero-desc {
+    max-width: 100%;
   }
   .section-wrap {
     padding: 80px 40px;
@@ -1509,74 +1522,116 @@ footer {
   nav.scrolled {
     padding: 10px 20px;
   }
+
+  /* ── Hero ── */
   #hero {
-    padding: 90px 20px 60px;
+    padding: 88px 18px 56px;
     min-height: 100dvh;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
   .hero-inner {
+    width: 100%;
     padding: 0;
+    max-width: 100%;
+  }
+  .hero-line {
+    font-size: 0.65rem;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .hero-line::before {
+    width: 20px;
   }
   .hero-name {
     font-size: clamp(2.4rem, 12vw, 4.5rem);
     line-height: 1;
+    margin-bottom: 12px;
   }
   .hero-role {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    margin-bottom: 16px;
   }
   .hero-desc {
-    font-size: 0.95rem;
+    font-size: 0.93rem;
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 100%;
   }
   .hero-ctas {
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 28px;
   }
   .hero-ctas .btn {
     width: 100%;
     justify-content: center;
-  }
-  .section-wrap {
-    padding: 60px 20px;
-  }
-  .section-title {
-    font-size: clamp(1.8rem, 7vw, 2.4rem);
-    margin-bottom: 32px;
-  }
-  .about-grid,
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .proj-card {
-    padding: 24px 20px;
-    border-radius: 10px;
-  }
-  .proj-title {
-    font-size: 1.15rem;
-  }
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .skill-cat {
-    padding: 20px;
-  }
-  .certs-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .cert-card {
-    padding: 16px;
+    text-align: center;
   }
   .stats-row {
-    gap: 20px;
+    gap: 16px;
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
   .stat-num {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+  }
+  .stat-label {
+    font-size: 0.62rem;
+  }
+  .terminal-ticker {
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+  .scroll-ind {
+    display: none;
+  }
+  .term-window {
+    display: none !important;
+  }
+  .cmd-rain {
+    opacity: 0.06;
+  }
+
+  /* ── Sections ── */
+  .section-wrap {
+    padding: 60px 18px;
+  }
+  .section-title {
+    font-size: clamp(1.7rem, 7vw, 2.4rem);
+    margin-bottom: 28px;
+  }
+
+  /* ── System Profile ── */
+  .sysprofile-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .sysprofile-left,
+  .sysprofile-right {
+    width: 100%;
+  }
+  .sp-title {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+  }
+  .sp-desc {
+    font-size: 0.88rem;
+  }
+  .sp-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .sp-focus-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .sp-focus-name {
+    font-size: 0.82rem;
+  }
+  .sp-focus-sub {
+    font-size: 0.62rem;
   }
   .sp-layout {
     grid-template-columns: 1fr;
@@ -1585,67 +1640,100 @@ footer {
   .sp-info-grid {
     grid-template-columns: 1fr 1fr;
   }
-  .sysprofile-grid {
+  .about-grid,
+  .contact-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 32px;
   }
-  .sp-metrics {
-    grid-template-columns: 1fr 1fr;
+
+  /* ── Projects ── */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
+  .proj-card {
+    padding: 22px 18px;
+    border-radius: 10px;
+  }
+  .proj-title {
+    font-size: 1.1rem;
+  }
+
+  /* ── Skills ── */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .skill-cat {
+    padding: 18px;
+  }
+
+  /* ── Certs ── */
+  .certs-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .cert-card {
+    padding: 14px 16px;
+  }
+
+  /* ── Education ── */
   .edu-card {
     flex-direction: column;
     gap: 12px;
-    padding: 24px 20px;
+    padding: 22px 18px;
     text-align: center;
   }
   .edu-year {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .edu-uni {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
+
+  /* ── Footer ── */
   footer {
     flex-direction: column;
     gap: 14px;
-    padding: 24px 20px;
+    padding: 24px 18px;
     text-align: center;
   }
   .footer-status {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 14px;
-  }
-  .terminal-ticker {
-    margin-top: 40px;
-  }
-  .scroll-ind {
-    display: none;
-  }
-  .term-window {
-    display: none !important;
+    gap: 12px;
   }
 }
 
 /* ─────────────── VERY SMALL (max 400px) ──────────────── */
 @media (max-width: 400px) {
+  #hero {
+    padding: 80px 14px 48px;
+  }
   .hero-name {
-    font-size: clamp(2rem, 13vw, 3.5rem);
+    font-size: clamp(2rem, 13vw, 3.2rem);
+  }
+  .hero-desc {
+    font-size: 0.88rem;
   }
   .btn {
-    font-size: 0.72rem;
-    padding: 11px 18px;
+    font-size: 0.7rem;
+    padding: 11px 16px;
   }
   .section-wrap {
-    padding: 48px 16px;
+    padding: 48px 14px;
   }
   .proj-card {
-    padding: 20px 16px;
+    padding: 18px 14px;
   }
   .sp-info-grid {
     grid-template-columns: 1fr;
   }
   .sp-metrics {
     grid-template-columns: 1fr;
+  }
+  .sp-title {
+    font-size: 1.3rem;
   }
 }
 
