@@ -71,7 +71,7 @@
     .footer-status{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);display:flex;align-items:center;gap:8px;}
     .status-dot{width:8px;height:8px;background:var(--g);border-radius:50%;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--g);}
 
-    .gig-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;background:transparent;border:1px solid var(--g);color:var(--g);border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:all .3s;}
+    .gig-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;background:transparent;border:1px solid var(--g);color:var(--g);border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:.8rem;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:none;width:100%;margin-top:auto;}
     .gig-btn:hover{background:var(--g);color:#000;box-shadow:0 0 20px rgba(0,255,136,.3);}
 
     /* FIVERR CUSTOM STYLES */
@@ -80,17 +80,19 @@
     .stat-val{font-family:"Outfit",sans-serif;font-size:2rem;font-weight:800;color:var(--g);line-height:1;}
     .stat-label{font-family:"JetBrains Mono",monospace;font-size:.65rem;color:var(--td);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;}
 
-    .gigs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-top:32px;}
+    .gigs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;margin-top:32px;}
+
+    /* GIG CARD WITH PACKAGES */
     .gig-card{
-      background:rgba(11, 24, 32, 0.75);
+      background:rgba(11,24,32,0.75);
       backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-      border:1px solid var(--bd);border-radius:14px;padding:36px;
-      transition:all .35s cubic-bezier(0.23, 1, 0.32, 1);
+      border:1px solid var(--bd);border-radius:14px;
+      transition:all .35s cubic-bezier(0.23,1,0.32,1);
       position:relative;display:flex;flex-direction:column;overflow:hidden;cursor:none;
     }
     .gig-card::before{
       content:"";position:absolute;top:0;left:0;right:0;height:1px;
-      background:linear-gradient(90deg, transparent, rgba(0,255,136,0.5), transparent);
+      background:linear-gradient(90deg,transparent,rgba(0,255,136,0.5),transparent);
       opacity:0;transition:opacity .3s;
     }
     .gig-card::after{
@@ -98,18 +100,40 @@
       background:linear-gradient(135deg,rgba(0,255,136,.04),transparent 60%);
       opacity:0;transition:opacity .3s;z-index:0;pointer-events:none;
     }
-    .gig-card:hover{border-color:rgba(0,255,136,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,255,136,0.05), 0 0 0 1px rgba(0,255,136,0.12);}
-    .gig-card:hover::before, .gig-card:hover::after{opacity:1;}
-    .gig-content{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;}
-    
-    .gig-price{position:absolute;top:24px;right:24px;background:var(--g);color:#000;font-family:"JetBrains Mono",monospace;font-size:.8rem;font-weight:700;padding:6px 12px;border-radius:4px;box-shadow:0 4px 15px rgba(0,255,136,.3);z-index:2;}
-    .gig-icon{font-size:2.5rem;margin-bottom:20px;display:inline-block;}
-    .gig-title{font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:12px;line-height:1.3;}
-    .gig-desc{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--td);margin-bottom:24px;line-height:1.6;flex:1;}
-    .gig-features{list-style:none;margin-bottom:28px;}
-    .gig-features li{font-size:.85rem;color:var(--t);margin-bottom:8px;position:relative;padding-left:20px;}
-    .gig-features li::before{content:"✓";position:absolute;left:0;color:var(--g);font-weight:bold;}
-    
+    .gig-card:hover{border-color:rgba(0,255,136,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.5),inset 0 0 30px rgba(0,255,136,0.05),0 0 0 1px rgba(0,255,136,0.12);}
+    .gig-card:hover::before,.gig-card:hover::after{opacity:1;}
+
+    /* GIG HEADER */
+    .gig-header{position:relative;z-index:1;padding:28px 28px 0;}
+    .gig-icon{font-size:2rem;margin-bottom:14px;display:inline-block;}
+    .gig-title{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.3;}
+    .gig-desc{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--td);line-height:1.6;margin-bottom:20px;}
+
+    /* PACKAGE TABS */
+    .pkg-tabs{display:flex;border-bottom:1px solid var(--bd);position:relative;z-index:1;padding:0 28px;}
+    .pkg-tab{flex:1;font-family:"JetBrains Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:10px 4px;color:var(--td);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;text-align:center;}
+    .pkg-tab:hover{color:var(--t);}
+    .pkg-tab.active{color:var(--g);border-bottom-color:var(--g);}
+
+    /* PACKAGE PANELS */
+    .pkg-panels{position:relative;z-index:1;padding:20px 28px 28px;}
+    .pkg-panel{display:none;flex-direction:column;}
+    .pkg-panel.active{display:flex;}
+
+    .pkg-price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+    .pkg-price{font-family:"Outfit",sans-serif;font-size:1.8rem;font-weight:800;color:var(--g);line-height:1;}
+    .pkg-delivery{font-family:"JetBrains Mono",monospace;font-size:.68rem;color:var(--td);letter-spacing:.05em;}
+    .pkg-tagline{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--t);margin-bottom:14px;line-height:1.5;font-style:italic;}
+
+    .pkg-features{list-style:none;margin-bottom:20px;}
+    .pkg-features li{font-size:.82rem;color:var(--t);margin-bottom:7px;position:relative;padding-left:20px;line-height:1.45;}
+    .pkg-features li::before{content:"✓";position:absolute;left:0;color:var(--g);font-weight:bold;font-size:.85rem;}
+    .pkg-features li.no::before{content:"✗";color:var(--td);}
+    .pkg-features li.no{color:var(--td);}
+
+    /* Badge for premium */
+    .pkg-badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:.6rem;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);color:#c084fc;padding:3px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+
     @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:.7;}}
 
     /* Responsive */
@@ -122,6 +146,9 @@
     #mobile-menu a{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--td);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid var(--bd);transition:color .2s,padding-left .2s;}
     #mobile-menu a:hover,#mobile-menu a.active{color:var(--g);padding-left:8px;}
     #mobile-menu a:last-child{border-bottom:none;}
+
+    .section-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--g);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
+
     @media(max-width:900px){
       #hamburger{display:flex;}
       .nav-links{display:none!important;}
@@ -131,15 +158,26 @@
     }
     @media(max-width:600px){
       nav{padding:12px 20px;}
-      .section-wrap,.page-banner,.breadcrumb{padding-left:20px;padding-right:20px;}
-      footer{flex-direction:column;gap:14px;padding:24px 20px;text-align:center;}
+      nav.scrolled{padding:10px 20px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:16px;padding-right:16px;}
+      footer{flex-direction:column;gap:14px;padding:24px 16px;text-align:center;}
+      .footer-status{flex-wrap:wrap;justify-content:center;gap:12px;}
       .gigs-grid{grid-template-columns:1fr;}
-      .gig-card{padding:24px 20px;}
+      .gig-header{padding:22px 18px 0;}
+      .pkg-tabs{padding:0 18px;}
+      .pkg-panels{padding:16px 18px 22px;}
       .fiverr-stats{gap:14px;}
       .stat-val{font-size:1.6rem;}
+      .page-banner{padding:40px 16px 0;}
+      .section-wrap{padding:32px 16px 60px;}
     }
     @media(max-width:400px){
-      .section-wrap,.page-banner,.breadcrumb{padding-left:16px;padding-right:16px;}
+      .section-wrap,.page-banner,.breadcrumb{padding-left:12px;padding-right:12px;}
+      .gig-header{padding:18px 14px 0;}
+      .pkg-tabs{padding:0 14px;}
+      .pkg-panels{padding:14px 14px 18px;}
+      .pkg-tab{font-size:.6rem;padding:9px 2px;}
+      .pkg-price{font-size:1.5rem;}
     }
   </style>
 </head>
@@ -150,18 +188,18 @@
 
 <nav id="main-nav">
   <a href="index.html" class="nav-logo">nusaif<span>@devops</span>:~$</a>
-    <ul class="nav-links">
-    <li><a href="index.html" class="">Home</a></li>
-    <li><a href="about.html" class="">About</a></li>
-    <li><a href="skills.html" class="">Skills</a></li>
-    <li><a href="projects.html" class="">Projects</a></li>
-    <li><a href="certifications.html" class="">Certs</a></li>
-    <li><a href="learning-path.html" class="">Learning</a></li>
-    <li><a href="cover-letter.html" class="">Cover Letter</a></li>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="skills.html">Skills</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="certifications.html">Certs</a></li>
+    <li><a href="learning-path.html">Learning</a></li>
+    <li><a href="cover-letter.html">Cover Letter</a></li>
     <li><a href="fiverr.html" class="active">Fiverr</a></li>
     <li><a href="Nusaif_Khan_Resume.pdf" download class="nav-dl">⬇ CV</a></li>
   </ul>
-<button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div id="mobile-menu">
   <a href="index.html">Home</a>
@@ -181,7 +219,7 @@
     <div class="page-banner-kicker fade">06 — Fiverr</div>
     <h1 class="page-banner-title fade delay1">Hire Me <span>On Fiverr</span></h1>
     <p class="page-banner-desc fade delay2">// Professional DevOps & Cloud consulting tailored to your specific needs.</p>
-    
+
     <div class="fiverr-stats fade delay3">
       <div class="stat-item">
         <div class="stat-val">5.0</div>
@@ -200,70 +238,518 @@
 
   <div class="section-wrap">
     <div class="section-kicker fade">Services</div>
-    <h2 class="section-title fade delay1" style="font-size: 2rem; margin-bottom: 8px;">Featured Gigs</h2>
+    <h2 class="section-title fade delay1" style="font-size:2rem;margin-bottom:8px;">Featured Gigs</h2>
+
     <div class="gigs-grid">
-      <!-- Gig 1 -->
+
+      <!-- ── GIG 1: Python & Bash Automation ── -->
       <div class="gig-card fade delay1">
-        <div class="gig-price">From $50</div>
-        <div class="gig-content">
-          <div class="gig-icon">⚙️</div>
-          <div class="gig-title">CI/CD Pipeline Automation</div>
-          <div class="gig-desc">I will design and automate robust CI/CD pipelines using GitHub Actions, Jenkins, or Azure DevOps to streamline your delivery.</div>
-          <ul class="gig-features">
-            <li>Source Code Environment Setup</li>
-            <li>Automated Build & Test Scripts</li>
-            <li>Zero-downtime Deployments</li>
-            <li>Post-build Slack/Email Alerts</li>
-          </ul>
-          <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Now →</a>
+        <div class="gig-header">
+          <div class="gig-icon">🔧</div>
+          <div class="gig-title">Python & Bash Automation Scripts</div>
+          <div class="gig-desc">Clean, production-ready automation scripts using Azure SDK, Boto3, and native Linux utilities — from one-time scripts to full workflows.</div>
         </div>
-      </div>
-      
-      <!-- Gig 2 -->
-      <div class="gig-card fade delay2">
-        <div class="gig-price">From $120</div>
-        <div class="gig-content">
-          <div class="gig-icon">⎈</div>
-          <div class="gig-title">Kubernetes & Containerization</div>
-          <div class="gig-desc">I will securely containerize your application and deploy it to a highly available Kubernetes cluster (AKS/EKS/Minikube).</div>
-          <ul class="gig-features">
-            <li>Optimized Dockerfile Creation</li>
-            <li>Kubernetes Deployment YAMLs</li>
-            <li>Helm Chart Packaging</li>
-            <li>Ingress & SSL Configuration</li>
-          </ul>
-          <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Now →</a>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g1','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g1','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g1','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g1-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$15</div>
+              <div class="pkg-delivery">· 2-day delivery</div>
+            </div>
+            <div class="pkg-tagline">1 simple script · Up to 50 lines</div>
+            <ul class="pkg-features">
+              <li>Working .py / .sh script file</li>
+              <li>Up to 50 lines of code</li>
+              <li>1 revision included</li>
+              <li class="no">Logging & error handling</li>
+              <li class="no">README documentation</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g1-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$35</div>
+              <div class="pkg-delivery">· 3-day delivery</div>
+            </div>
+            <div class="pkg-tagline">1 complex script · Up to 200 lines</div>
+            <ul class="pkg-features">
+              <li>Working .py / .sh script file</li>
+              <li>Up to 200 lines of code</li>
+              <li>Logging & error handling included</li>
+              <li>3 revisions included</li>
+              <li class="no">README documentation</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g1-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$75</div>
+              <div class="pkg-delivery">· 5-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full workflow · 3+ scripts</div>
+            <ul class="pkg-features">
+              <li>Full automation workflow (3+ scripts)</li>
+              <li>Error handling & structured logging</li>
+              <li>README with usage instructions</li>
+              <li>Source code via GitHub or ZIP</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
         </div>
       </div>
 
-      <!-- Gig 3 -->
-      <div class="gig-card fade delay3">
-        <div class="gig-price">From $100</div>
-        <div class="gig-content">
+      <!-- ── GIG 2: Terraform Infrastructure ── -->
+      <div class="gig-card fade delay2">
+        <div class="gig-header">
           <div class="gig-icon">☁️</div>
-          <div class="gig-title">Cloud Infrastructure as Code</div>
-          <div class="gig-desc">I will provision, manage, and optimize your cloud infrastructure on AWS or Azure securely using Terraform or Ansible.</div>
-          <ul class="gig-features">
-            <li>Modular Terraform Scripts</li>
-            <li>VPC / VNet Secure Configuration</li>
-            <li>Remote State Management</li>
-            <li>Cost Optimization Review</li>
-          </ul>
-          <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Now →</a>
+          <div class="gig-title">AWS & Azure Infrastructure with Terraform</div>
+          <div class="gig-desc">Modular, reusable IaC that your team can maintain — from single resources to full multi-tier environments. No more ClickOps.</div>
+        </div>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g2','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g2','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g2','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g2-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$30</div>
+              <div class="pkg-delivery">· 3-day delivery</div>
+            </div>
+            <div class="pkg-tagline">1 resource module (e.g. single VM or S3 bucket)</div>
+            <ul class="pkg-features">
+              <li>Single resource .tf module</li>
+              <li>Variables & outputs defined</li>
+              <li>1 revision included</li>
+              <li class="no">Full environment setup</li>
+              <li class="no">Remote state config</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g2-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$70</div>
+              <div class="pkg-delivery">· 5-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full environment — VPC, compute, storage</div>
+            <ul class="pkg-features">
+              <li>Full environment (VPC, compute, storage)</li>
+              <li>Variables & outputs defined</li>
+              <li>Tested plan output included</li>
+              <li>3 revisions included</li>
+              <li class="no">Remote state & full documentation</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g2-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$140</div>
+              <div class="pkg-delivery">· 7-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Multi-tier architecture · Modules + remote state</div>
+            <ul class="pkg-features">
+              <li>Multi-tier architecture design</li>
+              <li>Reusable modules + remote state</li>
+              <li>Full README with apply instructions</li>
+              <li>Tested plan output included</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="fade delay4" style="margin-top: 60px; text-align: center; border-top: 1px solid var(--bd); padding-top: 40px;">
-        <p style="font-family:'JetBrains Mono',monospace; font-size: .85rem; color: var(--td); margin-bottom: 24px;">Looking for a custom enterprise solution, long-term consulting, or something else?</p>
-        <a href="https://www.fiverr.com/" target="_blank" class="btn btn-primary" style="padding: 16px 32px; font-family:'JetBrains Mono',monospace; font-size: .85rem; border: 1px solid var(--g); background: var(--g); color: #000; text-transform: uppercase; font-weight: bold; text-decoration: none; border-radius: 4px; display: inline-block;">View Full Fiverr Profile</a>
+
+      <!-- ── GIG 3: CI/CD Pipeline ── -->
+      <div class="gig-card fade delay3">
+        <div class="gig-header">
+          <div class="gig-icon">🔄</div>
+          <div class="gig-title">CI/CD Pipeline Design</div>
+          <div class="gig-desc">End-to-end build, test, and deploy pipelines using Jenkins or GitHub Actions. Works with Node.js, Python, Java, Docker-based apps, and more.</div>
+        </div>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g3','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g3','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g3','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g3-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$25</div>
+              <div class="pkg-delivery">· 3-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Simple build pipeline · 1 stage (build only)</div>
+            <ul class="pkg-features">
+              <li>Jenkinsfile or .yml workflow file</li>
+              <li>Single build stage</li>
+              <li>Setup & configuration guide</li>
+              <li>1 revision included</li>
+              <li class="no">Docker & deploy integration</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g3-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$60</div>
+              <div class="pkg-delivery">· 5-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Build + test + deploy · Docker integration</div>
+            <ul class="pkg-features">
+              <li>Full build, test, deploy stages</li>
+              <li>Docker build & push integration</li>
+              <li>Setup guide + live demo</li>
+              <li>3 revisions included</li>
+              <li class="no">Notifications & rollback</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g3-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$120</div>
+              <div class="pkg-delivery">· 7-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full multi-stage pipeline · Notifications + rollback</div>
+            <ul class="pkg-features">
+              <li>Multi-stage pipeline (build/test/deploy)</li>
+              <li>Notifications & rollback support</li>
+              <li>Detailed documentation included</li>
+              <li>Live pipeline demo (screenshot/video)</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIG 4: Docker & Kubernetes ── -->
+      <div class="gig-card fade delay1">
+        <div class="gig-header">
+          <div class="gig-icon">🐳</div>
+          <div class="gig-title">Docker & Kubernetes Setup</div>
+          <div class="gig-desc">Containerize your application and deploy to Kubernetes with proper manifests, resource limits, and health checks. Supports Minikube, EKS, and AKS.</div>
+        </div>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g4','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g4','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g4','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g4-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$20</div>
+              <div class="pkg-delivery">· 2-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Dockerfile only · Single service</div>
+            <ul class="pkg-features">
+              <li>Optimized Dockerfile</li>
+              <li>Single service containerization</li>
+              <li>1 revision included</li>
+              <li class="no">Docker Compose / K8s manifests</li>
+              <li class="no">Helm chart</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g4-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$55</div>
+              <div class="pkg-delivery">· 4-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Docker + Compose · K8s manifests (deploy/svc)</div>
+            <ul class="pkg-features">
+              <li>Dockerfile + docker-compose.yml</li>
+              <li>Kubernetes YAML manifests</li>
+              <li>Deployment guide included</li>
+              <li>3 revisions included</li>
+              <li class="no">Helm chart packaging</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g4-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$110</div>
+              <div class="pkg-delivery">· 6-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full K8s setup with Helm · Ingress + secrets + HPA</div>
+            <ul class="pkg-features">
+              <li>Full K8s setup with Helm chart</li>
+              <li>Ingress, secrets & HPA config</li>
+              <li>Health checks & resource limits</li>
+              <li>Full deployment documentation</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIG 5: Prometheus & Grafana ── -->
+      <div class="gig-card fade delay2">
+        <div class="gig-header">
+          <div class="gig-icon">📊</div>
+          <div class="gig-title">Prometheus & Grafana Monitoring</div>
+          <div class="gig-desc">Full observability stack for Linux servers, Docker containers, Kubernetes clusters, and cloud VMs. See what's happening before it hits production.</div>
+        </div>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g5','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g5','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g5','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g5-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$25</div>
+              <div class="pkg-delivery">· 3-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Prometheus + Grafana install · 1 default dashboard</div>
+            <ul class="pkg-features">
+              <li>Prometheus config files</li>
+              <li>Grafana install + 1 default dashboard</li>
+              <li>Setup documentation</li>
+              <li>1 revision included</li>
+              <li class="no">Custom dashboards / alerts</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g5-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$60</div>
+              <div class="pkg-delivery">· 5-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Custom dashboards · Alertmanager + Node exporter</div>
+            <ul class="pkg-features">
+              <li>Custom Grafana dashboards</li>
+              <li>Alertmanager setup & rules</li>
+              <li>Node exporter configuration</li>
+              <li>Dashboard JSON export</li>
+              <li>3 revisions included</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g5-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$120</div>
+              <div class="pkg-delivery">· 7-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full observability stack · K8s/Docker · Alert rules</div>
+            <ul class="pkg-features">
+              <li>Full observability stack setup</li>
+              <li>K8s / Docker monitoring included</li>
+              <li>Alert rules + documentation</li>
+              <li>Grafana dashboard JSON export</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIG 6: Cloud Cost Optimization ── -->
+      <div class="gig-card fade delay3">
+        <div class="gig-header">
+          <div class="gig-icon">💰</div>
+          <div class="gig-title">Cloud Cost Optimization</div>
+          <div class="gig-desc">FinOps Certified Practitioner & Azure Fundamentals certified. I've reduced Azure storage costs by 30% and VM costs by 25% in production environments.</div>
+        </div>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g6','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g6','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g6','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g6-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$30</div>
+              <div class="pkg-delivery">· 3-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Cost audit report · Top 5 savings areas</div>
+            <ul class="pkg-features">
+              <li>Detailed cost audit report (PDF)</li>
+              <li>Top 5 identified savings areas</li>
+              <li>1 revision included</li>
+              <li class="no">Cleanup automation script</li>
+              <li class="no">Tagging & governance setup</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g6-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$70</div>
+              <div class="pkg-delivery">· 5-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full audit + cleanup script · Unused resource removal</div>
+            <ul class="pkg-features">
+              <li>Full cost audit + cleanup script</li>
+              <li>Unused & oversized resource list</li>
+              <li>Prioritized savings action plan</li>
+              <li>3 revisions included</li>
+              <li class="no">Tagging & governance setup</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g6-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$140</div>
+              <div class="pkg-delivery">· 7-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Audit + automation scripts · Tagging & monthly savings estimate</div>
+            <ul class="pkg-features">
+              <li>Audit + full automation scripts</li>
+              <li>Tagging & governance framework</li>
+              <li>Monthly savings estimate report</li>
+              <li>Prioritized action plan (PDF)</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIG 7: Ansible Playbooks ── -->
+      <div class="gig-card fade delay1">
+        <div class="gig-header">
+          <div class="gig-icon">⚙️</div>
+          <div class="gig-title">Ansible Configuration Management</div>
+          <div class="gig-desc">Idempotent Ansible playbooks for Ubuntu, CentOS, RHEL, and most Linux distributions. Supports AWS EC2, Azure VMs, and bare metal servers.</div>
+        </div>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g7','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g7','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g7','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g7-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$20</div>
+              <div class="pkg-delivery">· 2-day delivery</div>
+            </div>
+            <div class="pkg-tagline">1 simple playbook (e.g. install + configure Nginx)</div>
+            <ul class="pkg-features">
+              <li>Single idempotent playbook (.yml)</li>
+              <li>Basic inventory file</li>
+              <li>1 revision included</li>
+              <li class="no">Variables & handlers</li>
+              <li class="no">Role-based structure</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g7-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$50</div>
+              <div class="pkg-delivery">· 4-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Multi-task playbook · Variables & handlers</div>
+            <ul class="pkg-features">
+              <li>Multi-task playbook (.yml)</li>
+              <li>Variables, handlers & inventory</li>
+              <li>README with run instructions</li>
+              <li>3 revisions included</li>
+              <li class="no">Role-based structure & vault</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g7-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$100</div>
+              <div class="pkg-delivery">· 6-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full role-based structure · Inventory + vault secrets</div>
+            <ul class="pkg-features">
+              <li>Full role-based structure</li>
+              <li>Inventory + Ansible Vault secrets</li>
+              <li>Tested & idempotent output</li>
+              <li>README documentation</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GIG 8: Dockerfile & K8s Review ── -->
+      <div class="gig-card fade delay2">
+        <div class="gig-header">
+          <div class="gig-icon">🔍</div>
+          <div class="gig-title">Dockerfile & Kubernetes Manifest Review</div>
+          <div class="gig-desc">Expert review of your container configs — catch security risks, misconfigurations, and slow builds before they cause production outages.</div>
+        </div>
+        <div class="pkg-tabs">
+          <button class="pkg-tab active" onclick="switchPkg(this,'g8','basic')">Basic</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g8','standard')">Standard</button>
+          <button class="pkg-tab" onclick="switchPkg(this,'g8','premium')">Premium</button>
+        </div>
+        <div class="pkg-panels">
+          <div class="pkg-panel active" id="g8-basic">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$15</div>
+              <div class="pkg-delivery">· 1-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Dockerfile review only · Written feedback report</div>
+            <ul class="pkg-features">
+              <li>Dockerfile review & feedback</li>
+              <li>Written report of issues found</li>
+              <li>1 revision included</li>
+              <li class="no">Improved files delivered</li>
+              <li class="no">K8s manifest review</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Basic →</a>
+          </div>
+          <div class="pkg-panel" id="g8-standard">
+            <div class="pkg-price-row">
+              <div class="pkg-price">$35</div>
+              <div class="pkg-delivery">· 2-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Dockerfile + K8s manifests · Improved files delivered</div>
+            <ul class="pkg-features">
+              <li>Dockerfile + K8s manifest review</li>
+              <li>Improved config files delivered</li>
+              <li>Written report of issues found</li>
+              <li>3 revisions included</li>
+              <li class="no">Full rewrite & security fixes</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Standard →</a>
+          </div>
+          <div class="pkg-panel" id="g8-premium">
+            <div class="pkg-badge">⭐ Best Value</div>
+            <div class="pkg-price-row">
+              <div class="pkg-price">$70</div>
+              <div class="pkg-delivery">· 3-day delivery</div>
+            </div>
+            <div class="pkg-tagline">Full review + rewrite · Security & performance fixes</div>
+            <ul class="pkg-features">
+              <li>Full review + complete rewrite</li>
+              <li>Security & performance fixes</li>
+              <li>Detailed change log per file</li>
+              <li>Best practices checklist</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="https://www.fiverr.com/" target="_blank" class="gig-btn">Order Premium →</a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /gigs-grid -->
+
+    <div class="fade delay4" style="margin-top:60px;text-align:center;border-top:1px solid var(--bd);padding-top:40px;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--td);margin-bottom:24px;">Looking for a custom enterprise solution, long-term consulting, or something else?</p>
+      <a href="https://www.fiverr.com/" target="_blank" class="btn btn-primary" style="padding:16px 32px;font-family:'JetBrains Mono',monospace;font-size:.85rem;border:1px solid var(--g);background:var(--g);color:#000;text-transform:uppercase;font-weight:bold;text-decoration:none;border-radius:4px;display:inline-block;">View Full Fiverr Profile</a>
     </div>
   </div>
 </div>
 
 <footer>
   <div class="footer-copy">© 2025 Nusaif Khan — Crafted with precision · Deployed with passion</div>
-  <div class="footer-status" style="display:flex; gap:20px; align-items:center;">
+  <div class="footer-status" style="display:flex;gap:20px;align-items:center;">
     <a href="https://github.com/nusaifkhan" target="_blank" style="color:var(--td);text-decoration:none;transition:color .2s;font-family:'JetBrains Mono',monospace;" onmouseover="this.style.color='var(--g)'" onmouseout="this.style.color='var(--td)'">⌥ GitHub</a>
     <div style="display:flex;align-items:center;gap:8px;"><div class="status-dot"></div> Available for opportunities</div>
   </div>
@@ -277,7 +763,7 @@
     cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
     setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},50);
   });
-  document.querySelectorAll('a,button,input,textarea,.card,.gig-card,.stat-item').forEach(el=>{
+  document.querySelectorAll('a,button,input,textarea,.gig-card,.stat-item,.pkg-tab').forEach(el=>{
     el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';cur.style.background='transparent';cur.style.border='2px solid var(--g)';ring.style.width='44px';ring.style.height='44px';});
     el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur.style.background='var(--g)';cur.style.border='none';ring.style.width='32px';ring.style.height='32px';});
   });
@@ -314,6 +800,19 @@
     });
   }
 })();
+
+// Package tab switcher
+function switchPkg(tabEl, gigId, pkg){
+  // deactivate all tabs in this gig
+  const tabs=tabEl.closest('.pkg-tabs').querySelectorAll('.pkg-tab');
+  tabs.forEach(t=>t.classList.remove('active'));
+  tabEl.classList.add('active');
+  // hide all panels, show selected
+  const panels=tabEl.closest('.gig-card').querySelectorAll('.pkg-panel');
+  panels.forEach(p=>p.classList.remove('active'));
+  const target=document.getElementById(gigId+'-'+pkg);
+  if(target) target.classList.add('active');
+}
 </script>
 </body>
 </html>
