@@ -1,10 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nusaif Khan — DevOps Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -26,25 +29,42 @@
       <li><a href="learning-path.html">Learning</a></li>
       <li><a href="cover-letter.html">Cover Letter</a></li>
       <li><a href="fiverr.html">Fiverr</a></li>
-      <li><button class="nav-dl" onclick="downloadCV()" style="background:none; border:none; cursor:none;">⬇ CV</button></li>
+      <li><button class="nav-dl" onclick="downloadCV()" style="background:none; border:none; cursor:none;">⬇ CV</button>
+      </li>
     </ul>
-    <button id="hamburger" aria-label="Menu" onclick="toggleMenu()" style="display: none; flex-direction: column; gap: 5px; cursor: none; padding: 4px; background: none; border: none;">
-      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
-      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
-      <span style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
+    <button id="hamburger" aria-label="Menu" onclick="toggleMenu()"
+      style="display: none; flex-direction: column; gap: 5px; cursor: none; padding: 4px; background: none; border: none;">
+      <span
+        style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
+      <span
+        style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
+      <span
+        style="display: block; width: 22px; height: 2px; background: var(--g); border-radius: 2px; transition: all .25s;"></span>
     </button>
   </nav>
 
-  <div id="mobile-menu" style="display: none; position: fixed; top: 56px; left: 0; right: 0; background: rgba(3,7,10,.96); backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid rgba(0,255,136,0.12); flex-direction: column; z-index: 199; padding: 20px 24px 28px; box-shadow: 0 8px 40px rgba(0,0,0,0.5);">
-    <a href="index.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Home</a>
-    <a href="about.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">About</a>
-    <a href="skills.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Skills</a>
-    <a href="projects.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Projects</a>
-    <a href="certifications.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Certs</a>
-    <a href="learning-path.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Learning</a>
-    <a href="cover-letter.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Cover Letter</a>
-    <a href="fiverr.html" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Fiverr</a>
-    <a href="Nusaif_Khan_Resume.pdf" download onclick="downloadCV()" style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--g); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: none !important; margin-top: 8px;">⬇ Download CV</a>
+  <div id="mobile-menu"
+    style="display: none; position: fixed; top: 56px; left: 0; right: 0; background: rgba(3,7,10,.96); backdrop-filter: blur(24px) saturate(160%); border-bottom: 1px solid rgba(0,255,136,0.12); flex-direction: column; z-index: 199; padding: 20px 24px 28px; box-shadow: 0 8px 40px rgba(0,0,0,0.5);">
+    <a href="index.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Home</a>
+    <a href="about.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">About</a>
+    <a href="skills.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Skills</a>
+    <a href="projects.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Projects</a>
+    <a href="certifications.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Certs</a>
+    <a href="learning-path.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Learning</a>
+    <a href="cover-letter.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Cover
+      Letter</a>
+    <a href="fiverr.html"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--td); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: 1px solid var(--bd); transition: color .2s, padding-left .2s;">Fiverr</a>
+    <a href="Nusaif_Khan_Resume.pdf" download onclick="downloadCV()"
+      style="font-family: 'JetBrains Mono',monospace; font-size: .8rem; color: var(--g); text-decoration: none; letter-spacing: .14em; text-transform: uppercase; padding: 14px 0; border-bottom: none !important; margin-top: 8px;">⬇
+      Download CV</a>
   </div>
 
   <!-- HERO SECTION -->
@@ -61,26 +81,46 @@
         &gt; <span id="hero-typewriter"></span><span class="term-cursor" style="margin-left: 2px;"></span>
       </div>
       <p class="hero-desc fade delay2">
-        Aspiring DevOps & SRE engineer building scalable automation
-        pipelines, cloud infrastructure, and reliable systems.
-        Passionate about turning manual toil into elegant code.
+        I’m Nusaif Khan, a self-taught DevOps and Cloud Automation Engineer and BSc Software Engineering student who
+        learns by building, not just studying.
+        My core stack includes Terraform, Docker, Kubernetes, CI/CD (Jenkins & GitHub Actions), and monitoring with
+        Prometheus and Grafana. I’ve also earned 9+ certifications, including AZ-900 and FinOps Practitioner, through
+        self-driven learning
+        I focus on clean automation, clear documentation, and systems that are built to work reliably in production—not
+        just in theory.
+        I’m currently open to freelance opportunities, internships, and junior DevOps roles where I can contribute,
+        learn, and build at scale.
+
+        I don’t just learn DevOps—I build it.
       </p>
       <div class="hero-ctas fade delay3">
         <button class="btn btn-primary" onclick="downloadCV()">⬇ Download CV</button>
         <a href="https://github.com/nusaifkhan" target="_blank" class="btn btn-outline">⌥ GitHub</a>
       </div>
       <div class="stats-row">
-        <div class="fade delay3"><div class="stat-num">2+</div><div class="stat-label">Cloud Projects</div></div>
-        <div class="fade delay3"><div class="stat-num">9+</div><div class="stat-label">Certifications</div></div>
-        <div class="fade delay3"><div class="stat-num">80%</div><div class="stat-label">Ops Automation</div></div>
-        <div class="fade delay3"><div class="stat-num">2</div><div class="stat-label">Cloud Platforms</div></div>
+        <div class="fade delay3">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Cloud Projects</div>
+        </div>
+        <div class="fade delay3">
+          <div class="stat-num">9+</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="fade delay3">
+          <div class="stat-num">80%</div>
+          <div class="stat-label">Ops Automation</div>
+        </div>
+        <div class="fade delay3">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Cloud Platforms</div>
+        </div>
       </div>
       <div class="terminal-ticker">
         <div class="ticker-label">// live ops stream</div>
         <div class="ticker-track" id="ticker-track"></div>
       </div>
     </div>
-    
+
     <div class="term-window fade delay4">
       <div class="term-header">
         <div class="term-dot" style="background: #ff5f57"></div>
@@ -99,7 +139,8 @@
   </section>
 
   <!-- SYSTEM PROFILE -->
-  <section id="system-profile" style="background: var(--bg2); border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd);">
+  <section id="system-profile"
+    style="background: var(--bg2); border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd);">
     <div class="section-wrap">
       <div class="section-kicker fade">01 — About</div>
       <div class="section-title fade delay1">System Profile</div>
@@ -117,75 +158,174 @@
               <div id="sp-json-output" style="display:none;">
                 <div style="margin-top: 10px; color: var(--td)">{</div>
                 <div>&nbsp;&nbsp;<span class="sp-key">"name"</span>: <span class="sp-val">"Nusaif Khan"</span>,</div>
-                <div>&nbsp;&nbsp;<span class="sp-key">"role"</span>: <span class="sp-val">"Aspiring DevOps Engineer & SRE Intern"</span>,</div>
-                <div>&nbsp;&nbsp;<span class="sp-key">"location"</span>: <span class="sp-val">"Colombo, Sri Lanka"</span>,</div>
-                <div>&nbsp;&nbsp;<span class="sp-key">"email"</span>: <span class="sp-val">"nusaifkhan21@gmail.com"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"role"</span>: <span class="sp-val">"Aspiring DevOps Engineer &
+                    SRE Intern"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"location"</span>: <span class="sp-val">"Colombo, Sri
+                    Lanka"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"email"</span>: <span
+                    class="sp-val">"nusaifkhan21@gmail.com"</span>,</div>
                 <div>&nbsp;&nbsp;<span class="sp-key">"focus"</span>: [</div>
                 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"Cloud Automation"</span>,</div>
                 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"Infrastructure as Code"</span>,</div>
                 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"CI/CD Pipelines"</span>,</div>
                 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp-val">"System Reliability"</span></div>
                 <div>&nbsp;&nbsp;],</div>
-                <div>&nbsp;&nbsp;<span class="sp-key">"status"</span>: <span class="sp-val" style="color: var(--g)">"open_to_opportunities"</span>,</div>
-                <div>&nbsp;&nbsp;<span class="sp-key">"education"</span>: <span class="sp-val">"BSc Software Engineering @ Cardiff Metropolitan University"</span></div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"status"</span>: <span class="sp-val"
+                    style="color: var(--g)">"open_to_opportunities"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="sp-key">"education"</span>: <span class="sp-val">"BSc Software Engineering
+                    @ Cardiff Metropolitan University"</span></div>
                 <div style="color: var(--td)">}</div>
               </div>
-              <div style="margin-top: 14px"><span class="sp-prompt">❯</span> <span class="sp-dim"># Automating the future, one pipeline at a time.</span></div>
+              <div style="margin-top: 14px"><span class="sp-prompt">❯</span> <span class="sp-dim"># Automating the
+                  future, one pipeline at a time.</span></div>
               <div><span class="sp-prompt">❯</span> <span class="sp-blink"></span></div>
             </div>
           </div>
           <div class="sp-metrics">
-            <div class="sp-metric-card"><div class="sp-metric-val">80%</div><div class="sp-metric-label">Ops Automated</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 80%"></div></div></div>
-            <div class="sp-metric-card"><div class="sp-metric-val">2+</div><div class="sp-metric-label">Cloud Projects</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 40%"></div></div></div>
-            <div class="sp-metric-card"><div class="sp-metric-val">9+</div><div class="sp-metric-label">Certifications</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 90%"></div></div></div>
-            <div class="sp-metric-card"><div class="sp-metric-val">50%</div><div class="sp-metric-label">Deploy Time ↓</div><div class="sp-metric-bar"><div class="sp-metric-fill" style="width: 50%"></div></div></div>
+            <div class="sp-metric-card">
+              <div class="sp-metric-val">80%</div>
+              <div class="sp-metric-label">Ops Automated</div>
+              <div class="sp-metric-bar">
+                <div class="sp-metric-fill" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="sp-metric-card">
+              <div class="sp-metric-val">2+</div>
+              <div class="sp-metric-label">Cloud Projects</div>
+              <div class="sp-metric-bar">
+                <div class="sp-metric-fill" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="sp-metric-card">
+              <div class="sp-metric-val">9+</div>
+              <div class="sp-metric-label">Certifications</div>
+              <div class="sp-metric-bar">
+                <div class="sp-metric-fill" style="width: 90%"></div>
+              </div>
+            </div>
+            <div class="sp-metric-card">
+              <div class="sp-metric-val">50%</div>
+              <div class="sp-metric-label">Deploy Time ↓</div>
+              <div class="sp-metric-bar">
+                <div class="sp-metric-fill" style="width: 50%"></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="sysprofile-right fade delay2">
-          <div><div class="sp-title">Streamline Your Infrastructure<br /><span>with Real Solutions</span></div></div>
-          <p class="sp-desc">Hey! I'm <strong style="color:#fff">Nusaif Khan</strong> — an aspiring DevOps & Cloud Automation Engineer and BSc Software Engineering student who has spent the last year learning by <em>building</em>, not just studying. I don't just follow tutorials — I design, build, and validate production-oriented solutions from scratch.</p>
-          <p class="sp-desc">What makes me different? I've already delivered measurable results: <span style="color:var(--g)">reduced Azure VM manual operations by 80%</span> through Python & Jenkins automation, <span style="color:var(--g)">cut cloud storage costs by 30%</span> with an automated Azure cleanup tool, and earned <span style="color:var(--g)">9+ certifications</span> — AZ-900, FinOps Practitioner, Kubernetes, Docker, Prometheus, Jenkins, Helm & Linux — all self-studied within a year.</p>
-          <p class="sp-desc">Open to freelance projects, internships, and junior DevOps roles. Let's build something reliable.</p>
+          <div>
+            <div class="sp-title">Streamline Your Infrastructure<br /><span>with Real Solutions</span></div>
+          </div>
+          <p class="sp-desc">Hey! I'm <strong style="color:#fff">Nusaif Khan</strong> — an aspiring DevOps & Cloud
+            Automation Engineer and BSc Software Engineering student who has spent the last year learning by
+            <em>building</em>, not just studying. I don't just follow tutorials — I design, build, and validate
+            production-oriented solutions from scratch.</p>
+          <p class="sp-desc">What makes me different? I've already delivered measurable results: <span
+              style="color:var(--g)">reduced Azure VM manual operations by 80%</span> through Python & Jenkins
+            automation, <span style="color:var(--g)">cut cloud storage costs by 30%</span> with an automated Azure
+            cleanup tool, and earned <span style="color:var(--g)">9+ certifications</span> — AZ-900, FinOps
+            Practitioner, Kubernetes, Docker, Prometheus, Jenkins, Helm & Linux — all self-studied within a year.</p>
+          <p class="sp-desc">Open to freelance projects, internships, and junior DevOps roles. Let's build something
+            reliable.</p>
           <ul class="sp-focus-list">
-            <li class="sp-focus-item"><span class="sp-focus-icon">🐍</span><div class="sp-focus-text"><span class="sp-focus-name">Python & Bash Automation</span><span class="sp-focus-sub">Azure SDK · Boto3 · Native Linux tools</span></div></li>
-            <li class="sp-focus-item"><span class="sp-focus-icon">☁️</span><div class="sp-focus-text"><span class="sp-focus-name">AWS & Azure with Terraform</span><span class="sp-focus-sub">Modular IaC · No ClickOps · No drift</span></div></li>
-            <li class="sp-focus-item"><span class="sp-focus-icon">⚙️</span><div class="sp-focus-text"><span class="sp-focus-name">CI/CD Pipeline Design</span><span class="sp-focus-sub">Jenkins · GitHub Actions · Docker</span></div></li>
-            <li class="sp-focus-item"><span class="sp-focus-icon">⎈</span><div class="sp-focus-text"><span class="sp-focus-name">Docker & Kubernetes</span><span class="sp-focus-sub">Helm · Manifests · Health checks</span></div></li>
-            <li class="sp-focus-item"><span class="sp-focus-icon">📊</span><div class="sp-focus-text"><span class="sp-focus-name">Prometheus & Grafana</span><span class="sp-focus-sub">Full observability · Alerting · SLO</span></div></li>
-            <li class="sp-focus-item"><span class="sp-focus-icon">💰</span><div class="sp-focus-text"><span class="sp-focus-name">Cloud Cost Optimization</span><span class="sp-focus-sub">FinOps Certified · Audit & savings plan</span></div></li>
-            <li class="sp-focus-item"><span class="sp-focus-icon">🔧</span><div class="sp-focus-text"><span class="sp-focus-name">Ansible Config Management</span><span class="sp-focus-sub">Idempotent playbooks · Server provisioning</span></div></li>
-            <li class="sp-focus-item"><span class="sp-focus-icon">🐳</span><div class="sp-focus-text"><span class="sp-focus-name">Dockerfile & K8s Review</span><span class="sp-focus-sub">Security hardening · Full change log</span></div></li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">🐍</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">Python & Bash Automation</span><span
+                  class="sp-focus-sub">Azure SDK · Boto3 · Native Linux tools</span></div>
+            </li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">☁️</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">AWS & Azure with Terraform</span><span
+                  class="sp-focus-sub">Modular IaC · No ClickOps · No drift</span></div>
+            </li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">⚙️</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">CI/CD Pipeline Design</span><span
+                  class="sp-focus-sub">Jenkins · GitHub Actions · Docker</span></div>
+            </li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">⎈</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">Docker & Kubernetes</span><span
+                  class="sp-focus-sub">Helm · Manifests · Health checks</span></div>
+            </li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">📊</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">Prometheus & Grafana</span><span
+                  class="sp-focus-sub">Full observability · Alerting · SLO</span></div>
+            </li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">💰</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">Cloud Cost Optimization</span><span
+                  class="sp-focus-sub">FinOps Certified · Audit & savings plan</span></div>
+            </li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">🔧</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">Ansible Config Management</span><span
+                  class="sp-focus-sub">Idempotent playbooks · Server provisioning</span></div>
+            </li>
+            <li class="sp-focus-item"><span class="sp-focus-icon">🐳</span>
+              <div class="sp-focus-text"><span class="sp-focus-name">Dockerfile & K8s Review</span><span
+                  class="sp-focus-sub">Security hardening · Full change log</span></div>
+            </li>
           </ul>
           <div class="about-badges">
-            <span class="badge">Azure Certified</span><span class="badge">FinOps Practitioner</span><span class="badge">Kubernetes Operator</span><span class="badge">Docker Expert</span><span class="badge">CI/CD Architect</span><span class="badge">Open to Internships</span>
+            <span class="badge">Azure Certified</span><span class="badge">FinOps Practitioner</span><span
+              class="badge">Kubernetes Operator</span><span class="badge">Docker Expert</span><span class="badge">CI/CD
+              Architect</span><span class="badge">Open to Internships</span>
           </div>
           <!-- WHY WORK WITH ME -->
-          <div style="margin-top: 22px; padding: 16px 18px; background: rgba(0,255,136,0.04); border: 1px solid rgba(0,255,136,0.13); border-radius: 10px;">
-            <div style="font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; color: var(--g); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px;">Why Work With Me</div>
-            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>Every deliverable comes with clear documentation</span></div>
-            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>I explain what I did and why — no black boxes</span></div>
-            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>Fast turnaround with clean, maintainable output</span></div>
-            <div style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;"><span style="color: var(--g); flex-shrink: 0;">✔</span><span>I treat your project like it goes to production</span></div>
+          <div
+            style="margin-top: 22px; padding: 16px 18px; background: rgba(0,255,136,0.04); border: 1px solid rgba(0,255,136,0.13); border-radius: 10px;">
+            <div
+              style="font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; color: var(--g); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px;">
+              Why Work With Me</div>
+            <div
+              style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;">
+              <span style="color: var(--g); flex-shrink: 0;">✔</span><span>Every deliverable comes with clear
+                documentation</span></div>
+            <div
+              style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;">
+              <span style="color: var(--g); flex-shrink: 0;">✔</span><span>I explain what I did and why — no black
+                boxes</span></div>
+            <div
+              style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;">
+              <span style="color: var(--g); flex-shrink: 0;">✔</span><span>Fast turnaround with clean, maintainable
+                output</span></div>
+            <div
+              style="display: flex; align-items: flex-start; gap: 9px; margin-bottom: 7px; font-size: 0.84rem; color: var(--td); line-height: 1.5;">
+              <span style="color: var(--g); flex-shrink: 0;">✔</span><span>I treat your project like it goes to
+                production</span></div>
           </div>
           <!-- TECH STACK -->
           <div style="margin-top: 18px;">
-            <div style="font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; color: var(--td); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;">Tech Stack</div>
+            <div
+              style="font-family: 'JetBrains Mono',monospace; font-size: 0.62rem; color: var(--td); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px;">
+              Tech Stack</div>
             <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">AWS</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Azure</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Terraform</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Ansible</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Docker</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Kubernetes</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Helm</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Jenkins</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">GitHub Actions</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Python</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Bash</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">PowerShell</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Prometheus</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Grafana</span>
-              <span style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Linux</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">AWS</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Azure</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Terraform</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Ansible</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Docker</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Kubernetes</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Helm</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Jenkins</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">GitHub
+                Actions</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Python</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Bash</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">PowerShell</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Prometheus</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Grafana</span>
+              <span
+                style="font-family: 'JetBrains Mono',monospace; font-size: 0.66rem; padding: 3px 9px; background: rgba(30,144,255,0.08); border: 1px solid rgba(30,144,255,0.2); border-radius: 3px; color: var(--b);">Linux</span>
             </div>
           </div>
         </div>
@@ -199,12 +339,47 @@
       <div class="section-kicker fade">02 — Skills</div>
       <div class="section-title fade delay1">Technical Arsenal</div>
       <div class="skills-grid" id="skills-grid">
-        <div class="skill-cat fade delay1"><div class="skill-cat-icon">☁️</div><div class="skill-cat-title">Cloud Platforms</div><div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">AWS</span><span class="skill-tag">Azure SDK</span><span class="skill-tag">Azure CLI</span><span class="skill-tag">AKS</span><span class="skill-tag">Azure VMs</span></div></div>
-        <div class="skill-cat fade delay2"><div class="skill-cat-icon">🐳</div><div class="skill-cat-title">Containers & Orchestration</div><div class="skill-tags"><span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Helm</span><span class="skill-tag">kubectl</span><span class="skill-tag">Container Registry</span></div></div>
-        <div class="skill-cat fade delay3"><div class="skill-cat-icon">⚙️</div><div class="skill-cat-title">CI/CD & Automation</div><div class="skill-tags"><span class="skill-tag">Jenkins</span><span class="skill-tag">Terraform</span><span class="skill-tag">Ansible</span><span class="skill-tag">Bash Scripting</span><span class="skill-tag">PowerShell</span><span class="skill-tag">Python</span></div></div>
-        <div class="skill-cat fade delay4"><div class="skill-cat-icon">📊</div><div class="skill-cat-title">Monitoring & Logging</div><div class="skill-tags"><span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span class="skill-tag">Azure Monitor</span><span class="skill-tag">Log Analytics</span></div></div>
-        <div class="skill-cat fade delay1"><div class="skill-cat-icon">💻</div><div class="skill-cat-title">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Bash</span><span class="skill-tag">YAML</span><span class="skill-tag">PowerShell</span><span class="skill-tag">HCL</span></div></div>
-        <div class="skill-cat fade delay2"><div class="skill-cat-icon">🌐</div><div class="skill-cat-title">Networking & Security</div><div class="skill-tags"><span class="skill-tag">Cloud Networking</span><span class="skill-tag">VNet</span><span class="skill-tag">NSG</span><span class="skill-tag">Network Security</span><span class="skill-tag">VPN Gateway</span></div></div>
+        <div class="skill-cat fade delay1">
+          <div class="skill-cat-icon">☁️</div>
+          <div class="skill-cat-title">Cloud Platforms</div>
+          <div class="skill-tags"><span class="skill-tag">Microsoft Azure</span><span class="skill-tag">AWS</span><span
+              class="skill-tag">Azure SDK</span><span class="skill-tag">Azure CLI</span><span
+              class="skill-tag">AKS</span><span class="skill-tag">Azure VMs</span></div>
+        </div>
+        <div class="skill-cat fade delay2">
+          <div class="skill-cat-icon">🐳</div>
+          <div class="skill-cat-title">Containers & Orchestration</div>
+          <div class="skill-tags"><span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span
+              class="skill-tag">Helm</span><span class="skill-tag">kubectl</span><span class="skill-tag">Container
+              Registry</span></div>
+        </div>
+        <div class="skill-cat fade delay3">
+          <div class="skill-cat-icon">⚙️</div>
+          <div class="skill-cat-title">CI/CD & Automation</div>
+          <div class="skill-tags"><span class="skill-tag">Jenkins</span><span class="skill-tag">Terraform</span><span
+              class="skill-tag">Ansible</span><span class="skill-tag">Bash Scripting</span><span
+              class="skill-tag">PowerShell</span><span class="skill-tag">Python</span></div>
+        </div>
+        <div class="skill-cat fade delay4">
+          <div class="skill-cat-icon">📊</div>
+          <div class="skill-cat-title">Monitoring & Logging</div>
+          <div class="skill-tags"><span class="skill-tag">Prometheus</span><span class="skill-tag">Grafana</span><span
+              class="skill-tag">Azure Monitor</span><span class="skill-tag">Log Analytics</span></div>
+        </div>
+        <div class="skill-cat fade delay1">
+          <div class="skill-cat-icon">💻</div>
+          <div class="skill-cat-title">Languages</div>
+          <div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">Bash</span><span
+              class="skill-tag">YAML</span><span class="skill-tag">PowerShell</span><span class="skill-tag">HCL</span>
+          </div>
+        </div>
+        <div class="skill-cat fade delay2">
+          <div class="skill-cat-icon">🌐</div>
+          <div class="skill-cat-title">Networking & Security</div>
+          <div class="skill-tags"><span class="skill-tag">Cloud Networking</span><span
+              class="skill-tag">VNet</span><span class="skill-tag">NSG</span><span class="skill-tag">Network
+              Security</span><span class="skill-tag">VPN Gateway</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -216,7 +391,8 @@
       <div class="section-title fade delay1">Featured Projects</div>
       <div class="projects-grid">
         <div class="proj-card fade delay1" onclick="window.open('https://github.com/nusaifkhan', '_blank')">
-          <div class="proj-meta"><span class="proj-num">01</span><span class="proj-dates">Mar 2025 – Apr 2025</span></div>
+          <div class="proj-meta"><span class="proj-num">01</span><span class="proj-dates">Mar 2025 – Apr 2025</span>
+          </div>
           <div class="proj-title">Azure VM Automation Project</div>
           <ul class="proj-bullets">
             <li>Automated Azure VM lifecycle using Python, Bash & Jenkins — reduced manual ops by 80%</li>
@@ -225,10 +401,13 @@
             <li>Integrated scripts into Jenkins pipeline, decreasing config errors by 60%</li>
           </ul>
           <div class="proj-impact">⚡ VM operational costs ↓25% · Deployment speed ↑40%</div>
-          <div class="proj-tech"><span class="proj-tech-pill">Python</span><span class="proj-tech-pill">Azure SDK</span><span class="proj-tech-pill">Jenkins</span><span class="proj-tech-pill">Bash</span><span class="proj-tech-pill">Azure CLI</span></div>
+          <div class="proj-tech"><span class="proj-tech-pill">Python</span><span class="proj-tech-pill">Azure
+              SDK</span><span class="proj-tech-pill">Jenkins</span><span class="proj-tech-pill">Bash</span><span
+              class="proj-tech-pill">Azure CLI</span></div>
         </div>
         <div class="proj-card fade delay2" onclick="window.open('https://github.com/nusaifkhan', '_blank')">
-          <div class="proj-meta"><span class="proj-num">02</span><span class="proj-dates">Jan 2025 – Feb 2025</span></div>
+          <div class="proj-meta"><span class="proj-num">02</span><span class="proj-dates">Jan 2025 – Feb 2025</span>
+          </div>
           <div class="proj-title">Cloud Reduce-for-Azure</div>
           <ul class="proj-bullets">
             <li>Automated cleanup of unused Azure snapshots & disks using Azure SDK — cut storage costs by 30%</li>
@@ -236,7 +415,9 @@
             <li>Implemented robust logging & monitoring, improving resource visibility, reducing downtime by 20%</li>
           </ul>
           <div class="proj-impact">⚡ Cloud efficiency ↑35% · Storage allocation optimized ↑40%</div>
-          <div class="proj-tech"><span class="proj-tech-pill">Python</span><span class="proj-tech-pill">Docker</span><span class="proj-tech-pill">Azure SDK</span><span class="proj-tech-pill">Prometheus</span><span class="proj-tech-pill">Azure Disks</span></div>
+          <div class="proj-tech"><span class="proj-tech-pill">Python</span><span
+              class="proj-tech-pill">Docker</span><span class="proj-tech-pill">Azure SDK</span><span
+              class="proj-tech-pill">Prometheus</span><span class="proj-tech-pill">Azure Disks</span></div>
         </div>
       </div>
     </div>
@@ -264,15 +445,69 @@
       <div class="section-kicker fade">05 — Credentials</div>
       <div class="section-title fade delay1">Certifications & Courses</div>
       <div class="certs-grid">
-        <div class="cert-card fade delay1"><div class="cert-icon">🏆</div><div><div class="cert-name">Microsoft Certified: Azure Fundamentals</div><div class="cert-meta">Microsoft · AZ-900</div><span class="cert-badge">✓ Certified</span></div></div>
-        <div class="cert-card fade delay2"><div class="cert-icon">💰</div><div><div class="cert-name">FinOps Certified Practitioner</div><div class="cert-meta">FinOps Foundation</div><span class="cert-badge">✓ Certified</span></div></div>
-        <div class="cert-card fade delay3"><div class="cert-icon">⎈</div><div><div class="cert-name">Kubernetes for Absolute Beginners</div><div class="cert-meta">KodeKloud · March 2025</div><span class="cert-badge">✓ Completed</span></div></div>
-        <div class="cert-card fade delay4"><div class="cert-icon">🐳</div><div><div class="cert-name">Docker Training for Absolute Beginner</div><div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span></div></div>
-        <div class="cert-card fade delay1"><div class="cert-icon">📊</div><div><div class="cert-name">Prometheus Certified Associate Training</div><div class="cert-meta">KodeKloud · April 2025</div><span class="cert-badge">✓ Completed</span></div></div>
-        <div class="cert-card fade delay2"><div class="cert-icon">🐚</div><div><div class="cert-name">Shell Scripts for Beginners</div><div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span></div></div>
-        <div class="cert-card fade delay3"><div class="cert-icon">🔧</div><div><div class="cert-name">Jenkins for Beginners</div><div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span></div></div>
-        <div class="cert-card fade delay4"><div class="cert-icon">⛵</div><div><div class="cert-name">Helm for Beginners</div><div class="cert-meta">KodeKloud · March 2025</div><span class="cert-badge">✓ Completed</span></div></div>
-        <div class="cert-card fade delay1"><div class="cert-icon">🐧</div><div><div class="cert-name">Complete Linux Training Course 2025</div><div class="cert-meta">Udemy · March 2025</div><span class="cert-badge">✓ Completed</span></div></div>
+        <div class="cert-card fade delay1">
+          <div class="cert-icon">🏆</div>
+          <div>
+            <div class="cert-name">Microsoft Certified: Azure Fundamentals</div>
+            <div class="cert-meta">Microsoft · AZ-900</div><span class="cert-badge">✓ Certified</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay2">
+          <div class="cert-icon">💰</div>
+          <div>
+            <div class="cert-name">FinOps Certified Practitioner</div>
+            <div class="cert-meta">FinOps Foundation</div><span class="cert-badge">✓ Certified</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay3">
+          <div class="cert-icon">⎈</div>
+          <div>
+            <div class="cert-name">Kubernetes for Absolute Beginners</div>
+            <div class="cert-meta">KodeKloud · March 2025</div><span class="cert-badge">✓ Completed</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay4">
+          <div class="cert-icon">🐳</div>
+          <div>
+            <div class="cert-name">Docker Training for Absolute Beginner</div>
+            <div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay1">
+          <div class="cert-icon">📊</div>
+          <div>
+            <div class="cert-name">Prometheus Certified Associate Training</div>
+            <div class="cert-meta">KodeKloud · April 2025</div><span class="cert-badge">✓ Completed</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay2">
+          <div class="cert-icon">🐚</div>
+          <div>
+            <div class="cert-name">Shell Scripts for Beginners</div>
+            <div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay3">
+          <div class="cert-icon">🔧</div>
+          <div>
+            <div class="cert-name">Jenkins for Beginners</div>
+            <div class="cert-meta">KodeKloud · February 2025</div><span class="cert-badge">✓ Completed</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay4">
+          <div class="cert-icon">⛵</div>
+          <div>
+            <div class="cert-name">Helm for Beginners</div>
+            <div class="cert-meta">KodeKloud · March 2025</div><span class="cert-badge">✓ Completed</span>
+          </div>
+        </div>
+        <div class="cert-card fade delay1">
+          <div class="cert-icon">🐧</div>
+          <div>
+            <div class="cert-name">Complete Linux Training Course 2025</div>
+            <div class="cert-meta">Udemy · March 2025</div><span class="cert-badge">✓ Completed</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -280,10 +515,15 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-copy">© 2025 Nusaif Khan. Built with raw ambition.</div>
-    <div class="footer-status"><div class="status-dot"></div> Systems Operational (Let's deploy)</div>
-    <div style="font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; color: var(--td); display: flex; gap: 16px;">
-      <a href="https://github.com/nusaifkhan" target="_blank" style="color: var(--td); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s;">GitHub</a>
-      <a href="#" style="color: var(--td); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s;">LinkedIn</a>
+    <div class="footer-status">
+      <div class="status-dot"></div> Systems Operational (Let's deploy)
+    </div>
+    <div
+      style="font-family: 'JetBrains Mono',monospace; font-size: 0.72rem; color: var(--td); display: flex; gap: 16px;">
+      <a href="https://github.com/nusaifkhan" target="_blank"
+        style="color: var(--td); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s;">GitHub</a>
+      <a href="#"
+        style="color: var(--td); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.2s;">LinkedIn</a>
     </div>
   </footer>
 
@@ -341,15 +581,15 @@
       if (window.scrollY > 50) nav.classList.add("scrolled");
       else nav.classList.remove("scrolled");
     });
-    
+
     let menuOpen = false;
     function toggleMenu() {
       const btn = document.getElementById('hamburger');
       const menu = document.getElementById('mobile-menu');
       menuOpen = !menuOpen;
-      
+
       const spans = btn.querySelectorAll('span');
-      if(menuOpen) {
+      if (menuOpen) {
         menu.style.display = 'flex';
         spans[0].style.transform = 'translateY(7px) rotate(45deg)';
         spans[1].style.opacity = '0';
@@ -405,19 +645,19 @@
 
     // 6. Command Rain
     const cmdRain = document.getElementById('cmd-rain');
-    const snippets = ["kubectl","docker","terraform","ansible","helm","az","bash","python","jenkins","git push","npm run","systemctl","grep -r","curl -X","chmod +x","./deploy.sh","cat /etc/","tail -f","ps aux","df -h","htop","ping","ssh ubuntu@"];
-    for(let i=0; i<12; i++) {
-        const col = document.createElement('div');
-        col.className = 'rain-col';
-        col.style.left = ((i / 12) * 100 + Math.random() * 4) + "%";
-        col.style.animationDuration = (8 + Math.random() * 12) + "s";
-        col.style.animationDelay = (Math.random() * 8) + "s";
-        for(let j=0; j<14; j++) {
-            const sp = document.createElement('span');
-            sp.textContent = snippets[Math.floor(Math.random() * snippets.length)];
-            col.appendChild(sp);
-        }
-        cmdRain.appendChild(col);
+    const snippets = ["kubectl", "docker", "terraform", "ansible", "helm", "az", "bash", "python", "jenkins", "git push", "npm run", "systemctl", "grep -r", "curl -X", "chmod +x", "./deploy.sh", "cat /etc/", "tail -f", "ps aux", "df -h", "htop", "ping", "ssh ubuntu@"];
+    for (let i = 0; i < 12; i++) {
+      const col = document.createElement('div');
+      col.className = 'rain-col';
+      col.style.left = ((i / 12) * 100 + Math.random() * 4) + "%";
+      col.style.animationDuration = (8 + Math.random() * 12) + "s";
+      col.style.animationDelay = (Math.random() * 8) + "s";
+      for (let j = 0; j < 14; j++) {
+        const sp = document.createElement('span');
+        sp.textContent = snippets[Math.floor(Math.random() * snippets.length)];
+        col.appendChild(sp);
+      }
+      cmdRain.appendChild(col);
     }
 
     // 7. Command Ticker
@@ -425,10 +665,10 @@
     const ticker = document.getElementById('ticker-track');
     const doubled = [...COMMANDS, ...COMMANDS];
     doubled.forEach(c => {
-        const sp = document.createElement('span');
-        sp.className = 'ticker-cmd';
-        sp.innerHTML = `<span class="prompt">❯ </span><span class="arg">${c.replace("$ ", "")}</span>`;
-        ticker.appendChild(sp);
+      const sp = document.createElement('span');
+      sp.className = 'ticker-cmd';
+      sp.innerHTML = `<span class="prompt">❯ </span><span class="arg">${c.replace("$ ", "")}</span>`;
+      ticker.appendChild(sp);
     });
 
     // 8. Terminal Window Animation
@@ -451,26 +691,26 @@
     let termIdx = 0;
     const heroTerm = document.getElementById('hero-term');
     const inter = setInterval(() => {
-        if(termIdx < termLines.length) {
-            const span = document.createElement('span');
-            span.className = 'term-line';
-            const l = termLines[termIdx];
-            if(l.type === "prompt") span.innerHTML = `<span class="term-prompt">${l.text}</span>`;
-            if(l.type === "cmd") span.innerHTML = `<span class="term-cmd">${l.text}</span>`;
-            if(l.type === "out") span.innerHTML = `<span class="term-out">${l.text}</span>`;
-            heroTerm.insertBefore(span, heroTerm.lastElementChild || null);
-            termIdx++;
-        } else {
-            clearInterval(inter);
-            const cursor = document.createElement('span');
-            cursor.className = 'term-cursor';
-            heroTerm.appendChild(cursor);
-        }
+      if (termIdx < termLines.length) {
+        const span = document.createElement('span');
+        span.className = 'term-line';
+        const l = termLines[termIdx];
+        if (l.type === "prompt") span.innerHTML = `<span class="term-prompt">${l.text}</span>`;
+        if (l.type === "cmd") span.innerHTML = `<span class="term-cmd">${l.text}</span>`;
+        if (l.type === "out") span.innerHTML = `<span class="term-out">${l.text}</span>`;
+        heroTerm.insertBefore(span, heroTerm.lastElementChild || null);
+        termIdx++;
+      } else {
+        clearInterval(inter);
+        const cursor = document.createElement('span');
+        cursor.className = 'term-cursor';
+        heroTerm.appendChild(cursor);
+      }
     }, 220);
 
     // 9. System Profile JSON observer
     const spObs = new IntersectionObserver(([e]) => {
-      if(e.isIntersecting) {
+      if (e.isIntersecting) {
         document.getElementById('sp-json-output').style.display = 'block';
         spObs.disconnect();
       }
@@ -479,4 +719,5 @@
 
   </script>
 </body>
+
 </html>
